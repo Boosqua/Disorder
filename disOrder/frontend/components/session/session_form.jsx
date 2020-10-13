@@ -33,14 +33,26 @@ export default class SessionForm extends React.Component {
    }
 
    demoLogin(e){
-      let login = this.props.login ? this.props.login : this.props.processForm
       e.preventDefault();
-      login({
-         username: "testUser",
-         password: "password"
-      })
-      
+      let login = this.props.login ? this.props.login : this.props.processForm
+      let that = this;
+      let count = 0;
+      let demo = 'testUserpassword'
+      if (this.demo) return;
+      this.demo = setInterval(() => {
+         let type = count < 8 ? 'username' : 'password';
+         that.setState({ [type]: that.state[type] + demo[count]});
+         count++;
+                  if (count === 16) {
+                     login({
+                        username: "testUser",
+                           password: "password"
+                        })
+                     clearInterval(this.demo)
+                  }
+      }, 80)
    }
+
 
    render(){
       return (
@@ -50,7 +62,7 @@ export default class SessionForm extends React.Component {
             <h2 className="form-header">{ this.props.formType }</h2>
 
                {
-                  this.props.formType === 'Sign up' ? 
+                  this.props.formType === 'Sign Up!' ? 
                      (
                      <label className='session-input-label'>Email
                      <br/>
@@ -76,11 +88,13 @@ export default class SessionForm extends React.Component {
                </label>
                <br/>
                <ShowErrorMessages errors={this.props.errors}/>
+              
                {
-                  this.props.formType !== 'Sign up' ? 
-                  (<div><Link to='/signup'> Need an account? </Link>
-                  <a onClick={this.demoLogin}>Demo Login</a>
-                  </div>) :
+                  this.props.formType !== 'Sign Up!' ? 
+                  <div>
+                     <Link to='/signup'>Need an account?</Link>
+                     <a onClick={this.demoLogin}>Demo Login</a> 
+                  </div> :
                   <Link to='/login'>Log in</Link>
                }
                <button className='session-button'>{this.props.buttonText}</button>
