@@ -24,7 +24,6 @@ return (
 )}
 
 const mapStateToProps = state => {
-   // debugger
    return { loggedIn: Boolean(state.session.currentUserId) };
 };
 

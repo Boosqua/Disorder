@@ -6,7 +6,6 @@ import HomeContainer from './home/home_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 const App = () => (
    <Switch>
-      hello
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/" component={HomeContainer} />
@@ -14,3 +13,4 @@ const App = () => (
 )
 
 export default App;
+
