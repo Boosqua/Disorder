@@ -3,6 +3,7 @@ import * as APIUtil from "../util/session_api_util";
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT-USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveCurrentUser = (currentUser) =>{
     
@@ -24,11 +25,16 @@ export const receiveErrors = (errors) => {
         errors
     };
 };
-// Promise callbacks — .done(), .fail(), .always(), and .then() — are invoked, in the order they are registered.
+
+export const clearErrors = () => ({
+    type: CLEAR_ERRORS
+});
+
 export const fetchUser = (userId) => dispatch => (
     APIUtil.fetchUser(userId)
         .then((user) => dispatch(receiveCurrentUser(user)))
-)
+);
+
 export const signup = (formUser) => (dispatch) => {
     return (
         APIUtil.signup(formUser)
@@ -37,8 +43,8 @@ export const signup = (formUser) => (dispatch) => {
     );
 };
 
-export const logout = () => (dispatch) => { //good working with you :D
-    return APIUtil.logout() // same!! just had to finish up our fail catches 
+export const logout = () => (dispatch) => { 
+    return APIUtil.logout() 
         .then(() => {dispatch(logoutCurrentUser())})
         .fail((errors) => {dispatch(receiveErrors(errors))});
 };

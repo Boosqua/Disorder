@@ -22,3 +22,12 @@ User.create!([
    {username: 'PrincessDie', password: 'password', email: Faker::Internet.unique.email},
    {username: 'DarnYak', password: 'password', email: Faker::Internet.unique.email}
 ])
+
+Server.create!([
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2}
+])

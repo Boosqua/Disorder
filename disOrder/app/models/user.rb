@@ -31,4 +31,11 @@ class User < ApplicationRecord
     self.save
     self.session_token
    end
+   
+################################################################################
+
+   def find_by_partial(partial_username)
+
+   end
+
 end

@@ -4,10 +4,11 @@
    height: 100vh;
    align-items: center;
    justify-content: center;
+   background-image: url(/assets/session_background.jpg);
 }
 .session-form {
    color: white;
-   width: 600px;
+   width: 550px;
    height: 325px;
    margin: auto; 
    justify-content: center;
@@ -30,7 +31,7 @@
    /* text-rendering: optimizeLegibility; */
    font-weight: 550;
    text-align: center;
-   margin-top: 13px;
+   margin-top: 18px;
    margin-bottom: 10px;
 }
 p.session-input-label {
@@ -61,4 +62,7 @@ p.session-input-label {
    font-weight: 500;
    font-size: 16;
    border-radius: 5px;
+}
+.session-button:hover {
+   background-color: #506cd1;
 }
