@@ -1,0 +1,17 @@
+/* body {
+  background-color: #2e3034 ;
+} */
+
+
+div {
+   font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+a {
+  display: block;
+  font-size: 14px;
+  color: #00b0f4;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
