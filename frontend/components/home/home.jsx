@@ -26,9 +26,9 @@ export default class Home extends React.Component {
             </button>
             <ServersIndexContainer user={this.props.user}/>
             <ServersShowContainer />
-            <Switch>
+            {/* <Switch>
                <Route to={`/server/:serverId`} component={ServersShowContainer} />
-            </Switch>
+            </Switch> */}
          </div>
       ) : null
    }
