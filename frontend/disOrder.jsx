@@ -8,19 +8,16 @@ import {
   logout,
   signup
 } from "./util/session_api_util"
-import { receiveCurrentUser } from './actions/session_actions'
-import {fetchServers} from './util/server_api_util'
 
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-  
   if (window.currentUser) {
     const preloadedState = {
       entities: {
         users: { [window.currentUser.id]: window.currentUser },
       },
-      session: { currentUserId: window.currentUser.id },
+      session: { currentUserId: window.currentUser.id, currentServerId: 1 },
     };
     store = configureStore(preloadedState);
     delete window.currentUser;
@@ -29,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   // Test 
-  window.fetchServers = fetchServers
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   //Test End 

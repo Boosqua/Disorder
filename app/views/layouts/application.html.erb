@@ -3,8 +3,9 @@
   <head>
     <title>DisOrder</title>
     <%= csrf_meta_tags %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
     <script type="text/javascript">
-    window.brentURL = "<%= image_url('session_background.jpg') %>";
+      window.homeIconURL = "<%= image_url('default-icon-no-bg') %>";
     </script>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>

@@ -1,6 +1,7 @@
 import * as APIUtil from "../util/session_api_util";
-
+import {fetchServer} from '../util/server_api_util'
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+// export const RECEIVE_CURRENT_SERVER = 'RECEIVE_CURRENT_SERVER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT-USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
@@ -12,6 +13,11 @@ export const receiveCurrentUser = (currentUser) =>{
         currentUser
     };
 };
+
+// export const receiveCurrentServer = (currentServer) => ({
+//     type: RECEIVE_CURRENT_SERVER,
+//     currentServer
+// })
 
 export const logoutCurrentUser = () => {
     return {
@@ -34,6 +40,11 @@ export const fetchUser = (userId) => dispatch => (
     APIUtil.fetchUser(userId)
         .then((user) => dispatch(receiveCurrentUser(user)))
 );
+
+// export const fetchServer = (serverId) => dispatch => (
+//     APIUtil.fetchServer(serverId)
+//         .then((server) => dispatch(receiveCurrentServer(server)))
+// );
 
 export const signup = (formUser) => (dispatch) => {
     return (

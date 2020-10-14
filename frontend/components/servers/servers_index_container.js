@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
-import { fetchServers, clearErrors } from '../../actions/server_actions';
+import { fetchServer, clearErrors } from '../../actions/server_actions';
 import ServersIndex from './servers_index';
 
 const mapStateToProps = (state, ownProps) => ({
    servers: Object.values(state.entities.servers),
+   userId: state.session.currentUserId,
    errors: state.errors.servers
 })
 
 const mapDispatchToProps = dispatch => ({
-   fetchServers: () => dispatch(fetchServers()),
+   fetchServer: (userId, serverId) => dispatch(fetchServer(userId, serverId)),
    clearErrors: () => dispatch(clearErrors())
 })
 

@@ -1,8 +1,3 @@
-// fetchServers ()
-// fetch server id
-// create server server
-// updateServer server
-// deleteServer id
 
 export const fetchServers = (userId) => (
    $.ajax({
@@ -12,7 +7,7 @@ export const fetchServers = (userId) => (
 
 export const fetchServer = (userId, serverId) => (
    $.ajax({
-      url: `/api/users/${userId}/servers${serverId}`
+      url: `/api/users/${userId}/servers/${serverId}`
    })
 )
 
@@ -26,7 +21,7 @@ export const createServer = (userId, server) => (
 
 export const updateServer = (userId, server) => (
    $.ajax({
-      url: `/api/users/${userId}/servers${server.id}`,
+      url: `/api/users/${userId}/servers/${server.id}`,
       method: 'PATCH',
       data: { server }
    })

@@ -7,13 +7,16 @@
    display: flex;
    flex-direction: column;
    color: aquamarine;
+   overflow-x: hidden;
+   overflow-y: scroll;
 }
 .index-separator {
    width: 40px;
-   height: 1px;
+   height: 1.75px;
    background-color: rgba(255,255,255,0.06);
+
    align-self: center;
-   margin-top: 5px;
+   margin-top: 15px;
    margin-bottom: 5px;
 }
 .logout-button {
@@ -21,3 +24,67 @@
    left: 120px;
    float: left;
 }
+
+.server-image-text {
+   overflow-x: hidden;
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 18px;
+   font-weight: 500;
+   cursor: pointer;
+   white-space: nowrap;
+   word-spacing: 0.5px;
+}
+
+.server-image {
+   overflow-x: hidden;
+   margin: 0;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   cursor: pointer;
+   max-width: 140%;
+   max-height: 140%;
+}
+.server-image-wrapper:hover {
+   
+   transition: 0.15s;
+   border-radius: 30%;
+   cursor: pointer;
+}
+.server-image-wrapper{
+   // background-color: rgb(67, 72, 78);
+   margin-top: 15px;
+   margin-left: 15px;
+   overflow: hidden;
+   height: 48px;
+   width: 48px;
+   justify-content: center;
+   position: relative;
+   border-radius: 50%;
+}
+
+.server-image-wrapper body::-webkit-scrollbar{
+    
+  width: 2px;               /* width of the entire scrollbar */
+
+}
+
+.server-bg {
+   height: 48px;
+   width: 48px;
+   background-color: rgb(51, 55, 59);
+}
+
+.server-bg:hover {
+   background-color: #506cd1;
+}
+
