@@ -4,7 +4,9 @@
    height: 100vh;
    align-items: center;
    justify-content: center;
-   background-image: url(/assets/session_background.jpg);
+   /* background-image: url(/assets/session_background.jpg); */
+   /* background-image: url(image-url("session_background.jpg")) ; */
+   background-size: cover;
 }
 .session-form {
    color: white;
@@ -62,6 +64,7 @@ p.session-input-label {
    font-weight: 500;
    font-size: 16;
    border-radius: 5px;
+   border: 1px, solid;
 }
 .session-button:hover {
    background-color: #506cd1;

@@ -1,3 +1,14 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.session-outside {
+   display: flex;
+   width: 100vw;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
+   /* background-image: url(/assets/session_background.jpg); */
+   background-image: image-url("session_background.jpg") ;
+   background-size: cover;
+}
