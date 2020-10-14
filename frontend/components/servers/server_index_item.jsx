@@ -37,13 +37,11 @@ export default class ServerIndexItem extends React.Component {
             className='server-link'
             onClick={ this.handleClick }
             >
-            <Link to={`/server/${server.id}`}>
             <div className='server-image-wrapper'>
                <div className='server-bg'>
                   { this.serverImage(server) }  
               </div>
            </div>
-           </Link>
          </li>
       )
    }
