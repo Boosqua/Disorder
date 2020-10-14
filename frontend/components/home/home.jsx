@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import ServersIndexContainer from '../servers/servers_index_container';
 export default class Home extends React.Component {
    componentDidMount() {
       this.props.fetchUser(this.props.user.id)
@@ -7,9 +7,13 @@ export default class Home extends React.Component {
 
    render() {
       return (
-         <div>
-            { `welcome back ${this.props.user.username}` }
-            <button onClick={this.props.logout}>Log out</button>
+         <div className='mount-component'>
+            <button 
+               onClick={this.props.logout} 
+               className='logout-button'>
+               Log out
+            </button>
+            <ServersIndexContainer />
          </div>
       )
    }

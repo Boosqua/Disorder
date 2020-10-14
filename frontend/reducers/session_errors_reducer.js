@@ -9,7 +9,7 @@ export default (state = {}, action) => {
    
    switch (action.type) {
       case RECEIVE_ERRORS:
-         newState = action.errors;
+         let newState = action.errors;
          return newState;
       case RECEIVE_CURRENT_USER:
          return {};

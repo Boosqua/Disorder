@@ -7,7 +7,7 @@ export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveServers = (servers) => ({
-   type = RECEIVE_SERVERS,
+   type: RECEIVE_SERVERS,
    servers
 })
 

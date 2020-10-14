@@ -1,0 +1,23 @@
+.server-index-container {
+   background-color: rgb(32, 34, 37);
+   position: absolute;
+   left: 0;
+   height: 100vh;
+   width: 80px;
+   display: flex;
+   flex-direction: column;
+   color: aquamarine;
+}
+.index-separator {
+   width: 40px;
+   height: 1px;
+   background-color: rgba(255,255,255,0.06);
+   align-self: center;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+.logout-button {
+   position: relative;
+   left: 120px;
+   float: left;
+}
