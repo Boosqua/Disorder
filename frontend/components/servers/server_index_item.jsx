@@ -9,6 +9,7 @@ export default class ServerIndexItem extends React.Component {
    handleClick(e) {
       e.preventDefault();
       this.props.fetchChannels(this.props.server.id)
+      this.props.fetchServer(this.props.userId, this.props.server.id)
    }
    serverImage(server) {
       if (server.image) {
@@ -30,14 +31,19 @@ export default class ServerIndexItem extends React.Component {
    
 
    render() {
-      let { server, handleServerChange } = this.props;
-
+      let { server, handleServerChange, currentServer } = this.props;
       return (
          <li 
             className='server-link'
-            onClick={ this.handleClick }
+            onClick={ 
+               currentServer ? 
+                  (e) => e.preventDefault() :
+                  this.handleClick }
             >
-            <div className='server-image-wrapper'>
+            <div 
+               className={
+                  !currentServer ? 'server-image-wrapper' : 'selected-server-wrapper'
+                  }>
                <div className='server-bg'>
                   { this.serverImage(server) }  
               </div>

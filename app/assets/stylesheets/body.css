@@ -9,9 +9,9 @@ div {
 a {
   display: block;
   font-size: 14px;
-  color: #00b0f4;
+  color: #7289da;
   text-overflow: ellipsis;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   margin-bottom: 10px;
 }

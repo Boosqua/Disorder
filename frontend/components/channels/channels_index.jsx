@@ -6,7 +6,7 @@ export default class ChannelsIndex extends React.Component {
       super(props)
    }
    componentDidMount() {
-      this.props.fetchChannels(this.props.serverId)
+      // this.props.fetchChannels(this.props.serverId)
    }
    render(){
 

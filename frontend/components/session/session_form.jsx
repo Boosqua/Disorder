@@ -96,9 +96,11 @@ export default class SessionForm extends React.Component {
               
                {
                   this.props.formType !== 'Sign Up!' ? 
-                  <div>
+                  <div className='session-links'>
                      <Link to='/signup'>Need an account?</Link>
-                     <a onClick={this.demoLogin}>Demo Login</a> 
+                     <a className='demo-link' onClick={this.demoLogin}>
+                        Demo Login
+                     </a> 
                   </div> :
                   <Link to='/login'>Log in</Link>
                }

@@ -4,8 +4,6 @@
    height: 100vh;
    align-items: center;
    justify-content: center;
-   /* background-image: url(/assets/session_background.jpg); */
-   /* background-image: url(image-url("session_background.jpg")) ; */
    background-size: cover;
 }
 .session-form {
@@ -14,18 +12,11 @@
    height: 325px;
    margin: auto; 
    justify-content: center;
-   /* border: 3px solid black; */
+
    display: flex;
-   background-color: #2e3034 ;
+   background-color: #36393f ;
    box-shadow: -10px -5px 18px rgba(0, 0, 0, 0.481);
    border-radius: 5px;
-   /* 
-   position: absolute;
-   position: relative;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)  */
 }
 
 .form-header {
@@ -51,21 +42,38 @@ p.session-input-label {
    height: 20px;
    width: 400px;
    margin-bottom: 10px;
-   background-color: #2d2f31 ;
-   border-color: 1px solid black;
+   background-color: #22282c;
+   background-color: rgba(47, 51, 56, 1);
+   border: 1px solid rgba(0, 0, 0, 0.486);
    color: white;
+   border-radius: 3px;
+}
+.session-input-label > input:focus {
+   border:1px solid #7289da;
+   outline-width: 0;
 }
 .session-button {
    height: 30px;
    width: 407px;
-   background-color: #7289da;;
+   background-color: rgba(110, 136, 224, 1);;
    color: white;
    font-family: Arial, Helvetica, sans-serif;
    font-weight: 500;
    font-size: 16;
    border-radius: 5px;
-   border: 1px, solid;
+   border-style: solid;
+   border-color: rgb(255, 255, 255);
+   border: 0px solid rgb(255, 255, 255);
+
 }
 .session-button:hover {
    background-color: #506cd1;
+}
+
+.session-links {
+   width: fit-content;
+   text-decoration: none;
+}
+a.demo-link {
+   width: fit-content;
 }

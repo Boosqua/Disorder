@@ -2,43 +2,51 @@ import React from 'react'
 import { fetchServer } from '../../util/server_api_util';
 // import { Link } from 'react-router-dom';
 import ServerIndexItem from './server_index_item';
-import ServerShowContainer from './server_show_container'
+import LogoutButton from './logout_button'
 
 export default class ServersIndex extends React.Component {
    constructor(props) {
       super(props)
    }
-
+   componentDidMount() {
+      // debugger
+      this.props.fetchChannels(1)
+   }
    render(){
-      const { servers, user, fetchServer } = this.props
+      const { servers, user, fetchServer, currentServerId } = this.props
+      const home = servers[0];
+      const sharedServers = servers.slice(1)
       return(
          <div className='server-index-container'>
             <ul className='server-scroll-bar'>
                {
                   <ServerIndexItem 
                      key='home-page'
-                     server={{
-                        name: user.username,
-                        id: 1,
-                        image: window.homeIconURL,
-                        owner_id: user.id
-                     }}
-                     fetchServer={ fetchServer }
+                     server={Object.assign({}, home, { image: window.homeIconURL})}
+                     fetchServer={fetchServer}
+                     fetchChannels={this.props.fetchChannels}
                      userId={user.id}
+                     currentServer={ currentServerId === home.id}
                      />
                }
             </ul>
             <div className='index-separator'/>
             <ul className='server-scroll-bar'>
-               { servers.map( server => (
+               { sharedServers.map( server => (
                   <ServerIndexItem 
                      key={ server.id }
                      server={ server }
                      fetchChannels={this.props.fetchChannels}
+                     fetchServer={fetchServer}
                      userId={ user.id }
+                     currentServer={ currentServerId === server.id }
                      />
                   ))
                }
+            </ul>
+            <div className='index-separator'/>
+            <ul className='server-scroll-bar'>
+               <LogoutButton logout={this.props.logout} />
             </ul>
          </div>
       )

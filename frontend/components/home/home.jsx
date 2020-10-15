@@ -8,19 +8,15 @@ export default class Home extends React.Component {
       this.state = { loaded: false }
    }
    componentDidMount() {
+      // debugger
       this.props.fetchServers(this.props.user.id)
    }
 
    render() {
       return Object.keys(this.props.servers).length > 0 ? (
          <div className='mount-component'>
-            <ServersIndexContainer user={this.props.user}/>
+            <ServersIndexContainer user={this.props.user} logout={this.props.logout}/>
             <ServersShowContainer user={this.props.user} />
-            <button 
-               onClick={this.props.logout} 
-               className='logout-button'>
-               Log out
-            </button>
          </div>
       ) : null
    }
