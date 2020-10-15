@@ -1,4 +1,6 @@
 .error-messages {
    color: red;
    font-style: italic;
+   width: 300px;
+   font-size: 14px;
 }
