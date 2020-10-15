@@ -2,12 +2,12 @@ import React from 'react'
 import { fetchServer } from '../../util/server_api_util';
 // import { Link } from 'react-router-dom';
 import ServerIndexItem from './server_index_item';
+import ServerShowContainer from './server_show_container'
 
 export default class ServersIndex extends React.Component {
-   
-   // componentDidMount() {
-   //    this.props.fetchServers()
-   // }
+   constructor(props) {
+      super(props)
+   }
 
    render(){
       const { servers, user, fetchServer } = this.props
@@ -34,7 +34,7 @@ export default class ServersIndex extends React.Component {
                   <ServerIndexItem 
                      key={ server.id }
                      server={ server }
-                     fetchServer={ fetchServer }
+                     fetchChannels={this.props.fetchChannels}
                      userId={ user.id }
                      />
                   ))

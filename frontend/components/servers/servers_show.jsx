@@ -1,11 +1,17 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import ChannelsIndex from '../channels/channels_index_container'
+
 export default class ServersShow extends React.Component {
 
    render() {
-      // debugger
-      return this.props.server.name ? (
-         <div>{ this.props.server.name }</div>
-      ) : (<div></div>)
+      const { server, userId } = this.props
+      return (<div className="server-show-outside">
+         <div>
+            {server.name}
+         </div>
+         <div>
+            <ChannelsIndex serverId={server.id}/>
+         </div>
+      </div>)
    }
 }

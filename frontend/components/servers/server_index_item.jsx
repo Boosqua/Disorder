@@ -8,7 +8,7 @@ export default class ServerIndexItem extends React.Component {
    }
    handleClick(e) {
       e.preventDefault();
-      this.props.fetchServer(this.props.userId, this.props.server.id)
+      this.props.fetchChannels(this.props.server.id)
    }
    serverImage(server) {
       if (server.image) {
@@ -30,7 +30,7 @@ export default class ServerIndexItem extends React.Component {
    
 
    render() {
-      let { server } = this.props;
+      let { server, handleServerChange } = this.props;
 
       return (
          <li 

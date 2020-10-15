@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   namespace :api, { format: :json } do 
     resources :users
     resources :users, only: :show do
-      resources :servers do 
-        resources :channels
-      end
+      resources :servers 
+    end
+    resources :servers do 
+      resources :channels
     end
     resource :session, only: [ :create, :destroy ]
   end
