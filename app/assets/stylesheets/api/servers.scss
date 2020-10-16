@@ -1,3 +1,104 @@
 // Place all the styles related to the api/servers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.server-index-container {
+   background-color: rgb(32, 34, 37);
+   order: 0;
+   height: 100vh;
+   width: 80px;
+   margin: 0;
+   display: flex;
+   flex-direction: column;
+   color: aquamarine;
+   overflow-x: hidden;
+   overflow-y: scroll;
+}
+
+.index-separator {
+   width: 40px;
+   height: 2px;
+   background-color: rgba(255, 255, 255, 0.144);
+   align-self: center;
+   margin-top: 15px;
+   margin-bottom: 5px;
+}
+
+.server-image-text {
+   overflow: hidden;
+   position: absolute;
+   top: 50%;   
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 18px;
+   font-weight: 500;
+   cursor: pointer;
+}
+
+.server-image {
+   overflow: hidden;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   cursor: pointer;
+   max-width: 140%;
+   max-height: 140%;
+}
+
+.server-image-logout {
+   overflow: hidden;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   -ms-transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%);
+   cursor: pointer;
+   max-width: 65%;
+   max-height: 65%;
+}
+
+.server-image-wrapper:hover {
+   transition: 0.25s;
+   border-radius: 30%;
+   cursor: pointer;
+}
+
+.selected-server-wrapper{
+   margin-top: 15px;
+   margin-left: 15px;
+   overflow: hidden;
+   height: 48px;
+   width: 48px;
+   position: relative;
+   border-radius: 30%;
+   cursor:pointer;
+}
+
+.server-image-wrapper{
+   margin-top: 15px;
+   margin-left: 15px;
+   overflow: hidden;
+   height: 48px;
+   width: 48px;
+   position: relative;
+   border-radius: 50%;
+}
+
+.server-bg {
+   height: 48px;
+   width: 48px;
+   background-color: rgb(51, 55, 59);
+}
+.selected-server-wrapper > .server-bg{
+   height: 48px;
+   width: 48px;
+   background-color: #506cd1;
+}
+.server-bg:hover {
+   background-color: #506cd1;
+}

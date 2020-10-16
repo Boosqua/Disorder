@@ -4,7 +4,10 @@ const ChannelsIndexItem = (props) => {
 
    return(
       <li>
-         <div className="channel-index-item-outside">
+         <div 
+            className="channel-index-item-outside"
+            onClick={props.changeCurrentChannel}
+            >
             <div className="channel-index-item">
             {props.channel.name}
             </div>

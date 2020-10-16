@@ -7,5 +7,5 @@ class Server < ApplicationRecord
 
    has_many :channels
    has_many :messages, through: :channels
-   belongs_to :user
+   belongs_to :owner, class_name: :User
 end

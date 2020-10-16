@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-test_user = User.create({username: 'testUser', password: 'password', email: 'fakeEmail@email.com'})
+User.create!({username: 'testUser', password: 'password', email: 'fakeEmail@email.com'})
 
 User.create!([
    {username: 'BooSqua', password: 'password', email: Faker::Internet.unique.email},
@@ -26,7 +26,7 @@ User.create!([
 ])
 
 Server.create!([
-   {name: "HOME", owner_id: 0},
+   {name: "HOME", owner_id: 1},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
@@ -34,3 +34,9 @@ Server.create!([
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2}
 ])
+
+(1..7).each do |id|
+   10.times do 
+      Message.create!(author_id: 2, channel_id: id, body: Faker::Lorem.sentence)
+   end
+end
