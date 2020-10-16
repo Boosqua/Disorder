@@ -19,6 +19,9 @@ export default class SessionForm extends React.Component {
    componentDidMount() {
       this.props.clearErrors()
    }
+   componentWillUnmount() {
+      this.props.clearErrors()
+   }
 
    handleInput(type) {
       return (e) => {
@@ -38,7 +41,7 @@ export default class SessionForm extends React.Component {
 
    demoLogin(e){
       e.preventDefault();
-      this.props.clearErrors();
+      // this.props.clearErrors();
       let login = this.props.login ? this.props.login : this.props.processForm;
       let that = this;
       let count = 0;

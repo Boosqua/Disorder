@@ -6,4 +6,6 @@ class Server < ApplicationRecord
    end
 
    has_many :channels
+   has_many :messages, through: :channels
+   belongs_to :user
 end

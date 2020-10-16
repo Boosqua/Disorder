@@ -3,14 +3,15 @@
    display: flex;
    flex-direction: column;
    left: 80px;
-   padding-left: 10px;
+   padding-left: 0px;
    padding-right: 10px;
    color: blanchedalmond;
-   background-color: rgb(51, 55, 59);
-   border: 1px solid chartreuse;
+   background-color: rgb(51, 55, 59);   
+   // border: 1px solid chartreuse;
    height: 100vh;
-   width: 150px;
-   min-width: 100px;
+   width: 160px;
+   padding-right: 0;
+   // min-width: 100px;
    z-index: -10;
    clear: both;
 }

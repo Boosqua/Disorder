@@ -21,6 +21,7 @@ User.create!([
    {username: 'KreeFongHong', password: 'password', email: Faker::Internet.unique.email},
    {username: 'PrincessDie', password: 'password', email: Faker::Internet.unique.email},
    {username: 'DarnYak', password: 'password', email: Faker::Internet.unique.email},
+   {username: 'HillaryDuff', password: 'password', email: Faker::Internet.unique.email},
    {username: 'SpacePumpkin', password: 'password', email: Faker::Internet.unique.email}
 ])
 

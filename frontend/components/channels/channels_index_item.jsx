@@ -4,7 +4,11 @@ const ChannelsIndexItem = (props) => {
 
    return(
       <li>
-         <div>{props.channel.name}</div>
+         <div className="channel-index-item-outside">
+            <div className="channel-index-item">
+            {props.channel.name}
+            </div>
+         </div>
       </li>
    )
 }

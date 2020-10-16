@@ -15,7 +15,7 @@
 
    display: flex;
    background-color: #36393f ;
-   box-shadow: -10px -5px 18px rgba(0, 0, 0, 0.481);
+   box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.63);
    border-radius: 5px;
 }
 

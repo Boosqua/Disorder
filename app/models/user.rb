@@ -37,5 +37,6 @@ class User < ApplicationRecord
    def find_by_partial(partial_username)
 
    end
-
+   has_many :messages
+   has_many :servers
 end
