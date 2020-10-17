@@ -5,8 +5,8 @@ class User < ApplicationRecord
    validates :password_digest, :session_token, presence: true
    validates :password, length: { minimum: 6 }, allow_nil: true
 
-   after_initialize :ensure_session_token
-    
+   after_initialize :ensure_session_token #, :ensure_user_image
+   has_one_attached :photo
    def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
       return nil unless user
@@ -37,6 +37,10 @@ class User < ApplicationRecord
    def find_by_partial(partial_username)
 
    end
+
+   # def ensure_user_image
+   #    self.image
+   # end
    # has_many :messages, foreign_key: :author_id
    # has_many :servers, foreign_key: :owner_id
 end

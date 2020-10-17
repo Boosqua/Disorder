@@ -27,7 +27,8 @@ export default class ServersShow extends React.Component {
          </div>
          <div className='index-separator'/>
          <div>
-            <ChannelsIndex serverId={server.id}/>
+            <ChannelsIndex serverId={server.id} 
+               updateChannelId={this.props.updateChannelId}/>
          </div>
       </div>)
    }

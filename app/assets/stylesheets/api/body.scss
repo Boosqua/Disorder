@@ -3,3 +3,12 @@
    flex-direction: row;
    justify-content: flex-start;
 }
+a {
+  display: block;
+  font-size: 14px;
+  color: #7289da;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 10px;
+}

@@ -4,7 +4,7 @@ class Server < ApplicationRecord
    def add_general_channel
       Channel.create!(name: 'general', server_id: self.id)
    end
-
+   has_one_attached :photo
    has_many :channels
    has_many :messages, through: :channels
    belongs_to :owner, class_name: :User

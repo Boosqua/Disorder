@@ -13,27 +13,25 @@ export default class MessageIndex extends React.Component {
    }
    componentWillUnmount(){
       clearInterval(this.messages)
-      this.messages
    }
    render() {
       const { messages } = this.props;
 
-      if ( messages.length === 0 ) {
-         return null
-      } else {
+
          return (
+         <div className="message-shell">
             <div>
-               <ul>
-                  {
-                     messages.map( message => (
-                        <MessageShow 
-                           key={message.id}
-                           message={message}/>
-                     ))
+               <ul>  
+                  {  messages.length > 0 ? 
+                        messages.map( message => (
+                           <MessageShow 
+                              key={message.id}
+                              message={message}/>
+                        )) : null
                   }
                </ul>
             </div>
-         )
-      }
+         </div>
+      )
    }
 }

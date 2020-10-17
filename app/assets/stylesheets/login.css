@@ -74,6 +74,8 @@ p.session-input-label {
    width: fit-content;
    text-decoration: none;
 }
-a.demo-link {
+a {
    width: fit-content;
+   font-size: 14px;
+   margin-bottom: 10px;
 }

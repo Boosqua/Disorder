@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import usersReducer from './user_reducer';
+import usersReducer from './users/users_reducer';
 import serversReducer from './servers/servers_reducer';
 import channelsReducer from './channels/channels_reducer';
 import messagesReducer from './messages/messages_reducer'
