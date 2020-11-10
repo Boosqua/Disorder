@@ -8,6 +8,7 @@ export default (state={}, action) => {
 
    switch (action.type) {
       case RECEIVE_MESSAGES:
+         // debugger
          return action.messages;
       case RECEIVE_MESSAGE:
          let newState = Object.assign({}, state);

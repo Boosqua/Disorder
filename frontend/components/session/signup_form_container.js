@@ -2,6 +2,7 @@ import { signup, login, clearErrors } from "../../actions/session_actions";
 import { connect } from "react-redux";
 import SessionForm from "./session_form";
 
+
 const mapStateToProps = (state, ownProps) => ({
     errors: state.errors,
     formType: "Sign Up!",

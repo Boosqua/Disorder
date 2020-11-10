@@ -1,19 +1,45 @@
 import React from 'react';
 import MessageShow from './message_show'
 export default class MessageIndex extends React.Component {
+   constructor(props){
+      super(props)
+      this.state = { body: ''}
+      this.handleInput = this.handleInput.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this)
+   }
    componentDidMount() {
+      this.channel = this.props.cable.subscriptions.create({
+         channel: 'MessagesChannel',
+         id: this.props.currentChannelId
+      },
+      {
+        received: (data) => {
+          this.props.receiveMessage(data)
+        },
+      })
       // debugger
-      this.messages = this.getMessages()
    }
-   getMessages() {
-      let that = this
-      setInterval(() => {
-         that.props.fetchMessages(this.props.currentChannelId)
-      }, 1000)
+   handleInput(e){
+      // debugger
+      this.setState({body: e.currentTarget.value})
    }
-   componentWillUnmount(){
-      clearInterval(this.messages)
+   // sendMessage(content){
+   //    debugger
+   //    const data = { channelId, userId, body }
+   //    this.channel.send(content)
+   // }
+   handleSubmit(e){
+      e.preventDefault()
+      let message = {
+         userId: this.props.currentUserId,
+         body: this.state.body,
+         channelId: this.props.currentChannelId
+      }
+      this.channel.send(message)
+      // debugger
    }
+
+
    render() {
       const { messages } = this.props;
 
@@ -31,6 +57,10 @@ export default class MessageIndex extends React.Component {
                   }
                </ul>
             </div>
+            <form onSubmit={this.handleSubmit}>
+               <input type="text" onInput={this.handleInput} value={this.state.body}/>
+               <button>Click</button>
+            </form>
          </div>
       )
    }

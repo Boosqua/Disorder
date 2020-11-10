@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users
     resources :users, only: :show do
       resources :servers 
+      resources :messages, only: :index
     end
     
     resources :servers do 
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   end
   
   root to: 'static_pages#root'
+  mount ActionCable.server => '/cable'
 end

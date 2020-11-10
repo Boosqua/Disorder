@@ -1,5 +1,6 @@
 import React from 'react';
 import ChannelsIndex from '../channels/channels_index_container'
+import MessageIndex from '../messages/message_index';
 
 export default class ServersShow extends React.Component {
    constructor(props) {
@@ -30,6 +31,13 @@ export default class ServersShow extends React.Component {
             <ChannelsIndex serverId={server.id} 
                updateChannelId={this.props.updateChannelId}/>
          </div>
+         <MessageIndex
+         cable={this.props.cable}
+         messages={this.props.messages}
+
+         />
+         
       </div>)
    }
 }
+// add user to messages

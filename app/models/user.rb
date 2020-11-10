@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
    after_initialize :ensure_session_token #, :ensure_user_image
    has_one_attached :photo
+   has_many :messages, foreign_key: :author_id, dependent: :destroy
    def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
       return nil unless user

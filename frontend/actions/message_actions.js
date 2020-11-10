@@ -13,8 +13,8 @@ export const receiveMessage = message => ({
    message
 })
 
-export const fetchMessages = channelId => dispatch => (
-   APIUtil.fetchMessages(channelId)
+export const fetchMessages = (userId) => dispatch => (
+   APIUtil.fetchMessages(userId)
       .then(messages => dispatch(receiveMessages(messages)))
 )
 
