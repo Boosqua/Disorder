@@ -41,7 +41,8 @@ export default class MessageIndex extends React.Component {
 
 
    render() {
-      const { messages } = this.props;
+      // debugger
+      const messages  = this.props.messages[this.props.currentChannelId];
 
 
          return (

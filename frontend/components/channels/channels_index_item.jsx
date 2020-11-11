@@ -6,7 +6,7 @@ const ChannelsIndexItem = (props) => {
       <li>
          <div 
             className="channel-index-item-outside"
-            onClick={props.updateChannelId}
+            onClick={props.updateChannelId(props.channel.id)}
             >
             <div className="channel-index-item">
             {props.channel.name}

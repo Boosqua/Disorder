@@ -8,7 +8,7 @@ import ServersShow from './servers_show';
 const mapStateToProps = (state, ownProps) =>{ 
    // debugger
    return ({
-   server: state.entities.servers[state.session.currentServerId]
+   channels: state.entities.channels[state.session.currentServerId]
 })}
 
 const mapDispatchToProps = dispatch => ({

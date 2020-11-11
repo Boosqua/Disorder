@@ -11,7 +11,7 @@ import {
 import ChannelsIndex from './channels_index'
 
 const mapStateToProps = (state, ownProps) => ({
-   channels: Object.values(state.entities.channels)
+   allChannels: state.entities.channels
 });
 
 const mapDispatchToProps = dispatch => ({

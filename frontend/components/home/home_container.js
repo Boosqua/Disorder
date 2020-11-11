@@ -7,7 +7,8 @@ import { fetchChannels } from '../../actions/channel_actions'
 
 const mapStateToProps = (state, ownProps) => ({
    user: state.entities.users[state.session.currentUserId],
-   serverId: state.session.currentServerId,
+   currentServerId: state.session.currentServerId,
+   channels: state.entities.channels,
    servers: state.entities.servers,
    messages: state.entities.messages
 })
