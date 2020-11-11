@@ -15,7 +15,7 @@ class Api::ChannelsController < ApplicationController
    end
 
    def index
-      @channels = Server.find(params[:server_id]).channels
+      @channels = current_user.channels
       @channels ? (render :index) : (render json: {})
    end
 

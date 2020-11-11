@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Home from './home'
 import { fetchUser, logout } from '../../actions/session_actions'
-import { fetchMessages, receiveMessage } from "../../actions/message_actions";
+import { receiveMessage, fetchMessages} from "../../actions/message_actions";
 import { fetchServers } from '../../actions/server_actions'
 import { fetchChannels } from '../../actions/channel_actions'
 

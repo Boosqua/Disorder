@@ -14,9 +14,9 @@ export default class Home extends React.Component {
    }
    componentDidMount() {
       // debugger
-      this.props.fetchServers(this.props.user.id);
       this.props.fetchMessages(this.props.user.id)
-      this.filterMessages(this.props.currentChannelId)
+      this.props.fetchServers(this.props.user.id);
+      // this.filterMessages(this.props.currentChannelId)
    }
    updateChannelId(id) {
       return () => {
@@ -37,7 +37,7 @@ export default class Home extends React.Component {
             <ServersIndexContainer user={this.props.user} logout={this.props.logout}/>
             <ServersShowContainer user={this.props.user} updateChannelId={this.updateChannelId} 
             cable={this.cable}
-            messages={this.currentMessages}/>
+            messages={this.state.currentMessages}/>
          </div>
       ) : null
    }

@@ -30,13 +30,18 @@ Server.create!([
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
    {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
-   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2},
-   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2},
-   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 2}
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1},
+   {name: Faker::ProgrammingLanguage.unique.name, owner_id: 1}
 ])
 
 (1..7).each do |id|
    10.times do 
       Message.create!(author_id: 2, channel_id: id, body: Faker::Lorem.sentence)
+   end
+end
+(1..7).each do |server_id|
+   (2..14).each do |user_id|
+      ServerMember.create!(user_id: user_id, server_id: server_id)
    end
 end

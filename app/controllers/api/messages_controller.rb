@@ -1,7 +1,8 @@
 class Api::MessagesController < ApplicationController
    def index
       # debugger
-      @messages = User.find(params[:user_id].to_i).messages
+      @messages = User.find(params[:user_id].to_i).server_messages
+      # debugger
       render :index
    end
 

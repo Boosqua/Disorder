@@ -14,7 +14,8 @@ class Api::ServersController < ApplicationController
    end
 
    def index
-      @servers = Server.all
+      user = User.find(params[:user_id])
+      @servers = user.servers
       if @servers
          render :index
       else

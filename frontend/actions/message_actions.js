@@ -16,6 +16,7 @@ export const receiveMessage = message => ({
 export const fetchMessages = (userId) => dispatch => (
    APIUtil.fetchMessages(userId)
       .then(messages => dispatch(receiveMessages(messages)))
+      .fail(error => console.log(error))
 )
 
 export const fetchMessage = (channelId, messageId) => dispatch => (

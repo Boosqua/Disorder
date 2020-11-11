@@ -48,7 +48,7 @@ export default class MessageIndex extends React.Component {
          <div className="message-shell">
             <div>
                <ul>  
-                  {  messages.length > 0 ? 
+                  {  messages ? 
                         messages.map( message => (
                            <MessageShow 
                               key={message.id}
