@@ -5,6 +5,49 @@
 .message-shell {
    order: 3;
    width: 60vw;
+   height: 100vh;
+   max-height: 100vh;
    border: 1px solid yellow;
-   background-color: #36393f;
+   background-color: #404349;
+   overflow: scroll;
+}
+.message-list {
+   display: flex;
+   flex-direction: row;
+}
+.message-author {
+   color: ivory;
+   font-size: 20px;
+   padding-bottom: 10px;
+   font-weight: bold;
+}
+.user-img-icon {
+   max-width: 40px;
+   max-height: 40px;
+}
+
+.user-img {
+   width: 40px;
+   height: 40px;
+
+   -moz-border-radius: 50%;
+   -webkit-border-radius: 50%;
+   border-radius: 50%;
+   overflow: hidden;
+}
+
+.user-img-wrapper {
+   padding: 5px;
+}
+
+.message-body {
+   color: ivory;
+   max-height: fit-content;
+}
+
+.message-outside {
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 10px;
+   padding-left: 10px;
 }

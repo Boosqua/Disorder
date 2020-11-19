@@ -5,7 +5,11 @@ class MessagesChannel < ApplicationCable::Channel
    end
    def receive(data)
       # debugger
-      message = { author_id: data['userId'], body: data['body'], channel_id: @channel.id }
+      message = { 
+         author_id: data['userId'], 
+         body: data['body'], 
+         channel_id: data['channelId'] 
+      }
       savedMessage = Message.create!(message)
       data['id'] = savedMessage.id
       MessagesChannel.broadcast_to(@channel, data)

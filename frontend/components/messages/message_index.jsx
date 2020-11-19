@@ -59,8 +59,12 @@ export default class MessageIndex extends React.Component {
                </ul>
             </div>
             <form onSubmit={this.handleSubmit}>
-               <input type="text" onInput={this.handleInput} value={this.state.body}/>
-               <button>Click</button>
+               <input
+                  className="message-input-box"
+                  type="text" 
+                  onInput={this.handleInput} 
+                  value={this.state.body}/>
+               {/* <button>Click</button> */}
             </form>
          </div>
       )

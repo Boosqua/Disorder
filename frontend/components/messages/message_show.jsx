@@ -6,10 +6,19 @@ export default class MessageShow extends React.Component {
       const { message } = this.props
 
       return (
-         <li>
-            <div>{message.author_id}</div>
-            <div>
-               {message.body}
+         <li className='message-list'>
+            <div className='user-img-wrapper'>
+               <div className='user-img'>
+                  <img 
+                     className='user-img-icon'
+                     src={window.tempIcon}/>
+               </div>
+            </div>
+            <div className='message-outside'>
+               <div className='message-author'>{message.author_id}</div>
+               <div className='message-body'>
+                  {message.body}
+               </div>
             </div>
          </li>
       )
