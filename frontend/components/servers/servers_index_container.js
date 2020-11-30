@@ -5,7 +5,6 @@ import ServersIndex from './servers_index';
 
 const mapStateToProps = (state, ownProps) => ({
    servers: Object.values(state.entities.servers),
-   currentServerId: state.session.currentServerId,
    userId: state.session.currentUserId,
    errors: state.errors.servers
 })

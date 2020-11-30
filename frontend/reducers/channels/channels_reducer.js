@@ -10,7 +10,13 @@ export default (state={}, action) => {
 
    switch (action.type) {
       case RECEIVE_CHANNELS:
-         return action.channels;
+         let channels = {}
+         Object.values(action.channels).forEach( channel => {
+            channels[channel.server_id] ?
+               channels[channel.server_id].push(channel) :
+               channels[channel.server_id] = [channel]
+         })
+         return channels;
       case RECEIVE_CHANNEL:
          newState[action.channel.id] = action.channel;
          return newState;

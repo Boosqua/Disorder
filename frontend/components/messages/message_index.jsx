@@ -17,6 +17,11 @@ export default class MessageIndex extends React.Component {
           this.props.receiveMessage(data)
         },
       })
+
+
+      let messages = document.getElementsByClassName('message-shell')
+      $(messages).scrollTop($(messages).height());  
+
       // debugger
    }
    handleInput(e){
@@ -41,25 +46,34 @@ export default class MessageIndex extends React.Component {
 
 
    render() {
-      const { messages } = this.props;
+      // debugger
+      const messages  = this.props.messages[this.props.currentChannelId];
 
+
+      const users = this.props.users
 
          return (
-         <div className="message-shell">
-            <div>
+         <div className="message-shell-outside">
+            <div className="message-shell">
                <ul>  
                   {  messages ? 
                         messages.map( message => (
                            <MessageShow 
                               key={message.id}
-                              message={message}/>
+                              message={message}
+                              user={ users[message.author_id]}/>
                         )) : null
                   }
                </ul>
             </div>
             <form onSubmit={this.handleSubmit}>
-               <input type="text" onInput={this.handleInput} value={this.state.body}/>
-               <button>Click</button>
+               <input
+                  className="message-input-box"
+                  type="textarea" 
+                  onInput={this.handleInput}
+                  placeholder='Message'
+                  value={this.state.body}/>
+               {/* <button>Click</button> */}
             </form>
          </div>
       )

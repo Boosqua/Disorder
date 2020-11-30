@@ -27,6 +27,7 @@ class User < ApplicationRecord
    has_many :channels,
       through: :servers,
       source: :channels
+      
    def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
       return nil unless user
@@ -54,8 +55,18 @@ class User < ApplicationRecord
    
 ################################################################################
 
-   def find_by_partial(partial_username)
-
+   def grab_servers
+      servers = self.servers;
+      sent_servers = servers.map do |server| 
+         newServer = {}
+         newServer[:id] = server[:id]
+         newServer[:owner_id] = server[:owner_id]
+         newServer[:image] = server[:image]
+         newServer[:name] = server[:name]
+         newServer[:members] = server.members.map { |member| member.id }
+         newServer
+      end
+      sent_servers
    end
 
    # def ensure_user_image

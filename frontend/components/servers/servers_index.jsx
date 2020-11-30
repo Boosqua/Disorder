@@ -8,10 +8,6 @@ export default class ServersIndex extends React.Component {
    constructor(props) {
       super(props)
    }
-   componentDidMount() {
-      // debugger
-      this.props.fetchChannels(1)
-   }
    render(){
       const { servers, user, fetchServer, currentServerId } = this.props
       const home = servers[0];
@@ -25,6 +21,7 @@ export default class ServersIndex extends React.Component {
                      server={Object.assign({}, home, { image: window.homeIconURL})}
                      fetchServer={fetchServer}
                      fetchChannels={this.props.fetchChannels}
+                     updateServerId={this.props.updateServerId}
                      userId={user.id}
                      currentServer={ currentServerId === home.id}
                      />
@@ -37,6 +34,7 @@ export default class ServersIndex extends React.Component {
                      key={ server.id }
                      server={ server }
                      fetchChannels={this.props.fetchChannels}
+                     updateServerId={this.props.updateServerId}
                      fetchServer={fetchServer}
                      userId={ user.id }
                      currentServer={ currentServerId === server.id }

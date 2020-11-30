@@ -17,7 +17,7 @@ export default (state={}, action) => {
          return messages;
       case RECEIVE_MESSAGE:
          let newState = Object.assign({}, state);
-         newState[action.message.channel_id].push(action.message);
+         newState[action.message.channelId].push(action.message);
          return newState;
       default:
          return state
