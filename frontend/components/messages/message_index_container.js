@@ -6,7 +6,8 @@ const mSTP = (state, ownProps) => {
    // debugger
    return ({
    messages: state.entities.messages,
-   currentUserId: state.session.currentUserId
+   currentUserId: state.session.currentUserId,
+   users: state.entities.users
 })};
 // const mSTP = (state, ownProps) => ({
 //    messages: Object.values(state.entities.messages), 

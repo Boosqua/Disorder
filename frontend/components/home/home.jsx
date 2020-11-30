@@ -2,6 +2,7 @@ import React from 'react';
 import ServersIndexContainer from '../servers/servers_index_container';
 import ServersShowContainer from '../servers/server_show_container'
 import MessageIndexContainer from '../messages/message_index_container'
+import UserShowContainer from '../servers/users_show_container'
 import actionCable from 'actioncable'
 
 
@@ -22,6 +23,7 @@ export default class Home extends React.Component {
       this.props.fetchServers(this.props.user.id)
          .then(() => this.props.fetchChannels(this.props.user.id))
          .then(() => this.props.fetchMessages(this.props.user.id))
+         .then(() => this.props.fetchUsers())
          .then(() => that.setState({ loaded: true }))
       // this.filterMessages(this.props.currentChannelId)
    }
@@ -71,6 +73,7 @@ export default class Home extends React.Component {
                cable={this.cable}
                currentChannelId={this.state.currentChannelId}
                />
+            <UserShowContainer />
          </div>
       ) : null
    }

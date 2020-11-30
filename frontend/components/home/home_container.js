@@ -4,6 +4,7 @@ import { fetchUser, logout } from '../../actions/session_actions'
 import { receiveMessage, fetchMessages} from "../../actions/message_actions";
 import { fetchServers } from '../../actions/server_actions'
 import { fetchChannels } from '../../actions/channel_actions'
+import { fetchUsers } from '../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => ({
    user: state.entities.users[state.session.currentUserId],
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUser: (userId) => dispatch(fetchUser(userId)),
+  fetchUsers: () => dispatch(fetchUsers()),
   fetchServers: (userId) => dispatch(fetchServers(userId)),
   fetchChannels: (serverId) => dispatch(fetchChannels(serverId)),
   fetchMessages: (userId) => dispatch(fetchMessages(userId)),

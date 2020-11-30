@@ -3,7 +3,7 @@ import React from 'react'
 export default class MessageShow extends React.Component {
 
    render() {
-      const { message } = this.props
+      const { message, user } = this.props
 
       return (
          <li className='message-list'>
@@ -15,7 +15,7 @@ export default class MessageShow extends React.Component {
                </div>
             </div>
             <div className='message-outside'>
-               <div className='message-author'>{message.author_id}</div>
+               <div className='message-author'>{user.username}</div>
                <div className='message-body'>
                   {message.body}
                </div>

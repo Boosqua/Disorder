@@ -5,11 +5,16 @@
 .message-shell {
    order: 3;
    width: 60vw;
-   height: 100vh;
+   height: 95vh;
    max-height: 100vh;
-   border: 1px solid yellow;
+   // border: 1px solid yellow;
    background-color: #404349;
    overflow: scroll;
+}
+.message-shell-outside {
+   order: 3;
+   height: 100vh;
+   max-height: 100vh;
 }
 .message-list {
    display: flex;
@@ -50,4 +55,38 @@
    flex-direction: column;
    padding-bottom: 10px;
    padding-left: 10px;
+}
+
+.message-input-box {
+   height: 5vh;
+   overflow: scroll;
+   width: 60vw;
+   padding: 0;
+   margin: 0;
+   border-width: 0;
+   outline: none;
+   background-color: #5d6169;
+   color: ivory;
+}
+
+::placeholder {
+   color: ivory;
+   font-style: italic;
+}
+
+/**************************************/
+
+.users-show {
+   height: 100vh;
+   overflow: scroll;
+   width: 30vw;
+   order: 4;
+   background-color: rgb(51, 55, 59);   
+   display: flex;
+   flex-direction: row;
+}
+.user-show {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
 }
