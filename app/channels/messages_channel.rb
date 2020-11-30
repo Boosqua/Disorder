@@ -12,7 +12,7 @@ class MessagesChannel < ApplicationCable::Channel
       }
       savedMessage = Message.create!(message)
       data['id'] = savedMessage.id
-      MessagesChannel.broadcast_to(@channel, data)
+      MessagesChannel.broadcast_to(@channel, savedMessage)
    end
    def unsubscribed
       # Any cleanup needed when channel is unsubscribed

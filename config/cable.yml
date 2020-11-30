@@ -1,6 +1,6 @@
 development:
   adapter: redis
-
+  url: <%= ENV.fetch("REDIS_URL"){'ws://localhost:3000/cable' }%>
 test:
   adapter: async
 

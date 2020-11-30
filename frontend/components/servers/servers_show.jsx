@@ -1,7 +1,6 @@
 import React from 'react';
 import ChannelsIndex from '../channels/channels_index_container'
-import MessageIndexContainer from '../messages/message_index_container';
-import UsersShowContainer from './users_show_container'
+
 export default class ServersShow extends React.Component {
    constructor(props) {
       super(props),

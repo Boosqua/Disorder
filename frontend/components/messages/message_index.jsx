@@ -19,20 +19,23 @@ export default class MessageIndex extends React.Component {
       })
 
 
-      let messages = document.getElementsByClassName('message-shell')
-      $(messages).scrollTop($(messages).height());  
+      this.scrollToBottom();
 
       // debugger
    }
+   scrollToBottom() {
+      this.messagesEnd.scrollIntoView();
+   }
+
+   componentDidUpdate() {
+      this.scrollToBottom();
+   }
+
    handleInput(e){
       // debugger
       this.setState({body: e.currentTarget.value})
    }
-   // sendMessage(content){
-   //    debugger
-   //    const data = { channelId, userId, body }
-   //    this.channel.send(content)
-   // }
+
    handleSubmit(e){
       e.preventDefault()
       let message = {
@@ -41,6 +44,7 @@ export default class MessageIndex extends React.Component {
          channelId: this.props.currentChannelId
       }
       this.channel.send(message)
+      this.setState({ body: ''})
       // debugger
    }
 
@@ -65,14 +69,20 @@ export default class MessageIndex extends React.Component {
                         )) : null
                   }
                </ul>
+               <div 
+                  style={{ float:"left", clear: "both", visibility: "hidden", height: 0 }}
+                  ref={(el) => { this.messagesEnd = el; }}>
+               </div>
             </div>
             <form onSubmit={this.handleSubmit}>
+               <div className='message-container'>
                <input
                   className="message-input-box"
                   type="textarea" 
                   onInput={this.handleInput}
                   placeholder='Message'
                   value={this.state.body}/>
+               </div>
                {/* <button>Click</button> */}
             </form>
          </div>
