@@ -5,6 +5,7 @@ import SignupFormContainer from './session/signup_form_container'
 import HomeContainer from './home/home_container'
 import {AuthRoute, ProtectedRoute} from '../util/route_util'
 import SplashContainer from './splash/splash_container';
+
 const App = () => (
    <Switch>
       <AuthRoute path="/login" component={LoginFormContainer} />

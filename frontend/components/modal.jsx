@@ -1,6 +1,7 @@
 import React from 'react';
 import { closeModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
+import UpdateMessageContainer from './messages/update_message_containter'
 // import Login from '../session/login_form_container';
 // import SignupFormContainer from '../session/register_form_container';
 // import LearnMoreContainer from '../learnmore/learnmore_container';
@@ -9,25 +10,24 @@ function Modal({ modal, closeModal }) {
     if (!modal) {
         return null;
     }
-   //  let component;
-   //  switch (modal) {
-   //       case 'LOGIN':
-   //          component = <Login />;
-   //          break;
-   //       case 'signup':
-   //          component = <SignupFormContainer />;
-   //          break;
-   //       case 'learnmore':
-   //             component = <LearnMoreContainer/>
-   //             break;
-   //       default:
-   //          return null;
-   //  }
+    let component;
+    switch (modal) {
+         case 'UPDATE_MESSAGE':
+            component = <UpdateMessageContainer />;
+            break;
+         // case 'signup':
+         //    component = <SignupFormContainer />;
+         //    break;
+         // case 'learnmore':
+         //       component = <LearnMoreContainer/>
+         //       break;
+         default:
+            return null;
+    }
     return (
         <div className="modal-background" onClick={closeModal}>
             <div className="modal-child" onClick={e => e.stopPropagation()}>
-                {/* {component} */}
-                hi
+                {component}
             </div>
         </div>
     );

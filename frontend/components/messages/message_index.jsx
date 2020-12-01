@@ -36,8 +36,9 @@ export default class MessageIndex extends React.Component {
       return () => {
          console.log('no bugs')
          console.log(message.body)
-         debugger
-         that.props.openModal('hi')
+         // debugger
+         that.props.openModal('UPDATE_MESSAGE')
+         that.props.receiveUpdate(message)
       }
    }
 
@@ -55,7 +56,6 @@ export default class MessageIndex extends React.Component {
       }
       this.channel.send(message)
       this.setState({ body: ''})
-      // debugger
    }
 
 

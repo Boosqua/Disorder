@@ -22,7 +22,8 @@ User.create!([
    {username: 'PrincessDie', password: 'password', email: Faker::Internet.unique.email},
    {username: 'DarnYak', password: 'password', email: Faker::Internet.unique.email},
    {username: 'HillaryDuff', password: 'password', email: Faker::Internet.unique.email},
-   {username: 'SpacePumpkin', password: 'password', email: Faker::Internet.unique.email}
+   {username: 'SpacePumpkin', password: 'password', email: Faker::Internet.unique.email},
+   {username: 'TNasty', password: 'password', email: Faker::Internet.unique.email}
 ])
 
 Server.create!([
@@ -41,7 +42,7 @@ Server.create!([
    end
 end
 (1..7).each do |server_id|
-   (2..14).each do |user_id|
+   (2..16).each do |user_id|
       ServerMember.create!(user_id: user_id, server_id: server_id)
    end
 end
