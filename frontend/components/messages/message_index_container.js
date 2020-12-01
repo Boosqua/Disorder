@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchMessages, receiveMessage } from '../../actions/message_actions';
 import MessageIndex from './message_index'
+import {openModal} from '../../actions/modal_actions'
 
 const mSTP = (state, ownProps) => {
    // debugger
@@ -14,9 +15,10 @@ const mSTP = (state, ownProps) => {
 //    currentUserId: state.session.currentUserId
 // });
 
-const mDTP = dispatch => ({
-   fetchMessages: userId => dispatch(fetchMessages(userId)), 
-   receiveMessage: message => dispatch(receiveMessage(message))
+const mDTP = (dispatch) => ({
+  fetchMessages: (userId) => dispatch(fetchMessages(userId)),
+  receiveMessage: (message) => dispatch(receiveMessage(message)),
+  openModal: (modal) => dispatch(openModal(modal)),
 });
 
 export default connect(mSTP, mDTP)(MessageIndex)

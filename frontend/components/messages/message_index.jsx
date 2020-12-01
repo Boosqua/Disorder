@@ -1,12 +1,19 @@
 import React from 'react';
 import MessageShow from './message_show'
+import Modal from '../modal'
 export default class MessageIndex extends React.Component {
    constructor(props){
       super(props)
       this.state = { body: ''}
       this.handleInput = this.handleInput.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
+      this.triggerModal = this.triggerModal.bind(this)
    }
+ 
+   scrollToBottom() {
+      this.messagesEnd.scrollIntoView();
+   }
+
    componentDidMount() {
       this.channel = this.props.cable.subscriptions.create({
          channel: 'MessagesChannel',
@@ -18,21 +25,24 @@ export default class MessageIndex extends React.Component {
         },
       })
 
-
       this.scrollToBottom();
-
-      // debugger
    }
-   scrollToBottom() {
-      this.messagesEnd.scrollIntoView();
-   }
-
+   
    componentDidUpdate() {
       this.scrollToBottom();
    }
+   triggerModal(message) {
+      let that = this
+      return () => {
+         console.log('no bugs')
+         console.log(message.body)
+         debugger
+         that.props.openModal('hi')
+      }
+   }
 
    handleInput(e){
-      // debugger
+
       this.setState({body: e.currentTarget.value})
    }
 
@@ -58,6 +68,7 @@ export default class MessageIndex extends React.Component {
 
          return (
          <div className="message-shell-outside">
+            <Modal />
             <div className="message-shell">
                <ul>  
                   {  messages ? 
@@ -65,7 +76,8 @@ export default class MessageIndex extends React.Component {
                            <MessageShow 
                               key={message.id}
                               message={message}
-                              user={ users[message.author_id]}/>
+                              user={ users[message.author_id]}
+                              updateMessage={ this.triggerModal(message) }/>
                         )) : null
                   }
                </ul>
