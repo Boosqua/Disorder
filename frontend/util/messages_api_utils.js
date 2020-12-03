@@ -8,13 +8,14 @@ export const fetchMessage = (channelId, messageId) => (
       url: `api/channels/${channelId}/messages/${messageId}`
    })
 )
-export const createMessage = (channelId, message) => (
+export const createMessage = (channelId, message) =>
    $.ajax({
       url: `api/channels/${channelId}/messages`,
-      method: 'POST',
-      data: { message }
-   })
-)
+      method: "POST",
+      data: { message },
+      contentType: false,
+      processData: false,
+   });
 
 export const updateMessage = (messageId, message) => (
    $.ajax({

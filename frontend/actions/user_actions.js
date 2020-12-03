@@ -22,3 +22,9 @@ export const fetchUser = userId => dispatch => (
    APIUtil.fetchUser(userId)
       .then(user => dispatch(receiveUser(user)))
 )
+
+export const uploadPhoto = (userId, file) => (dispatch) => (
+   APIUtil.uploadPhoto(userId, file)
+      .then((user) => dispatch(receiveUser(user)))
+      .catch((err) => console.log(err))
+)

@@ -7,7 +7,7 @@ class MessagesChannel < ApplicationCable::Channel
       end
    end
    def receive(data)
-      # debugger
+      debugger
       message = { 
          author_id: data['userId'], 
          body: data['body'], 
