@@ -16,7 +16,6 @@ export default class Home extends React.Component {
          currentServerId: this.props.currentServerId }
       this.updateChannelId = this.updateChannelId.bind(this)
       this.updateServerId = this.updateServerId.bind(this)
-      // this.cable = actionCable.createConsumer('ws://localhost:3000/cable' )
    }
    componentDidMount() {
 
