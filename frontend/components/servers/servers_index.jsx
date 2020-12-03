@@ -10,6 +10,7 @@ export default class ServersIndex extends React.Component {
    }
    render(){
       const { servers, user, fetchServer, currentServerId } = this.props
+
       const home = servers[0];
       const sharedServers = servers.slice(1)
       return(

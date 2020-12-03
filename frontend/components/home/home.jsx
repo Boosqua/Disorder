@@ -3,7 +3,8 @@ import ServersIndexContainer from '../servers/servers_index_container';
 import ServersShowContainer from '../servers/server_show_container'
 import MessageIndexContainer from '../messages/message_index_container'
 import UserShowContainer from '../servers/users_show_container'
-import actionCable from 'actioncable'
+import actionCable from 'actioncable';
+import Banner from './banner'
 
 
 export default class Home extends React.Component {
@@ -15,17 +16,17 @@ export default class Home extends React.Component {
          currentServerId: this.props.currentServerId }
       this.updateChannelId = this.updateChannelId.bind(this)
       this.updateServerId = this.updateServerId.bind(this)
-      this.cable = actionCable.createConsumer('ws://localhost:3000/cable')
+      // this.cable = actionCable.createConsumer('ws://localhost:3000/cable' )
    }
    componentDidMount() {
-      // debugger
+
       const that = this
       this.props.fetchServers(this.props.user.id)
          .then(() => this.props.fetchChannels(this.props.user.id))
          .then(() => this.props.fetchMessages(this.props.user.id))
          .then(() => this.props.fetchUsers())
          .then(() => that.setState({ loaded: true }))
-      // this.filterMessages(this.props.currentChannelId)
+
    }
    updateChannelId(id) {
       return () => {
@@ -69,11 +70,16 @@ export default class Home extends React.Component {
                cable={this.cable}
                currentChannelId={this.state.currentChannelId}
                messages={this.state.currentMessages}/>
-            <MessageIndexContainer
-               cable={this.cable}
-               currentChannelId={this.state.currentChannelId}
-               />
-            <UserShowContainer />
+            <div className='server-messages-members'>
+               <Banner />
+               <div className='inside-smm'>
+                  <MessageIndexContainer
+                     cable={this.cable}
+                     currentChannelId={this.state.currentChannelId}
+                     />
+                  <UserShowContainer />
+               </div>
+            </div>
          </div>
       ) : null
    }

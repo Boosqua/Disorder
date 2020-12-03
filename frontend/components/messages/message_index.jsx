@@ -1,14 +1,21 @@
 import React from 'react';
 import MessageShow from './message_show'
+import Modal from '../modal'
 export default class MessageIndex extends React.Component {
    constructor(props){
       super(props)
       this.state = { body: ''}
       this.handleInput = this.handleInput.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)
+      this.triggerModal = this.triggerModal.bind(this)
    }
+ 
+   scrollToBottom() {
+      this.messagesEnd.scrollIntoView();
+   }
+
    componentDidMount() {
-      this.channel = this.props.cable.subscriptions.create({
+      this.channel = App.cable.subscriptions.create({
          channel: 'MessagesChannel',
          id: this.props.currentChannelId
       },
@@ -18,21 +25,28 @@ export default class MessageIndex extends React.Component {
         },
       })
 
-
-      let messages = document.getElementsByClassName('message-shell')
-      $(messages).scrollTop($(messages).height());  
-
-      // debugger
+      this.scrollToBottom();
    }
+   
+   componentDidUpdate() {
+      this.scrollToBottom();
+   }
+   triggerModal(message) {
+      let that = this
+      return () => {
+         console.log('no bugs')
+         console.log(message.body)
+         // debugger
+         that.props.openModal('UPDATE_MESSAGE')
+         that.props.receiveUpdate(message)
+      }
+   }
+
    handleInput(e){
-      // debugger
+
       this.setState({body: e.currentTarget.value})
    }
-   // sendMessage(content){
-   //    debugger
-   //    const data = { channelId, userId, body }
-   //    this.channel.send(content)
-   // }
+
    handleSubmit(e){
       e.preventDefault()
       let message = {
@@ -41,19 +55,20 @@ export default class MessageIndex extends React.Component {
          channelId: this.props.currentChannelId
       }
       this.channel.send(message)
-      // debugger
+      this.setState({ body: ''})
    }
 
 
    render() {
-      // debugger
-      const messages  = this.props.messages[this.props.currentChannelId];
+
+      const messages = Object.values(this.props.messages[this.props.currentChannelId]);
 
 
       const users = this.props.users
 
          return (
          <div className="message-shell-outside">
+            <Modal />
             <div className="message-shell">
                <ul>  
                   {  messages ? 
@@ -61,18 +76,25 @@ export default class MessageIndex extends React.Component {
                            <MessageShow 
                               key={message.id}
                               message={message}
-                              user={ users[message.author_id]}/>
+                              user={ users[message.author_id]}
+                              updateMessage={ this.triggerModal(message) }/>
                         )) : null
                   }
                </ul>
+               <div 
+                  style={{ float:"left", clear: "both", visibility: "hidden", height: 0 }}
+                  ref={(el) => { this.messagesEnd = el; }}>
+               </div>
             </div>
             <form onSubmit={this.handleSubmit}>
+               <div className='message-container'>
                <input
                   className="message-input-box"
                   type="textarea" 
                   onInput={this.handleInput}
                   placeholder='Message'
                   value={this.state.body}/>
+               </div>
                {/* <button>Click</button> */}
             </form>
          </div>

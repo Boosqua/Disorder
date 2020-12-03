@@ -15,6 +15,10 @@ export default class ChannelsIndex extends React.Component {
       // debugger
       return(
          <div>
+            <div className='text-channel-header'>
+               TEXT CHANNELS
+            </div>
+            <div className='index-separator-new'/>
             <ul>
                {  channels ? 
                   channels.map( channel => (

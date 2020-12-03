@@ -28,3 +28,8 @@ export const createMessage = (channelId, message) => dispatch => (
    APIUtil.createMessage(channelId, message)
       .then(message => dispatch(receiveMessage(message)))
 )
+
+export const updateMessage = (messageId, message) => dispatch => (
+   APIUtil.updateMessage(messageId, message)
+      .then(message => dispatch(receiveMessage(message)))
+)

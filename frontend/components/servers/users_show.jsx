@@ -12,7 +12,7 @@ export default class UserShow extends React.Component {
                   users.map( (user, index) => {
                      let username = user.username;
                      return (
-                        <li id={index} className='user-show'>
+                        <li key={index} className='user-show'>
                            <div className='user-img-wrapper'>
                               <div className='user-img'>
                                  <img 

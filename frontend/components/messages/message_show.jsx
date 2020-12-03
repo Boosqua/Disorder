@@ -3,10 +3,12 @@ import React from 'react'
 export default class MessageShow extends React.Component {
 
    render() {
-      const { message, user } = this.props
+      const { message, user, updateMessage } = this.props
 
       return (
-         <li className='message-list'>
+         <li 
+            className='message-list'
+            onClick={updateMessage}>
             <div className='user-img-wrapper'>
                <div className='user-img'>
                   <img 
