@@ -15,7 +15,7 @@ export default class MessageIndex extends React.Component {
    }
 
    componentDidMount() {
-      this.channel = this.props.cable.subscriptions.create({
+      this.channel = App.cable.subscriptions.create({
          channel: 'MessagesChannel',
          id: this.props.currentChannelId
       },
@@ -60,8 +60,8 @@ export default class MessageIndex extends React.Component {
 
 
    render() {
-      // debugger
-      const messages  = this.props.messages[this.props.currentChannelId];
+
+      const messages = Object.values(this.props.messages[this.props.currentChannelId]);
 
 
       const users = this.props.users

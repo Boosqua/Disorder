@@ -15,3 +15,11 @@ export const createMessage = (channelId, message) => (
       data: { message }
    })
 )
+
+export const updateMessage = (messageId, message) => (
+   $.ajax({
+      url: `api/messages/${messageId}`,
+      method: `PATCH`,
+      data: {message}
+   })
+)
