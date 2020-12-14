@@ -1,11 +1,12 @@
 import {
    RECEIVE_MESSAGES, 
-   RECEIVE_MESSAGE
+   RECEIVE_MESSAGE,
+   DELETE_MESSAGE
 } from '../../actions/message_actions';
 
 export default (state={}, action) => {
    Object.freeze(state);
-
+   let newState = Object.assign({}, state);
    switch (action.type) {
       case RECEIVE_MESSAGES:
          let messages = {}
@@ -18,11 +19,16 @@ export default (state={}, action) => {
          return messages;
       case RECEIVE_MESSAGE:
          // debugger
-         let newState = Object.assign({}, state);
+         
          newState[action.message.channel_id] ? 
             newState[action.message.channel_id][action.message.id] = action.message :
             newState[action.message.channel_id] = { [action.message.id]: action.message}
          return newState;
+
+      case DELETE_MESSAGE:
+         // let newState = Object.assign({}, state);
+         delete newState[action.message.channel_id][action.message.id]
+         return newState
       default:
          return state
    }

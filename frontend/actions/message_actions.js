@@ -2,6 +2,7 @@ import * as APIUtil from '../util/messages_api_utils';
 
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 
 export const receiveMessages = messages => ({
    type: RECEIVE_MESSAGES,
@@ -13,6 +14,10 @@ export const receiveMessage = message => ({
    message
 })
 
+export const deleteMessages = message => ({
+   type: DELETE_MESSAGE,
+   message
+})
 export const fetchMessages = (userId) => dispatch => (
    APIUtil.fetchMessages(userId)
       .then(messages => dispatch(receiveMessages(messages)))
@@ -32,4 +37,9 @@ export const createMessage = (channelId, message) => dispatch => (
 export const updateMessage = (messageId, message) => dispatch => (
    APIUtil.updateMessage(messageId, message)
       .then(message => dispatch(receiveMessage(message)))
+)
+
+export const deleteMessage = message => dispatch => (
+   APIUtil.deleteMessage(message)
+      .then(message => dispatch(deleteMessages(message)))
 )

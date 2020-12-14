@@ -27,7 +27,12 @@ class Api::MessagesController < ApplicationController
          render json: @server.errors.full_messages, status: 401
       end
    end
-
+   def destroy
+      @message = Message.find(params[:id])
+      @message.destroy 
+      render :show
+         
+   end
    private
    def message_params
       params.require(:message).permit(:body, :author_id, :channel_id, :photo)

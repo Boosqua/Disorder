@@ -8,7 +8,7 @@ export default class MessageShow extends React.Component {
       return (
          <li 
             className='message-list'
-            onClick={updateMessage}>
+            >
             <div className='user-img-wrapper'>
                <div className='user-img'>
                   <img 
@@ -17,10 +17,19 @@ export default class MessageShow extends React.Component {
                </div>
             </div>
             <div className='message-outside'>
-               <div className='message-author'>{user.username}</div>
+               <div className='message-author'>{user.username}                
+               {
+                  updateMessage ? 
+                  <img 
+                  src="https://boosqua-disorder-dev.s3-us-west-1.amazonaws.com/please-edit-message.png"
+                  onClick={updateMessage}
+                  id="edit-icon"/> :
+                  null
+               }
+               </div>
                { 
                   message.photoUrl ? 
-                  <img src={message.photoUrl} alt=""/> :
+                  <img src={message.photoUrl} id="message-photo"/> :
                   null
                   
                }

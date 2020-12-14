@@ -9,6 +9,7 @@ export default class MessageIndex extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this)
       this.handleUpload = this.handleUpload.bind(this)
       this.triggerModal = this.triggerModal.bind(this)
+      this.upload = this.upload.bind(this)
    }
  
    scrollToBottom() {
@@ -39,6 +40,9 @@ export default class MessageIndex extends React.Component {
          that.props.openModal('UPDATE_MESSAGE')
          that.props.receiveUpdate(message)
       }
+   }
+   upload() {
+      document.getElementById("selectImage").click()
    }
 
    handleInput(e){
@@ -100,7 +104,9 @@ export default class MessageIndex extends React.Component {
                               key={message.id}
                               message={message}
                               user={ users[message.author_id]}
-                              updateMessage={ this.triggerModal(message) }/>
+                              updateMessage={ this.props.currentUserId === message.author_id ?
+                                 this.triggerModal(message) :
+                                 false}/>
                         )) : null
                   }
                </ul>
@@ -111,9 +117,12 @@ export default class MessageIndex extends React.Component {
             </div>
             <form onSubmit={this.handleSubmit}>
                <div className='message-container'>
+                  <div className='mio'>
+                  <div className="uploadIcon" onClick={this.upload}> + </div>
                   <input type="file"
                      onChange={this.handleUpload}
                      style={ {display: 'none'} }
+                     id='selectImage'
                   />
                   {
                      this.state.imageUrl ? 
@@ -128,6 +137,7 @@ export default class MessageIndex extends React.Component {
                   value={this.state.body}/>
                </div>
                {/* <button>Click</button> */}
+               </div>
             </form>
          </div>
       )

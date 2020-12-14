@@ -24,3 +24,10 @@ export const updateMessage = (messageId, message) => (
       data: {message}
    })
 )
+
+export const deleteMessage = message => (
+   $.ajax({
+      url: `api/messages/${message.id}`,
+      method: 'DELETE'
+   })
+)

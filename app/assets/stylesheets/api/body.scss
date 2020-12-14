@@ -1,8 +1,11 @@
+/* line 1, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
 .mount-component {
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
+
+/* line 6, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
 a {
   display: block;
   font-size: 14px;
@@ -12,3 +15,16 @@ a {
   text-decoration: none;
   margin-bottom: 10px;
 }
+
+/* line 16, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+#edit-icon {
+  width: 10px;
+  background: #33373b;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: -21px;
+  margin-bottom: -5px;
+  /* justify-self: right; */
+  align-self: flex-end;
+  /* margin-left: 200px; */
+} 

@@ -5,6 +5,7 @@ export default class UpdateMessage extends React.Component {
       super(props)
       this.handleInput = this.handleInput.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
       // this.spanRef = React.createRef();
       this.state = { body: props.message.body}
       this.val = props.message.body
@@ -19,7 +20,12 @@ export default class UpdateMessage extends React.Component {
       //    this.val = innerText;
       // }
    }
-
+   handleDelete(e){
+      e.preventDefault();
+      this.props.deleteMessage(this.props.message)
+      this.props.closeModal()
+      this.props.removeUpdate()
+   }
    handleSubmit(e) {
       e.preventDefault();
       console.log('submit') 
@@ -47,7 +53,7 @@ export default class UpdateMessage extends React.Component {
                   <button className='message-update-button' onClick={this.handleSubmit}>
                      Update Message
                   </button>
-                  <button className='message-update-button'>
+                  <button className='message-update-button' onClick={ this.handleDelete }>
                      Delete Message
                   </button>
             </div>

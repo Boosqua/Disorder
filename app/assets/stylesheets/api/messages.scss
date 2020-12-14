@@ -1,11 +1,15 @@
 /* line 5, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 3, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 4, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 5, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 6, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 7, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 8, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-shell {
   order: 4;
   width: 100%;
   /* max-width: 65vw; */
-  height: 84.5vh;
+  height: 100%;
   /* max-height: 100vh; */
   background-color: #404349;
   overflow-y: scroll;
@@ -14,17 +18,19 @@
 /* line 15, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 14, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 16, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 18, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 20, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 22, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 24, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-shell-outside {
   order: 4;
-  height: 90vh;
+  height: 92%;
   width: 100%;
   /* overflow: scroll; */
   /* max-height: 90vh; */
 }
 
-/* line 20, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
-/* line 22, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
-/* line 26, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+
 .message-list {
   display: flex;
   flex-direction: row;
@@ -35,6 +41,10 @@
 /* line 24, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 28, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 35, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 43, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 47, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 51, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-list:hover {
   background-color: #50545c;
 }
@@ -42,17 +52,28 @@
 /* line 27, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 33, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 41, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 46, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 51, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 56, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 61, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-author {
   color: ivory;
   font-size: 18px;
   margin-top: 10px;
   padding-bottom: 10px;
   font-weight: bold;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* line 34, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 42, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 51, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 57, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 63, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 69, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 75, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .user-img-icon {
   max-width: 40px;
   max-height: 40px;
@@ -61,6 +82,10 @@
 /* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 48, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 58, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 65, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 72, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 79, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 86, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .user-img {
   width: 40px;
   height: 40px;
@@ -73,6 +98,10 @@
 /* line 49, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 58, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 69, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 77, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 85, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 93, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 101, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .user-img-wrapper {
   padding: 5px;
 }
@@ -80,6 +109,10 @@
 /* line 53, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 63, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 75, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 84, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 93, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 102, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 111, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-body {
   color: ivory;
   max-height: fit-content;
@@ -91,19 +124,28 @@
 /* line 61, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 72, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 85, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 95, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 105, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 115, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 125, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-outside {
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
   padding-left: 10px;
+  width: 100%;
 }
 
 /* line 67, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 80, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 94, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 105, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 116, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 127, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 138, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-container {
   background-color: #404349;
-  /* height: 6vh; */
+  height: 6vh;
   /* min-height: 6vh; */
   /* max-height: 6vh; */
   width: 95%;
@@ -111,11 +153,17 @@
   margin: 0;
   padding-top: 1vh;
   padding-left: 2vh;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 /* line 79, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 93, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 108, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 120, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 132, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 144, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 158, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .message-input-box {
   height: 5vh;
   width: 100%;
@@ -136,6 +184,10 @@
 /* line 97, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 110, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 126, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 140, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 153, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 166, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 181, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 ::placeholder {
   color: ivory;
   font-style: italic;
@@ -145,8 +197,12 @@
 /* line 104, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 117, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 134, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 149, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 163, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 177, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 193, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .users-show {
-  height: 92vh;
+  height: 91vh;
   overflow: scroll;
   width: 15vw;
   order: 5;
@@ -158,6 +214,10 @@
 /* line 113, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 128, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 146, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 162, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 177, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 192, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 209, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .user-show {
   display: flex;
   flex-direction: row;
@@ -171,6 +231,10 @@
 /* line 122, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 139, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 158, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 175, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 191, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 207, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 225, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .user-show:hover {
   background-color: #404349;
   cursor: pointer;
@@ -181,6 +245,10 @@
 /* line 128, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 147, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 167, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 185, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 202, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 219, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 238, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .server-messages-members {
   order: 2;
   display: flex;
@@ -195,6 +263,10 @@
 /* line 137, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 158, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 180, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 199, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 217, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 235, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 255, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .inside-smm {
   display: flex;
   flex-direction: row;
@@ -206,6 +278,10 @@
 /* line 146, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 167, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 190, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 210, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 229, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 248, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 269, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .banner-outside {
   border-bottom: 1px solid black;
   height: 6vh;
@@ -222,6 +298,10 @@
 /* line 160, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 180, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 204, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 226, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 246, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 266, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 288, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .banner-title {
   margin-left: 25px;
   height: fit-content;
@@ -238,6 +318,10 @@
 /* line 172, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 192, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 217, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 242, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 263, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 284, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 307, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .social-links-container {
   width: 70vw;
   text-align: end;
@@ -246,6 +330,10 @@
 /* line 177, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 198, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 224, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 250, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 272, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 294, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 318, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .social-links {
   display: inline-block;
   margin-inline: 10px;
@@ -256,7 +344,49 @@
 /* line 184, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 206, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 /* line 233, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 260, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 283, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 306, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 331, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
 .social-links:hover {
   cursor: pointer;
   background-color: #53575f;
+}
+
+/* line 288, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 312, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 338, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+.uploadIcon {
+  font-size: 40px;
+  font-weight: lighter;
+  color: black;
+  width: 30px;
+  height: 29px;
+  line-height: 22px;
+  text-align: center;
+  margin: 8px;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-items: center; */
+  background: #b4b8c0;
+  border-radius: 200px;
+}
+
+/* line 353, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+.uploadIcon:hover {
+  background-color: white;
+}
+
+/* line 303, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 328, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+/* line 358, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/messages.scss */
+.mio {
+  background-color: #5d6169;
+  display: flex;
+  border-radius: 5px;
+}
+
+#message-photo {
+   width: fit-content;
+   height: fit-content;
 }
