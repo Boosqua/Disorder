@@ -10,8 +10,8 @@ class Api::MessagesController < ApplicationController
    end
 
    def create
-      debugger
       @message = Message.new(message_params)
+      # debugger
       if @message.save
          render :show
       else
@@ -30,6 +30,6 @@ class Api::MessagesController < ApplicationController
 
    private
    def message_params
-      params.require(:message).permit(:body, :author_id, :channel_id)
+      params.require(:message).permit(:body, :author_id, :channel_id, :photo)
    end
 end

@@ -18,6 +18,12 @@ export default class MessageShow extends React.Component {
             </div>
             <div className='message-outside'>
                <div className='message-author'>{user.username}</div>
+               { 
+                  message.photoUrl ? 
+                  <img src={message.photoUrl} alt=""/> :
+                  null
+                  
+               }
                <div className='message-body'>
                   {message.body}
                </div>
