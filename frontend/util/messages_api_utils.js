@@ -12,10 +12,10 @@ export const createMessage = (channelId, message) =>
    $.ajax({
       url: `api/channels/${channelId}/messages`,
       method: "POST",
-      data: { message },
+      data: message,
       contentType: false,
       processData: false,
-   });
+   }).fail( message => console.log(message));
 
 export const updateMessage = (messageId, message) => (
    $.ajax({

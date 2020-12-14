@@ -36,37 +36,35 @@ export default class MessageIndex extends React.Component {
    triggerModal(message) {
       let that = this
       return () => {
-         console.log('no bugs')
-         console.log(message.body)
-         // debugger
          that.props.openModal('UPDATE_MESSAGE')
          that.props.receiveUpdate(message)
       }
    }
 
    handleInput(e){
-      console.log(this.state)
+
       this.setState({body: e.currentTarget.value})
    }
 
    handleSubmit(e){
       e.preventDefault()
-      // const message = new FormData()
-      // message.append( 'userId', this.props.currentUserId )
-      // message.append( 'channelId', this.props.currentChannelId ) 
-      // message.append( 'body', this.state.body )
       
-      let message = {
-         userId: this.props.currentUserId,
-         body: this.state.body,
-         channelId: this.props.currentChannelId
-      }
-      debugger
       if (this.state.imageFile) {
-         message.photo = this.state.imageFile
+         const message = new FormData()
+         message.append( 'message[author_id]', this.props.currentUserId )
+         message.append( 'message[channel_id]', this.props.currentChannelId ) 
+         message.append( 'message[body]', this.state.body )
+         message.append( 'message[photo]', this.state.imageFile )
+         this.props.createMessage(this.props.currentChannelId, message)
+      } else {
+         let message = {
+            userId: this.props.currentUserId,
+            body: this.state.body,
+            channelId: this.props.currentChannelId
+         }
+         this.channel.send(message)
       }
-      debugger
-      this.channel.send(message)
+
       this.setState({ body: '', imageUrl: "", imageFile: null })
    }
 
@@ -115,6 +113,7 @@ export default class MessageIndex extends React.Component {
                <div className='message-container'>
                   <input type="file"
                      onChange={this.handleUpload}
+                     style={ {display: 'none'} }
                   />
                   {
                      this.state.imageUrl ? 
