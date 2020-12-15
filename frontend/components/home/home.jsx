@@ -33,15 +33,17 @@ export default class Home extends React.Component {
          that.setState({
             currentChannelId: id, 
          })
-         console.log(this.state, id)
+
       }
    }
 
    updateServerId(id) {
       const channels = this.props.channels
+      const servers = this.props.servers
       return () => {
-         // debugger
+         let server = servers[id]
          let channel = channels[id];
+         this.props.receiveCurrentServer(server)
          this.setState({
             currentServerId: id,
             currentChannelId: channel[0].id

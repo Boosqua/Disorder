@@ -10,7 +10,6 @@ export default class ServersShow extends React.Component {
    }
 
    triggerModal() {
-      // console.log(this.state.modal)
       let oldModal = this.state.modal
       this.setState({ modal: !oldModal, crud:'' })
    }
@@ -23,7 +22,7 @@ export default class ServersShow extends React.Component {
    }
    render() {
       const { server, user } = this.props
-      console.log(user)
+
       let serverModal = 
          this.state.modal ? 
             <div className="server-crud">

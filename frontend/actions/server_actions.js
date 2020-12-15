@@ -11,9 +11,9 @@ export const receiveServers = (servers) => ({
    type: RECEIVE_SERVERS,
    servers
 })
-export const receiveCurrentServer = (currentServer) => ({
+export const receiveCurrentServer = (server) => ({
     type: RECEIVE_CURRENT_SERVER,
-    currentServer
+    server
 })
 export const receiveServer = (server) => ({
    type: RECEIVE_SERVER,

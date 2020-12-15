@@ -28,7 +28,6 @@ export default class UpdateMessage extends React.Component {
    }
    handleSubmit(e) {
       e.preventDefault();
-      console.log('submit') 
       // debugger
       this.props.updateMessage(this.props.message.id, this.state)
       this.props.closeModal()

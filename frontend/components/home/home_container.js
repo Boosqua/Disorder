@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Home from './home'
 import { fetchUser, logout } from '../../actions/session_actions'
 import { receiveMessage, fetchMessages} from "../../actions/message_actions";
-import { fetchServers } from '../../actions/server_actions'
+import { fetchServers, receiveCurrentServer } from '../../actions/server_actions'
 import { fetchChannels } from '../../actions/channel_actions'
 import { fetchUsers } from '../../actions/user_actions'
 
@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchChannels: (serverId) => dispatch(fetchChannels(serverId)),
   fetchMessages: (userId) => dispatch(fetchMessages(userId)),
   logout: () => dispatch(logout()),
+  receiveCurrentServer: server => dispatch(receiveCurrentServer(server))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
