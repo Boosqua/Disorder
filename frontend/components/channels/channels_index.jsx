@@ -12,7 +12,8 @@ export default class ChannelsIndex extends React.Component {
 
       const { allChannels } = this.props 
       const channels = allChannels[this.props.currentServerId]
-      // debugger
+      
+      debugger
       return(
          <div>
             <div className='text-channel-header'>

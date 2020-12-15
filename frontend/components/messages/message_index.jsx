@@ -26,8 +26,10 @@ export default class MessageIndex extends React.Component {
           this.props.receiveMessage(data)
         },
       })
-
-      this.scrollToBottom();
+      const that = this
+      setTimeout(() => {
+      that.messagesEnd.scrollIntoView()
+      }, 20)
    }
    
    componentDidUpdate() {
@@ -118,7 +120,8 @@ export default class MessageIndex extends React.Component {
             <form onSubmit={this.handleSubmit}>
                <div className='message-container'>
                   <div className='mio'>
-                  <div className="uploadIcon" onClick={this.upload}> + </div>
+                  <div className="uploadIcon" onClick={this.upload}> 
+                  <img id="plus-symbol" src="https://boosqua-disorder-dev.s3-us-west-1.amazonaws.com/plus-symbol.png" alt=""/></div>
                   <input type="file"
                      onChange={this.handleUpload}
                      style={ {display: 'none'} }

@@ -1,0 +1,124 @@
+/* line 1, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 3, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 4, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 5, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+.server-crud {
+  position: fixed;
+  font-size: 12px;
+  text-align: left;
+  background: #262525;
+  padding: 8px;
+  font-weight: 200;
+  border-radius: 4px;
+  margin-left: 7%;
+  margin-top: 1.5%;
+  cursor: pointer;
+}
+
+/* line 15, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 17, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 19, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 21, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+li.server-crud-options {
+  padding: 5px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+/* line 19, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 24, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 27, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 30, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+li#server-delete {
+  color: red;
+  /* margin-top: 10px; */
+  /* border-top: 1px solid #302f2f; */
+  /* padding-top: 10px; */
+}
+
+/* line 31, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 35, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+li.crud-divide {
+  border-top: 1px solid #302f2f;
+}
+
+/* line 35, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 40, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 45, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+li.server-crud-options:hover {
+  background: #404349;
+}
+
+/* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 45, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 51, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+#curvedarrow {
+  position: relative;
+  /* align-self: end; */
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-right: 9px solid #1e1d1d;
+  transform: rotate(10deg);
+  margin-top: 7%;
+  margin-left: 10%;
+}
+
+/* line 47, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 56, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+/* line 65, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+#curvedarrow:after {
+  content: "";
+  position: absolute;
+  border: 0 solid transparent;
+  border-top: 3px solid #1e1d1d;
+  border-radius: 20px 0 0 0;
+  top: -12px;
+  left: -9px;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+}
+
+/* line 77, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+#arrow {
+  line-height: 10;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  font-weight: 800;
+  color: #bcb7b7;
+}
+
+/* line 85, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+div#server-crud-action {
+  position: fixed;
+  margin-left: 7%;
+  background: #2e2a2a;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* line 92, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+div#crud-title {
+  margin: 5px;
+}
+
+/* line 96, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+input.crud-import-form {
+  background-color: #5d6169;
+  border-radius: 4px;
+  padding: 2px;
+  font-size: 1;
+}
+
+/* line 100, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/server_crude.scss */
+input.crud-import-form:focus {
+  border: 0px;
+  outline-color: transparent;
+  outline: none;
+  color: white;
+  border-radius: 5px;
+  font-size: inherit;
+  font-weight: 600;
+}

@@ -2,7 +2,9 @@ class Server < ApplicationRecord
    after_save :add_initial_state
 
    def add_initial_state
-      Channel.create!(name: 'general', server_id: self.id)
+      if self.channels.none? { |channel| channel.name == "general"}
+         Channel.create!(name: 'general', server_id: self.id)
+      end
       ServerMember.create!(user_id: self.owner_id, server_id: self.id)
    end
    has_one_attached :photo

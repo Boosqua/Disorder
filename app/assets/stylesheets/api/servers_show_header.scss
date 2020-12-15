@@ -1,91 +1,91 @@
+/* line 1, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 3, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
 .server-header-container {
-   // width: 203px;
-   height: 6vh;
-   padding-top: 10px;
-   padding-bottom: 10px;
-   margin-bottom: 10px;
-   padding-right: 10px;
-   cursor: pointer;
-   border-bottom: 1px solid black;
-   background-color: rgb(51, 55, 59);
-   margin-bottom: 10px;
-   text-overflow: ellipsis;
-   display: flex;
-   flex-direction: row;
+  height: 6vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid black;
+  background-color: #33373b;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+/* line 17, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 20, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
 .server-header-container:hover {
-   background-color: rgb(60, 66, 71);
+  background-color: #3c4247;
 }
 
+/* line 21, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 25, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
 .server-header {
    overflow-x: hidden;
-   overflow-y: auto;
-   margin: 0;
-   // position: relative;
-   // top: 50%;
-   // left: 50%;
-   // -ms-transform: translate(-50%, -50%);
-   // transform: translate(-50%, -50%);
-   text-align: center;
-   width: 100%;
-   align-content: center;
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: 24px;
-   font-weight: 550;
-   white-space: nowrap;
-   word-spacing: 0.5px;
-   text-align: center;
-   text-overflow: ellipsis;
-   padding-left: 4px;
-   padding-top: 15px;;
+    overflow-y: auto;
+    margin: 0;
+    /* text-align: center; */
+    width: 78%;
+    align-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: 550;
+    white-space: nowrap;
+    word-spacing: 0.5px;
+    /* text-align: center; */
+    text-overflow: ellipsis;
+    padding-left: 20px;
+
 }
 
+/* line 45, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 45, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
 .text-channel-header {
-   display: inline-block;
-   clear: both;
-   // text-align: center;
-   text-indent: 20px;
-   width: 203px;
-   font-weight: bold;
-   font-size: 12px;
-   color: #8095df;
-   margin-top: 12px;
-   margin-bottom: 0%;
-   // width: inherit;
+  display: inline-block;
+  clear: both;
+  text-indent: 20px;
+  width: 203px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #8095df;
+  margin-top: 12px;
+  margin-bottom: 0%;
 }
-.channel-index-item {
-   overflow: hidden;
-   // position: relative;
-   line-height: 25px;
-   // top: 50%;
-   // left: 50%;
-   // -ms-transform: translate(-50%, -50%);
-   // transform: translate(-50%, -50%);
-   margin-left: 10px;
 
-   text-align: center;
-   width: 203px;
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
-   font-size: 18px;
-   font-weight: 400;
-   white-space: nowrap;
-   word-spacing: 0.5px;
-   text-align: center;
-   // padding-top: 10px;
-   padding-bottom: 10px;
-   width: 80%;
-   height: 20px;
-   line-height: 100%;
-   padding-top: 5px;
-   padding-right: 10px;
-   cursor: pointer;
-   background-color: rgb(51, 55, 59);
-   border-radius: 10px;
-   text-overflow: ellipsis;
+/* line 58, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 58, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+.channel-index-item {
+  overflow: hidden;
+  line-height: 25px;
+  margin-left: 10px;
+  text-align: center;
+  width: 203px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  white-space: nowrap;
+  word-spacing: 0.5px;
+  text-align: center;
+  padding-bottom: 10px;
+  width: 80%;
+  height: 20px;
+  line-height: 100%;
+  padding-top: 5px;
+  padding-right: 10px;
+  cursor: pointer;
+  background-color: #33373b;
+  border-radius: 10px;
+  text-overflow: ellipsis;
 }
+
+/* line 89, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
+/* line 84, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show_header.scss */
 .channel-index-item:hover {
-   background-color: rgb(60, 66, 71);
+  background-color: #3c4247;
 }
