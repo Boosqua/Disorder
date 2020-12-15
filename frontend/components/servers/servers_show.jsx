@@ -47,11 +47,31 @@ export default class ServersShow extends React.Component {
                            null
                      }
                      </li>
-                     <li className="server-crud-options">
+                     <li className="server-crud-options"
+                     onClick={this.handleCrud("CREATE_CHANNEL")}>
                      Add Channel
+                     {
+                        this.state.crud === "CREATE_CHANNEL" ?
+                           <ServerCrudContainer 
+                           type="CREATE_CHANNEL" 
+                           serverName={server.name} 
+                           server={server}
+                           triggerModal={this.triggerModal}/> :
+                           null
+                     }
                      </li>
-                     <li className="server-crud-options">
+                     <li className="server-crud-options"
+                     onClick={this.handleCrud("CHANNEL_EDIT")}>
                      Edit Channel Names
+                     {
+                        this.state.crud === "CHANNEL_EDIT" ?
+                           <ServerCrudContainer 
+                           type="CHANNEL_EDIT" 
+                           serverName={server.name} 
+                           server={server}
+                           triggerModal={this.triggerModal}/> :
+                           null
+                     }
                      </li>
                      <li className="crud-divide"/>
                      <li className="server-crud-options"

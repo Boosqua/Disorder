@@ -28,8 +28,9 @@ export default class Home extends React.Component {
 
    }
    updateChannelId(id) {
+      let that = this
       return () => {
-         this.setState({
+         that.setState({
             currentChannelId: id, 
          })
          console.log(this.state, id)

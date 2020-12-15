@@ -18,7 +18,17 @@ export default (state={}, action) => {
          })
          return channels;
       case RECEIVE_CHANNEL:
-         newState[action.channel.id] = action.channel;
+         const channel = action.channel
+         let found;
+         for( let i = 0; i < newState[channel.server_id].length; i++ ){
+            if( newState[channel.server_id][i].id === channel.id ){
+               newState[channel.server_id][i] = channel
+               return newState
+            }
+         }
+         if(!found){
+            newState[channel.server_id].push(channel)
+         }
          return newState;
       case REMOVE_CHANNEL:
          delete newState[action.channel.id]

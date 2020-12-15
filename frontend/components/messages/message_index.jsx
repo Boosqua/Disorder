@@ -90,7 +90,9 @@ export default class MessageIndex extends React.Component {
    }
    render() {
 
-      const messages = Object.values(this.props.messages[this.props.currentChannelId]);
+      const messages = this.props.messages[this.props.currentChannelId] ?
+         Object.values(this.props.messages[this.props.currentChannelId]) :
+         []
 
 
       const users = this.props.users
