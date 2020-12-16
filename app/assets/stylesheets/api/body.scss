@@ -1,11 +1,65 @@
 /* line 1, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 3, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 4, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
 .mount-component {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  --scrollbar-thin-thumb: #202225;
+  --scrollbar-thin-track: transparent;
+  --scrollbar-auto-thumb: #202225;
+  --scrollbar-auto-track: #2e3338;
+  --scrollbar-auto-scrollbar-color-thumb: #202225;
+  --scrollbar-auto-scrollbar-color-track: #2f3136;
+}
+
+/* line 15, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 17, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.users-show::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+  height: 100%;
+}
+
+/* line 20, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 24, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.users-show::-webkit-scrollbar-track {
+  background-color: #2e333841;
+}
+
+/* line 23, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 29, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.users-show::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  border-radius: 10px;
+}
+
+/* line 27, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 35, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.message-shell::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+  height: 100%;
+}
+
+/* line 32, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 42, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.message-shell::-webkit-scrollbar-track {
+  background-color: #2e333841;
+  border-radius: 10px;
+}
+
+/* line 36, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 48, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+.message-shell::-webkit-scrollbar-thumb {
+  background-color: #202225;
+  border-radius: 20px;
+  height: 10px;
 }
 
 /* line 6, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 42, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 56, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
 a {
   display: block;
   font-size: 14px;
@@ -17,6 +71,8 @@ a {
 }
 
 /* line 16, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 53, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 68, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
 #edit-icon {
   width: 10px;
   background: #33373b;
@@ -28,4 +84,56 @@ a {
   align-self: flex-end;
   cursor: pointer;
   /* margin-left: 200px; */
-} 
+}
+
+/* line 66, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 82, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+div#new-modal-outside {
+  position: absolute;
+   background-color: rgba(0,0,0,0.4);
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 77, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 94, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+div#image-confirm {
+  height: 55%;
+  width: 21%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #3b4046;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* line 88, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 106, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+img.post-image-upload {
+  margin-top: 20px;
+  height: 74%;
+  /* width: 80%; */
+}
+
+/* line 90, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+/* line 112, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+div {
+  color: white;
+}
+
+/* line 116, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/body.scss */
+div#upload-image-buttons {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+div#upload-image-text {
+    padding-top: 10px;
+}

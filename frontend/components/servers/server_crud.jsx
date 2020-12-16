@@ -9,8 +9,20 @@ export default class ServerCrud extends React.Component {
       this.handleChannelChange = this.handleChannelChange.bind(this)
       this.changeChannelName = this.changeChannelName.bind(this)
       this.createChannel = this.createChannel.bind(this)
+      this.handleClose = this.handleClose.bind(this)
    }
-
+   componentDidMount(){
+      let that = this;
+      this.shown = true
+      this.event = document.addEventListener("click", this.handleClose)
+   }
+   handleClose(e){
+      if (e.currentTarget !== this.reff ){
+         this.setState({ inputField: ""});
+         this.props.triggerModal();
+      }
+      document.removeEventListener("click", this.handleClose)
+   }
    handleChange(e){
       this.setState({inputField: e.currentTarget.value})
    }
@@ -49,7 +61,7 @@ export default class ServerCrud extends React.Component {
       switch(type) {
       case "SERVER_EDIT":
          crud = (
-            <div id="server-crud-action">
+            <div id="server-crud-action" ref={(el) => { this.reff = el; }}>
                   <div id="crud-title"> Change {this.props.serverName}? </div>
                <form onSubmit={this.changeServerName}>
                   <input 
@@ -66,7 +78,7 @@ export default class ServerCrud extends React.Component {
          const { allChannels } = this.props 
          const channels = allChannels[this.props.currentServerId]
          crud = (
-            <div id="server-crud-action">
+            <div id="server-crud-action" ref={(el) => { this.reff = el; }}>
               
                   {
                      channels.map((channel, index) => (
@@ -92,7 +104,7 @@ export default class ServerCrud extends React.Component {
          break;
       case 'CREATE_CHANNEL':
          crud = (
-            <div id="server-crud-action">
+            <div id="server-crud-action" ref={(el) => { this.reff = el; }}>
                <div id="crud-title"> Add Channel! </div>
                <form onSubmit={this.createChannel}>
                   <input 
@@ -107,7 +119,7 @@ export default class ServerCrud extends React.Component {
       
          break
       default:
-         crud = <div></div>
+         crud = null
       }
       return crud
    }

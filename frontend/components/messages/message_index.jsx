@@ -9,6 +9,7 @@ export default class MessageIndex extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this)
       this.handleUpload = this.handleUpload.bind(this)
       this.triggerModal = this.triggerModal.bind(this)
+      this.uploadImage = this.uploadImage.bind(this)
       this.upload = this.upload.bind(this)
    }
  
@@ -88,6 +89,23 @@ export default class MessageIndex extends React.Component {
          this.setState({ imageUrl: "", imageFile: null });
       }
    }
+
+   uploadImage(){
+      return(
+         <div id='new-modal-outside'>
+         <div id="image-confirm">
+            <img src={this.state.imageUrl} className="post-image-upload"/>
+            <div id="upload-image-text">Upload Image?</div>
+            <div id="upload-image-buttons">
+            <button className="message-update-button">post</button>
+            <button className="message-update-button" onClick={
+               () => this.setState({ imageUrl: "", imageFile: null })
+            }>cancel</button>
+            </div>
+         </div>
+         </div>
+      )
+   }
    render() {
 
       const messages = this.props.messages[this.props.currentChannelId] ?
@@ -131,7 +149,7 @@ export default class MessageIndex extends React.Component {
                   />
                   {
                      this.state.imageUrl ? 
-                        (<img src={this.state.imageUrl} className="post-image-upload"/>) :
+                        (this.uploadImage()) :
                         null
                   }
                <input

@@ -36,12 +36,12 @@ a#fixer {
 .user-profile-icon-container {
   display: flex;
   background: #191818;
-  height: 4%;
+  height: 5%;
 }
 
 /* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
 .all-channels {
-  height: 96%;
+  height: 95%;
 }
 
 /* line 43, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
@@ -76,5 +76,8 @@ img#cog {
     height: 15px;
 
     justify-self: end;
-    margin-left: 101px;
+    margin-left: 95px;
+}
+img#cog:hover {
+   cursor: pointer;
 }

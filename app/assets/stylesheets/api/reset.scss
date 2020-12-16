@@ -24,6 +24,11 @@ time, mark, audio, video {
    vertical-align: baseline;
    text-rendering: optimizeLegibility;
 }
+div::-webkit-scrollbar, body::-webkit-scrollbar{
+   height: 0;
+   width: 0;
+}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
