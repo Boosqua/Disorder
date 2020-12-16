@@ -3,7 +3,7 @@ import ServersIndexContainer from '../servers/servers_index_container';
 import ServersShowContainer from '../servers/server_show_container'
 import MessageIndexContainer from '../messages/message_index_container'
 import UserShowContainer from '../servers/users_show_container'
-import actionCable from 'actioncable';
+
 import Banner from './banner'
 
 
@@ -13,12 +13,12 @@ export default class Home extends React.Component {
       this.state = { loaded: false, 
          currentChannelId: 1, 
          currentMessages: [], 
-         currentServerId: this.props.currentServerId }
+         currentServerId: this.props.currentServerId,
+         currentChannelName: 'general' }
       this.updateChannelId = this.updateChannelId.bind(this)
       this.updateServerId = this.updateServerId.bind(this)
    }
    componentDidMount() {
-
       const that = this
       this.props.fetchServers(this.props.user.id)
          .then(() => this.props.fetchChannels(this.props.user.id))
@@ -29,9 +29,17 @@ export default class Home extends React.Component {
    }
    updateChannelId(id) {
       let that = this
+      let currentChannelName;
       return () => {
+         debugger
+         that.props.channels[that.props.currentServerId].forEach( (channel) => {
+            if(channel.id === id){
+               currentChannelName = channel.name
+            }
+         })
          that.setState({
             currentChannelId: id, 
+            currentChannelName
          })
 
       }
@@ -46,7 +54,8 @@ export default class Home extends React.Component {
          this.props.receiveCurrentServer(server)
          this.setState({
             currentServerId: id,
-            currentChannelId: channel[0].id
+            currentChannelId: channel[0].id,
+            currentChannelName: channel[0].name
          })
       }
    }
@@ -73,7 +82,7 @@ export default class Home extends React.Component {
                currentChannelId={this.state.currentChannelId}
                messages={this.state.currentMessages}/>
             <div className='server-messages-members'>
-               <Banner />
+               <Banner currentChannelName={this.state.currentChannelName}/>
                <div className='inside-smm'>
                   <MessageIndexContainer
                      cable={this.cable}

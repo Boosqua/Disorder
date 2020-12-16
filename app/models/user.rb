@@ -24,6 +24,7 @@ class User < ApplicationRecord
    has_many :server_messages,
       through: :servers,
       source: :messages
+      
    has_many :channels,
       through: :servers,
       source: :channels
