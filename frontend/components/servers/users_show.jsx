@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default class UserShow extends React.Component {
-
    render() {
       const users = this.props.users
+      const icons = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon]
 
       return (
          <div className='users-show'>
@@ -17,7 +17,7 @@ export default class UserShow extends React.Component {
                               <div className='user-img'>
                                  <img 
                                     className='user-img-icon'
-                                    src={window.tempIcon}/>
+                                    src={icons[user.user_image]}/>
                               </div>
                            </div>
                            <div className='message-author'>{username}</div>

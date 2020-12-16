@@ -15,7 +15,7 @@ export default class ChannelsIndex extends React.Component {
       
 
       return(
-         <div>
+         <div className="all-channels">
             <div className='text-channel-header'>
                TEXT CHANNELS
             </div>

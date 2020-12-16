@@ -14,7 +14,6 @@ export default class ServersShow extends React.Component {
       this.setState({ modal: !oldModal, crud:'' })
    }
    handleCrud(type){
-
       return (e) => {
          this.setState({ crud: type })
          e.stopPropagation()
@@ -22,7 +21,8 @@ export default class ServersShow extends React.Component {
    }
    render() {
       const { server, user } = this.props
-
+      const icons = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon]
+      const cog = window.cog
       let serverModal = 
          this.state.modal ? 
             <div className="server-crud">
@@ -104,11 +104,21 @@ export default class ServersShow extends React.Component {
             <div id="arrow">{'. . .'}</div>
          </div>
 
-         <div>
+         <div className="channels-index">
             <ChannelsIndex currentServerId={server.id} 
                updateChannelId={this.props.updateChannelId}/>
+            <div className="user-profile-icon-container">
+               <div className="user-profile-inside">
+                  <div className="user-profile-photo">
+                     <img 
+                        className='user-profile-icon'
+                        src={icons[user.user_image]}/>
+                  </div>
+                  <div className="profile-username">{user.username}</div>
+                  <img id="cog" src={cog} alt=""/>
+               </div>
+            </div>
          </div>
-         {/* <UsersShowContainer /> */}
       </div>)
    }
 }

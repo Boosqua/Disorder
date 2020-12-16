@@ -4,7 +4,7 @@ export default class MessageShow extends React.Component {
 
    render() {
       const { message, user, updateMessage } = this.props
-
+      const icons = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon]
       return (
          <li 
             className='message-list'
@@ -13,7 +13,7 @@ export default class MessageShow extends React.Component {
                <div className='user-img'>
                   <img 
                      className='user-img-icon'
-                     src={window.tempIcon}/>
+                     src={icons[user.user_image]}/>
                </div>
             </div>
             <div className='message-outside'>

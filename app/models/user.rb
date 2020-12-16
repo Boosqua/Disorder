@@ -5,7 +5,7 @@ class User < ApplicationRecord
    validates :password_digest, :session_token, presence: true
    validates :password, length: { minimum: 6 }, allow_nil: true
 
-   after_initialize :ensure_session_token #, :ensure_user_image
+   after_initialize :ensure_session_token, :ensure_user_image
    has_one_attached :photo
    has_many :authored_messages, 
       foreign_key: :author_id, 
@@ -70,9 +70,9 @@ class User < ApplicationRecord
       sent_servers
    end
 
-   # def ensure_user_image
-   #    self.image
-   # end
+   def ensure_user_image
+      self.update(user_image: rand(0..3)) unless self.user_image
+   end
    # has_many :messages, foreign_key: :author_id
    # has_many :servers, foreign_key: :owner_id
 end

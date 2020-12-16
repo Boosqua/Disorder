@@ -24,6 +24,7 @@ export default class Home extends React.Component {
          .then(() => this.props.fetchChannels(this.props.user.id))
          .then(() => this.props.fetchMessages(this.props.user.id))
          .then(() => this.props.fetchUsers())
+         .then(() => this.props.fetchServerMembers(this.props.servers, this.props.users))
          .then(() => that.setState({ loaded: true }))
 
    }

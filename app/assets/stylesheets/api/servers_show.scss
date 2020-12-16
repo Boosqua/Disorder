@@ -1,23 +1,80 @@
+/* line 1, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
 .server-show-outside {
-   display: flex;
-   flex-direction: column;
-   order: 1;
-   padding-left: 0px;
-   padding-right: 10px;
-   color: blanchedalmond;
-   background-color: rgb(51, 55, 59);   
-   height: 100vh;
-   width: 250px;
-   padding: 1px;
+  display: flex;
+  flex-direction: column;
+  order: 1;
+  padding-left: 0px;
+  padding-right: 10px;
+  color: blanchedalmond;
+  background-color: #33373b;
+  height: 100vh;
+  width: 250px;
+  padding: 1px;
 }
+
+/* line 13, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
 .social-links {
-    height: 100%;
+  height: 100%;
 }
 
+/* line 17, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
 img#socia-link-img {
-    height: 80%;
+  height: 80%;
 }
 
+/* line 21, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
 a#fixer {
+  height: 100%;
+}
+
+/* line 27, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
+.channels-index {
+  height: 100%;
+}
+
+/* line 33, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
+.user-profile-icon-container {
+  display: flex;
+  background: #191818;
+  height: 4%;
+}
+
+/* line 39, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
+.all-channels {
+  height: 96%;
+}
+
+/* line 43, /Users/omarhernandez/Desktop/DisOrder/app/assets/stylesheets/api/servers_show.scss */
+.user-profile-photo {
+  overflow: hidden;
+  border-radius: 20px;
+  margin-left: 5px;
+  height: 25px;
+  width: 25px;
+}
+
+
+img.user-profile-icon {
+    width: 100%;
+}
+
+.user-profile-inside {
     height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.profile-username {
+    margin-left: 10px;
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+}
+
+img#cog {
+    height: 15px;
+
+    justify-self: end;
+    margin-left: 101px;
 }
