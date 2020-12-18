@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchServer, clearErrors } from '../../actions/server_actions';
 import ServersShow from './servers_show';
+import { updateUser} from '../../actions/user_actions'
 
 
 // const mapStateToProps = (state, ownProps) => ({
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) =>{
 const mapDispatchToProps = (dispatch) => ({
   fetchServer: (userId, serverId) => dispatch(fetchServer(userId, serverId)),
   clearErrors: () => dispatch(clearErrors()),
+  updateUser: (user) => dispatch(updateUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ServersShow)

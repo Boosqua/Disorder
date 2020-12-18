@@ -4,9 +4,17 @@ import ServerCrudContainer from './server_crud_container'
 export default class ServersShow extends React.Component {
    constructor(props) {
       super(props)
-      this.state = { modal: false, crud: ''}
+      this.state = { modal: false, 
+         crud: '', 
+         userModal: false, 
+         username: this.props.user.username 
+      }
       this.triggerModal = this.triggerModal.bind(this)
       this.handleCrud = this.handleCrud.bind(this)
+      this.triggerUserModal = this.triggerUserModal.bind(this)
+      this.handleInput = this.handleInput.bind(this)
+      this.updateUser = this.updateUser.bind(this)
+      this.handleClose = this.handleClose.bind(this)
    }
 
    triggerModal() {
@@ -18,6 +26,32 @@ export default class ServersShow extends React.Component {
          this.setState({ crud: type })
          e.stopPropagation()
       }
+   }
+   handleClose(e){
+      if (e.target === this.reff ){
+         this.setState({ username: this.props.user.username, userModal: false,});
+         document.removeEventListener("click", this.handleClose)
+      }
+   }
+   handleInput(e){
+      this.setState({ username: e.currentTarget.value })
+   }
+   triggerUserModal() {
+      let oldModal = !this.state.userModal
+      if( oldModal ) {
+         document.addEventListener("click", this.handleClose)
+      }
+      this.setState({ userModal: oldModal })
+   }
+   updateUser(e) {
+      e.preventDefault();
+
+      const user = {
+         id: this.props.user.id,
+         username: this.state.username
+      }
+      this.props.updateUser(user)
+      this.triggerUserModal()
    }
    render() {
       const { server, user } = this.props
@@ -90,7 +124,19 @@ export default class ServersShow extends React.Component {
                   }
             </div> :
             null
-      
+      let userModal = 
+         this.state.userModal ? 
+            <div id="new-modal-outside" ref={(el) => { this.reff = el; }}>
+               <div className="user-update-modal" >
+                  <div className="change-username">
+                     <p className="username">Change Name:</p>
+                     <form onSubmit={ this.updateUser }>
+                        <input type="text" onChange={this.handleInput} value={this.state.username} />
+                     </form>
+                  </div>
+               </div>
+            </div>  :
+            null     
       return (<div className="server-show-outside">
          <div 
             className='server-header-container'
@@ -100,7 +146,6 @@ export default class ServersShow extends React.Component {
             {server.name}
             {serverModal}
             </div>
-            {/* <div id="curvedarrow"></div> */}
             <div id="arrow">{'. . .'}</div>
          </div>
 
@@ -115,10 +160,11 @@ export default class ServersShow extends React.Component {
                         src={icons[user.user_image]}/>
                   </div>
                   <div className="profile-username">{user.username}</div>
-                  <img id="cog" src={cog} alt=""/>
+                  <img id="cog" src={cog} alt="" onClick={ this.triggerUserModal }/>
                </div>
             </div>
          </div>
+         {userModal}
       </div>)
    }
 }

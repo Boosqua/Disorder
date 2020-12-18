@@ -21,10 +21,8 @@ export const fetchUsers = () => dispatch => (
 export const fetchUser = userId => dispatch => (
    APIUtil.fetchUser(userId)
       .then(user => dispatch(receiveUser(user)))
-)
+);
 
-export const uploadPhoto = (userId, file) => (dispatch) => (
-   APIUtil.uploadPhoto(userId, file)
-      .then((user) => dispatch(receiveUser(user)))
-      .catch((err) => console.log(err))
-)
+export const updateUser = user => dispatch => (
+   APIUtil.updateUser(user).then((user) => dispatch(receiveUser(user)))
+);
