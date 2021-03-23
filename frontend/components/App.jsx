@@ -10,8 +10,8 @@ const App = () => (
    <Switch>
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
-      <ProtectedRoute main path="/home" component={HomeContainer} />
-      <Route path="/" component={SplashContainer} />
+      <ProtectedRoute main path="/:id" component={HomeContainer} />
+      {/* <Route path="/" component={SplashContainer} /> */}
    </Switch>
 )
 
