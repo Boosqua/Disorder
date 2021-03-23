@@ -26,8 +26,6 @@ export default class Home extends React.Component {
          .then(() => this.props.fetchUsers())
          .then(() => this.props.fetchServerMembers(this.props.servers, this.props.users))
          .then(() => that.setState({ loaded: true }))
-         debugger
-
    }
    updateChannelId(id) {
       let that = this

@@ -1,0 +1,30 @@
+.ibc-h, .ibc{
+   border-radius: 100px;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: rgba(255, 255, 255, 0.144)
+}
+.ibc {
+   border-radius: 100px;
+}
+.ibc-h:hover {
+   background: #506cd1;
+   border-radius: 25px;
+   transition: .25s;
+}
+.ibt {
+   padding: 10px;
+   font-size: 100%;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+.ibi, .ibi > img {
+   height:inherit;
+   width:inherit;
+}
+#link:hover {
+  cursor: pointer;
+}
