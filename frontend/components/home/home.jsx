@@ -1,5 +1,6 @@
 import React from 'react';
 import ServersIndexContainer from '../servers/servers_index_container';
+import ServersIndex from '../servers/servers_index';
 import ServersShowContainer from '../servers/server_show_container'
 import MessageIndexContainer from '../messages/message_index_container'
 import UserShowContainer from '../servers/users_show_container'
@@ -67,32 +68,48 @@ export default class Home extends React.Component {
       this.setState({currentMessages: messages, currentChannelId: id})
    }
    render() {
-
       return this.state.loaded ? (
-         <div className='mount-component'>
-            <ServersIndexContainer 
-               user={this.props.user} 
-               logout={this.props.logout}
-               updateServerId={this.updateServerId}
-               currentServerId={this.state.currentServerId}/>
-            <ServersShowContainer 
-               user={this.props.user} 
-               server={this.props.servers[this.state.currentServerId]}
-               updateChannelId={this.updateChannelId} 
-               cable={this.cable}
-               currentChannelId={this.state.currentChannelId}
-               messages={this.state.currentMessages}/>
-            <div className='server-messages-members'>
-               <Banner currentChannelName={this.state.currentChannelName}/>
-               <div className='inside-smm'>
-                  <MessageIndexContainer
-                     cable={this.cable}
-                     currentChannelId={this.state.currentChannelId}
-                     />
-                  <UserShowContainer />
+            <div className="container">
+               <div className="sidebar">
+               <ServersIndex/>
+               </div>
+               <div className="header">
+                  .header
+               </div>
+               <div className="server">
+                  .server
+               </div>
+               <div className="messages">
+                  .messages
+               </div>
+               <div className="members">
+                  .members
                </div>
             </div>
-         </div>
+         // <div className='mount-component'>
+         //    <ServersIndexContainer 
+         //       user={this.props.user} 
+         //       logout={this.props.logout}
+         //       updateServerId={this.updateServerId}
+         //       currentServerId={this.state.currentServerId}/>
+         //    <ServersShowContainer 
+         //       user={this.props.user} 
+         //       server={this.props.servers[this.state.currentServerId]}
+         //       updateChannelId={this.updateChannelId} 
+         //       cable={this.cable}
+         //       currentChannelId={this.state.currentChannelId}
+         //       messages={this.state.currentMessages}/>
+         //    <div className='server-messages-members'>
+         //       <Banner currentChannelName={this.state.currentChannelName}/>
+         //       <div className='inside-smm'>
+         //          <MessageIndexContainer
+         //             cable={this.cable}
+         //             currentChannelId={this.state.currentChannelId}
+         //             />
+         //          <UserShowContainer />
+         //       </div>
+         //    </div>
+         // </div>
       ) : null
    }
 }

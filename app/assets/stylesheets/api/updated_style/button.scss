@@ -4,19 +4,27 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: rgba(255, 255, 255, 0.144)
+   background-color: #363a3e
 }
 .ibc {
-   border-radius: 100px;
+   border-radius: 50%;
 }
 .ibc-h:hover {
    background: #506cd1;
-   border-radius: 25px;
+   border-radius: 35%;
    transition: .25s;
+}
+.ibcs{
+   background: #506cd1;
+   border-radius: 35%;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 .ibt {
    padding: 10px;
-   font-size: 100%;
+   font-size: 80%;
    white-space: nowrap;
    overflow: hidden;
    text-overflow: ellipsis;

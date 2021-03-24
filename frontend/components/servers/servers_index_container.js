@@ -3,11 +3,13 @@ import { fetchServer, clearErrors } from '../../actions/server_actions';
 import { fetchChannels } from '../../actions/channel_actions';
 import ServersIndex from './servers_index';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
+   debugger
+   return ({
    servers: Object.values(state.entities.servers),
-   userId: state.session.currentUserId,
+
    errors: state.errors.servers
-})
+})}
 
 const mapDispatchToProps = dispatch => ({
    fetchServer: (userId, serverId) => dispatch(fetchServer(userId, serverId)),

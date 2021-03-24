@@ -1,0 +1,30 @@
+.container-hm {
+   display: grid;
+   height: 100vh;
+   width: 100vw;
+   grid-template-columns: 3fr 6fr 30fr 0fr;
+   grid-template-rows: 2fr 17fr;
+   grid-template-areas: 
+   "sidebar header header header"
+   "sidebar server messages members"
+}
+
+.header {
+   background-color: blue;
+   grid-area: header;
+}
+.server {
+   background-color: green;
+   grid-area: server;
+}
+.messages {
+   background-color: red;
+   grid-area: messages;
+}
+.members {
+   background-color: orange;
+   grid-area: members;
+}
+.container-hm > .members {
+   display:none;
+}

@@ -12,10 +12,16 @@ export default class Testing extends Component {
          width: '100px',
          height: '100px',
       }, this.props)
+      let className;
+       if(this.props.selected){
+               className = 'ibcs'
+         } else {
+         className = this.props.onHover ? "ibc-h" : 'ibc'
+         }
       return (
          <div 
-         className={this.props.onHover ? "ibc-h" : 'ibc'} 
-         id={this.props.link ? "link" : ''} 
+         className={className}
+         id={this.props.link ? "link" : ''}
          style={iconStyle}> 
             <div className={this.props.image ? "ibi" : "ibt"}>
                {
