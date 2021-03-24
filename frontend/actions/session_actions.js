@@ -14,10 +14,7 @@ export const receiveCurrentUser = (currentUser) =>{
     };
 };
 
-// export const receiveCurrentServer = (currentServer) => ({
-//     type: RECEIVE_CURRENT_SERVER,
-//     currentServer
-// })
+
 
 export const logoutCurrentUser = () => {
     return {
@@ -41,10 +38,7 @@ export const fetchUser = (userId) => dispatch => (
         .then((user) => dispatch(receiveCurrentUser(user)))
 );
 
-// export const fetchServer = (serverId) => dispatch => (
-//     APIUtil.fetchServer(serverId)
-//         .then((server) => dispatch(receiveCurrentServer(server)))
-// );
+
 
 export const signup = (formUser) => (dispatch) => {
     return (

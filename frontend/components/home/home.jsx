@@ -1,11 +1,9 @@
 import React from 'react';
-import ServersIndexContainer from '../servers/servers_index_container';
-import ServersIndex from '../servers/servers_index';
-import ServersShowContainer from '../servers/server_show_container'
-import MessageIndexContainer from '../messages/message_index_container'
-import UserShowContainer from '../servers/users_show_container'
 
-import Banner from './banner'
+import ServersIndex from '../servers/servers_index';
+
+
+
 
 
 export default class Home extends React.Component {
