@@ -1,9 +1,9 @@
 
-export const fetchServers = (userId) => (
-   $.ajax({
+export function fetchServers(userId) {
+   return $.ajax({
       url: `/api/users/${userId}/servers`
    })
-)
+}
 
 export const fetchServer = (userId, serverId) => (
    $.ajax({

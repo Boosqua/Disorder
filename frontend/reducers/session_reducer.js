@@ -2,11 +2,11 @@ import {
    RECEIVE_CURRENT_USER,
    LOGOUT_CURRENT_USER
 } from '../actions/session_actions';
-import { RECEIVE_CURRENT_SERVER, RECEIVE_SERVER } from '../actions/server_actions';
+import { RECEIVE_CURRENT_CHANNEL, RECEIVE_SERVER } from '../actions/server_actions';
 
 const _nullSession = {
-   currentUserId: null,
-   currentServerId: 1
+   currentUser: null,
+   channelId: null
 };
 
 const sessionReducer = ( state = _nullSession, action ) => {
@@ -14,10 +14,10 @@ const sessionReducer = ( state = _nullSession, action ) => {
    let newState = ({}, state)
    switch (action.type) {
       case RECEIVE_CURRENT_USER:
-         return Object.assign({}, newState, {currentUserId: action.currentUser.id});
+         return Object.assign({}, newState, {currentUser: action.currentUser});
       case RECEIVE_SERVER:
-      case RECEIVE_CURRENT_SERVER:
-         return Object.assign({}, newState, {currentServerId: action.server.id});
+      case RECEIVE_CURRENT_CHANNEL:
+         return Object.assign({}, newState, {channelId: action.id});
       case LOGOUT_CURRENT_USER:
          return _nullSession;
       default:

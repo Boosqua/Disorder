@@ -8,8 +8,30 @@ export default function ServersIndex(props) {
       const dispatch = useDispatch()
       const servers = useSelector(state => Object.values(state.entities.servers))
       const { id } = useParams()
+      const home = id === "@me" ? 
+         <div className="sib">
+               <IconButton
+                  height={"60px"}
+                  width={"60px"}
+                  selected={id === "@me"}
+                  onHover={id != "@me"}
+                  link={id != "@me"}
+                  image={window.homeIconURL}
+                  />
+            </div> : 
+            <Link to='/server/@me' className="sib">
+               <IconButton
+                  height={"60px"}
+                  width={"60px"}
+                  selected={id === "@me"}
+                  onHover={id != "@me"}
+                  link={id != "@me"}
+                  image={window.homeIconURL}
+                  />
+            </Link> 
       return(
          <div className='sic'>
+            {home}
          <div className="sbl"/>
             {
                servers.map( (server, index) => {
@@ -24,7 +46,7 @@ export default function ServersIndex(props) {
                            />
                      </div>
                   } else {
-                     return <Link to={`/channels/${server.id}`}className={"sib"} key={index}>
+                     return <Link to={`/server/${server.id}`}className={"sib"} key={index}>
                         <IconButton
                            height={"60px"}
                            width={"60px"}

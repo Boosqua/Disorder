@@ -1,0 +1,22 @@
+.header{
+   display: grid;
+   grid-template-columns: 6fr 33fr;
+   grid-template-areas: "ht hc";
+   border-bottom: 1px solid black;
+}
+.ht{
+
+   background:#2e3236;
+   grid-area: ht;
+   display: flex;
+   align-content: center;
+}
+.htt{
+   align-self: center;
+   margin-left: 15px;
+   font-size: 20px;
+}
+.hc{
+   background: #363a3e;
+   grid-area: hc;
+}
