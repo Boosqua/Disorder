@@ -1,11 +1,15 @@
 import React, {useState} from "react"
 import {useSelector, useDispatch} from 'react-redux'
-import { useParams } from "react-router"
+import { Redirect, useParams} from "react-router"
+import {Link} from "react-router-dom"
+import {deleteServerMember} from "../actions/server_actions"
 import Modal from "./reusable/modal"
 export default function Header(props){
    const {id} = useParams()
+   const dispatch = useDispatch()
    const [serverModal, setServerModal] = useState(false)
    const [modalPos, setModalPos] = useState(null)
+   const userId = useSelector(state => state.session.currentUser.id)
    const server = useSelector((state) => {
       if(id === "@me") {
          return state.session.currentUser.username
@@ -28,8 +32,14 @@ export default function Header(props){
                <div className="inputformrow">
                <div className="inputformsection"> {`Leave ${pageName}?`}
                </div>
-               <div className="modalbutton" onClick={(e) => e.preventDefault}>confirm</div>
-               <div className="modalbutton" onClick={(e) => e.preventDefault}>cancel</div>
+               <Link to='/server/@me'>
+               <div className="modalbutton" onClick={(e) => {
+                  deleteServerMember({server_id: parseInt(id)})(dispatch)
+                  setServerModal(false)
+
+               }}>confirm</div>
+               </Link>
+               <div className="modalbutton" onClick={() => setServerModal(false) }>cancel</div>
                </div>
             </div>
          )

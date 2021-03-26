@@ -1,5 +1,5 @@
 import * as APIUtil from '../util/server_api_util'
-
+import {fetchMessages} from './message_actions'
 export const RECEIVE_SERVERS = 'RECEIVE_SERVERS';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
 export const REMOVE_SERVER = 'REMOVE_SERVER';
@@ -64,6 +64,7 @@ export const deleteServer = (userId, server) => dispatch => (
 export const createServerMember = (serverMember) => dispatch => (
    APIUtil.createServerMember(serverMember)
       .then( data => fetchServer(data.user_id, data.server_id)(dispatch) )
+      .then( () => fetchMessages(serverMember.user_id)(dispatch))
 )
 export const deleteServerMember = (serverMember) => dispatch => (
    APIUtil.deleteServerMember(serverMember).then( id => dispatch(removeServer(id)))

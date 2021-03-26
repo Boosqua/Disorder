@@ -15,6 +15,7 @@ export default function Messages(props){
          }
       }
    })
+
    const defaultUserImages = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon]
    const messagesEnd = useRef(null);
    useEffect(() => {
@@ -28,11 +29,12 @@ export default function Messages(props){
       }
       return false
    }
-   const channelName = channel.name
 
-   const allMessages = useSelector( state => Object.values(state.entities.messages[serverId]))
-   const messages = allMessages.filter(message => message.channel_id=== channel.id)
-   console.log(messages)
+   const channelName = channel ? channel.name : "";
+
+   const allMessages = channel ? useSelector( state => state.entities.messages[channel.id] ? Object.values(state.entities.messages[channel.id]) : []) : []
+   const messages = channel ? allMessages.filter(message => message.channel_id=== channel.id) : []
+
    return (
       <div className="messages">
          <div className="wmc">
