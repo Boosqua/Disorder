@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :servers 
       resources :messages, only: :index
     end
-    
+    resources :server_members
     resources :servers do 
       resources :channels
     end

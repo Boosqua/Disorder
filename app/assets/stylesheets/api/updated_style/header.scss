@@ -11,6 +11,10 @@
    display: flex;
    align-content: center;
 }
+.ht:hover {
+   cursor: pointer;
+   background-color: #393d42;
+}
 .htt{
    align-self: center;
    margin-left: 15px;

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 
 export default function Modal(props){
-
+   //need props closeModal show position
    function handleModal(e) {
       if( e.currentTarget === e.target ){
          props.closeModal()

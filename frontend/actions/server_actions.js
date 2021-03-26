@@ -60,3 +60,11 @@ export const deleteServer = (userId, server) => dispatch => (
       .then( server => dispatch(removeServer(server.id)))
       .fail(errors => dispatch(receiveErrors(errors)))
 )
+
+export const createServerMember = (serverMember) => dispatch => (
+   APIUtil.createServerMember(serverMember)
+      .then( data => fetchServer(data.user_id, data.server_id)(dispatch) )
+)
+export const deleteServerMember = (serverMember) => dispatch => (
+   APIUtil.deleteServerMember(serverMember).then( id => dispatch(removeServer(id)))
+)

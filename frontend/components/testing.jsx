@@ -1,21 +1,23 @@
 
 import React, {  useState } from "react"
-import Modal from "./reusable/modal"
+import { useDispatch } from "react-redux"
+import {createServerMember, deleteServerMember} from '../actions/server_actions'
 export default function Testing(props) {
-   const [modal, setModal] = useState(false)
-   const [coor, setCoor] = useState(null)
+   const dispatch = useDispatch()
 
    return (
       <div className="testing">
-         <button onClick={ e => {
-            e.preventDefault
-            setCoor({x: e.clientX, y: e.clientY})
-            setModal(!modal)
-            }}> click me!</button>
-            <Modal show={modal} 
-            closeModal={() => setModal(false)} 
-            position={coor}
-            > <div>LOL</div></Modal>
+         <button
+         onClick={(e) => {
+            e.preventDefault()
+            createServerMember({server_id: 4, user_id: 1})(dispatch)
+         }}>addServer</button>
+         <button
+         onClick={ (e) => {
+            e.preventDefault()
+            deleteServerMember({server_id: 4, user_id: 1})(dispatch)
+         }}
+         >deleteServer</button>
       </div>
    )
    

@@ -33,3 +33,17 @@ export const deleteServers = (userId, serverId) => (
       method: 'DELETE'
    })
 )
+export const createServerMember = (server_member) => (
+   $.ajax({
+      url: '/api/server_members',
+      method: 'POST',
+      data: { server_member }
+   })
+)
+export const deleteServerMember = (server_member) => (
+   $.ajax({
+      url: '/api/server_members/1',
+      method: 'DELETE',
+      data: { server_member }
+   })
+)

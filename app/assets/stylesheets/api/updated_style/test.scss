@@ -12,7 +12,6 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-
   background-color: rgba(0,0,0,0.4); 
 }
 .modalcontent{
@@ -24,9 +23,26 @@
    border-radius: 15px;
    padding: 20px;
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
    justify-content: center;
+}
+.inputformrow {
+   display: flex;
+   flex-direction: row;
+   align-content: center;
 }
 .inputformsection {
    margin-right: 10px;
+}
+.modalbutton {
+   background-color: #7289da;
+   padding: 6px;
+   margin-top: -4px;
+   border-radius: 10px;;
+   font-size: 14px;
+   margin-right: 5px;
+}
+.modalbutton:hover {
+   cursor: pointer;
+   background-color: #677bc4;
 }

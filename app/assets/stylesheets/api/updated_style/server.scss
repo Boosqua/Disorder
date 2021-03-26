@@ -1,4 +1,4 @@
-.tch, .arrow, .addChannel{
+.tch, .arrow, .addChannel ,.arrowr{
    font-size: 12px;
    white-space: nowrap;
    text-overflow: ellipsis;
@@ -10,19 +10,26 @@
    font-weight:500;
 }
 .arrow {
-   margin-top: 1px;
+   // margin-top: 1px;
+   margin-right: 5px;
    width: 5%;
    transform: rotate(90deg);
 }
+.arrowr {
+   margin-right: 5px;
+   width: 5%;
+}
 .tch{
    width: 80%;
+   display: flex;
+   flex-direction: row;
 }
 .addChannel {
    width: 10%;
    font-size: 20px;
    margin-top: -5px;
 }
-.tch:hover, .addChannel:hover, .cnc:hover{
+.tch:hover, .addChannel:hover, .cnc:hover {
    color: #dcddde;
    cursor: pointer;
 }
