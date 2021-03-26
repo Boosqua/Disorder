@@ -1,0 +1,85 @@
+.messages {
+   display: flex;
+   overflow-y: scroll;
+   flex-direction: column;
+   background-color: #363a3e;
+}
+//header message
+.wmc {
+   width: 100%;
+}
+.wmcn {
+   font-size: 32px;
+   font-weight: 700;
+   line-height: 40px;
+   margin: 8px 0;
+   text-indent: 20px;
+}
+.wmhs{
+   color: #b9bbbe;
+   font-size: 12px;
+   text-indent: 40px;
+}
+.line{
+   border: 1px solid #424649;
+   width: 90%;
+   margin-left: 5%;
+   margin-top: 10px;
+}
+// messages container
+.mc {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   margin-top: 10px;
+   align-items: center;
+}
+//messages show
+.msc {
+   display: grid;
+   width: 95%;
+   grid-template-columns: 1fr 15fr;
+   grid-template-areas: 
+   "userImage messageSpace";
+   margin-bottom: 5px;
+}
+.umid {
+   grid-area: userImage;
+}
+.umb {
+   grid-area: messageSpace;
+   display: flex;
+   flex-direction: column;
+}
+.umih {
+   display: flex;
+   flex-direction: row;
+}
+.umun {
+   font-size: 1rem;
+   font-weight: 500;
+   line-height: 1.375rem;
+
+   display: inline;
+   vertical-align: baseline;
+   position: relative;
+   overflow: hidden;
+   -ms-flex-negative: 0;
+   flex-shrink: 0;
+}
+.ummb {
+   font-size: 1rem;
+   line-height: 1.375rem;
+   color: #dcddde
+}
+.date {
+   color: #72767d;
+   line-height: 1.5rem;
+   font-size: .75rem;
+   margin-left: 15px;
+}
+// message input
+.input {
+   width: 100%;
+   background-color: #363a3e;
+}

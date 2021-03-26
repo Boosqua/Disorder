@@ -35,6 +35,7 @@
    (1..3).each do |id|
       10.times do 
          Message.create!(author_id: 2, channel_id: id, body: Faker::Lorem.sentence)
+         Message.create!(author_id: 1, channel_id: id, body: Faker::Lorem.sentence)
       end
    end
    (2..16).each do |user_id|
