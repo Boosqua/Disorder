@@ -6,7 +6,7 @@ export default function MessageShow(props) {
    const user = useSelector( state => state.entities.users[userId])
    const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
    const userName = user.username
-   const date = props.message.created_at.split("-")
+   const date = props.message.created_at ? props.message.created_at.split("-") : ""
    return (
       <div className="msc">
          {
@@ -19,7 +19,7 @@ export default function MessageShow(props) {
          
          <div className="umb">
             {
-               props.messageHeader ? 
+               props.messageHeader  ? 
                <div className="umih">
                   <div className="umun">
                      {userName}

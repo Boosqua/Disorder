@@ -10,10 +10,21 @@ import {fetchMessages} from "../actions/message_actions"
 import {fetchUsers} from "../actions/user_actions"
 import { useSelector, useDispatch } from 'react-redux';
 import MessageInput from "./message_input"
-
+import {receiveMessage} from '../actions/message_actions'
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
+   const channelId = useSelector(state => state.session.channelId)
+
+   const channel = App.cable.subscriptions.create({
+      channel: 'MessagesChannel',
+      id: channelId
+   },
+   {
+      received: (data) => {
+         dispatch(receiveMessage(data))
+      },
+   })
    const id = useSelector(state => state.session.currentUser.id)
    useEffect(() => {
          fetchServers(id)(dispatch)
@@ -42,7 +53,7 @@ export default function Home(props) {
                   null : 
                   <Messages />
                }
-               <MessageInput />
+               <MessageInput channel={channel}/>
                <div className="members">
                   .members
                </div>

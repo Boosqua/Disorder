@@ -82,4 +82,58 @@
 .input {
    width: 100%;
    background-color: #363a3e;
+   display: flex;
+   justify-content: center;
+}
+.mif {
+   width:100%;
+   // margin-left: 3%;
+   resize: vertical;
+   vertical-align: top !important;
+   border:none;
+   overflow: auto;
+   outline: none;
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   box-shadow: none;
+   resize: none;
+   font-family: inherit;
+   color: #dcddde;
+   background-color: rgba(0, 0, 0, 0);
+   word-break: break-word;
+   white-space: break-spaces!important;
+   padding: 10px;
+}
+
+.mifc {
+   display: block;
+   resize: none;
+   width: 90%;
+}
+.span-container{
+   width: 90%;
+   margin-bottom: 10px;
+   background-color: #40444a;
+   border-radius: 15px;
+   display: flex;
+   flex-direction: row;
+}
+.circle {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: rgb(44, 108, 128);
+  position: relative;
+  margin-left: 10px;
+  margin-top: 12px;
+  text-align: center;
+   line-height: 20px;
+   background-color: #b8bbbe;
+   color: #40444a;
+   font-weight: 400;
+
+}
+.circle:hover {
+   cursor: pointer;
+   background-color: #99a2af;
 }

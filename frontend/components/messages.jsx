@@ -2,7 +2,9 @@ import React, {useEffect, useRef} from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
 import MessageShow from './message_show'
+import {receiveMessage} from "../actions/message_actions"
 export default function Messages(props){
+
    const serverId = parseInt(useParams().id)
    const channel = useSelector( (state) => {
       const channelId = state.session.channelId;
@@ -42,9 +44,9 @@ export default function Messages(props){
          </div>
 
          <div className="mc">
-            {messages.map( message => {
+            {messages.map( (message, index) => {
                return (
-                  <MessageShow key={message.id} message={message} messageHeader={checkId(message.author_id)}/>
+                  <MessageShow key={index} message={message} messageHeader={checkId(message.author_id)}/>
                )
             })}
          </div>
