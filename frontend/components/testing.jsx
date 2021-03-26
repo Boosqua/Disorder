@@ -1,29 +1,22 @@
 
-import React, { Component } from "react"
-export default class Testing extends Component {
-   constructor(){
-      super()
-   }
+import React, {  useState } from "react"
+import Modal from "./reusable/modal"
+export default function Testing(props) {
+   const [modal, setModal] = useState(false)
+   const [coor, setCoor] = useState(null)
 
-   render(){
-      return (
-         <div className="container">
-            <div className="sidebar">
-               .sidebar
-            </div>
-            <div className="header">
-               .header
-            </div>
-            <div className="server">
-               .server
-            </div>
-            <div className="messages">
-               .messages
-            </div>
-            <div className="members">
-               .members
-            </div>
-            </div>
-      )
-   }
+   return (
+      <div className="testing">
+         <button onClick={ e => {
+            e.preventDefault
+            setCoor({x: e.clientX, y: e.clientY})
+            setModal(!modal)
+            }}> click me!</button>
+            <Modal show={modal} 
+            closeModal={() => setModal(false)} 
+            position={coor}
+            > <div>LOL</div></Modal>
+      </div>
+   )
+   
 }

@@ -10,6 +10,18 @@ export default function Header(props){
          return state.entities.servers[id].name
       }
    })
+   const channelName = useSelector( (state) => {
+      if( id=== "@me") {
+         return ""
+      } 
+      let channels = state.entities.channels[id]
+      for( let i = 0; i < channels.length; i++ ){
+
+         if(channels[i].id === state.session.channelId){
+            return channels[i].name
+         }
+      }
+   })
    return (
       <div className="header">
          <div className="ht">
@@ -18,7 +30,9 @@ export default function Header(props){
             </div>
          </div>
          <div className="hc">
-            Content
+            <div className="httt">
+            {channelName}
+            </div>
          </div>
       </div>
    )

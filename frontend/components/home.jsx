@@ -11,6 +11,7 @@ import {fetchUsers} from "../actions/user_actions"
 import { useSelector, useDispatch } from 'react-redux';
 import MessageInput from "./message_input"
 import {receiveMessage} from '../actions/message_actions'
+import ServerMembers from "./server_members"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
@@ -54,9 +55,12 @@ export default function Home(props) {
                   <Messages />
                }
                <MessageInput channel={channel}/>
-               <div className="members">
-                  .members
-               </div>
+{
+                  path === "@me" ? 
+                  null : 
+                  <ServerMembers />
+               }
+                  
             </div>
       : null ) 
 }

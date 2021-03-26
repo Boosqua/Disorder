@@ -29,7 +29,9 @@ export default function Messages(props){
       return false
    }
    const channelName = channel.name
-   const messages = useSelector( state => Object.values(state.entities.messages[channel.id]))
+
+   const allMessages = useSelector( state => Object.values(state.entities.messages[serverId]))
+   const messages = allMessages.filter(message => message.channel_id=== channel.id)
    console.log(messages)
    return (
       <div className="messages">
