@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import Modal from "../reusable/modal"
 import { logout } from "../../actions/session_actions"
 import { createServer } from "../../actions/server_actions"
+import { fetchChannels } from "../../actions/channel_actions"
 export default function ServersIndex(props) {
       const dispatch = useDispatch()
       const [ showModal, setShowModal ] = useState(false)
@@ -17,13 +18,16 @@ export default function ServersIndex(props) {
          e.preventDefault()
          const server = {name: newServerName }
          createServer(userId, server)(dispatch)
+            .then( () => {
+               fetchChannels(1)(dispatch)
+            })
          setShowModal(false);
          setNewServerName("");
       }
       function modalContent() {
          return <div className="inputform">
                <div className="inputformrow">
-               <div className="inputformsection"> {`Create a Server?`}
+               <div className="inputformsection"> {`Create a Server:`}
                </div>
                <form onSubmit={handleSubmit}>
                <input type="text" value={newServerName} onChange={(e) => setNewServerName(e.target.value)}/>
@@ -31,6 +35,7 @@ export default function ServersIndex(props) {
                </div>
             </div>
       }
+
       const home = id === "@me" ? 
          <div className="sib">
                <IconButton

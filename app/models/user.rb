@@ -69,7 +69,16 @@ class User < ApplicationRecord
       end
       sent_servers
    end
-
+   def grab_server(server_id)
+      server = Server.find(server_id)
+      sent_server = {}
+      sent_server[:id] = server[:id]
+      sent_server[:owner_id] = server[:owner_id]
+      sent_server[:image] = server[:image]
+      sent_server[:name] = server[:name]
+      sent_server[:members] = server.members.map { |member| member.id }
+      sent_server
+   end
    def ensure_user_image
       self.update(user_image: rand(0..3)) unless self.user_image
    end

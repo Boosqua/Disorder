@@ -57,7 +57,7 @@ export const updateServer = (userId, server) => dispatch => (
 )
 export const deleteServer = (userId, server) => dispatch => (
    APIUtil.deleteServer(userId, server)
-      .then( server => dispatch(removeServer(server.id)))
+      .then( server => dispatch(removeServer(server)))
       .fail(errors => dispatch(receiveErrors(errors)))
 )
 

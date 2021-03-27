@@ -33,10 +33,10 @@ export default function ServerMembers(props){
             {`MEMBERS - ${ServerMembers.length}`}
          </div>
          {
-            ServerMembers.map( member => {
+            ServerMembers.map( (member, index) => {
                const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][member.user_image]
                return (
-               <div className="smc" key={member.id}>
+               <div className="smc" key={index}>
                   <IconButton height="30px" width="30px" image={userImage}/>
                   <div className={member.id === ownerId ? "smuno" : "smun"}>{member.username}</div>
                   {

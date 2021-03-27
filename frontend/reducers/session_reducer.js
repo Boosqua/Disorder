@@ -2,7 +2,7 @@ import {
    RECEIVE_CURRENT_USER,
    LOGOUT_CURRENT_USER
 } from '../actions/session_actions';
-import { RECEIVE_CURRENT_CHANNEL, RECEIVE_SERVER } from '../actions/server_actions';
+import { RECEIVE_CURRENT_CHANNEL } from '../actions/server_actions';
 
 const _nullSession = {
    currentUser: null,

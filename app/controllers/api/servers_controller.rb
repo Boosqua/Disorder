@@ -4,9 +4,12 @@ class Api::ServersController < ApplicationController
    end
 
    def create
-      @server = Server.new(server_params)
-      @server.owner_id = params[:user_id]
-      if @server.save
+      server = Server.new(server_params)
+      server.owner_id = params[:user_id]
+      if server.save
+         user = User.find(params[:user_id])
+         @server = user.grab_server(server.id)
+
          render :show
       else
          render json: @server.errors.full_messages, status: 404
@@ -23,10 +26,12 @@ class Api::ServersController < ApplicationController
       end
    end
    def update
-      @server = Server.find(params[:id])
+      server = Server.find(params[:id])
       if false # || current_user == nil || server.owner_id != current_user.id
          render json: ['You do not have access to update this server'], status: 404
-      elsif @server.update(server_params)
+      elsif server.update(server_params)
+         user = User.find(params[:user_id])
+         @server = user.grab_server(server.id)
          render :show
       else 
          render json: @server.errors.full_messages, status: 404
@@ -38,7 +43,7 @@ class Api::ServersController < ApplicationController
       if false # || current_user == nil || server.owner_id != current_user.id
          render json: ['You do not have access to update this server'], status: 404
       elsif @server.destroy
-         render :index
+         render json: params[:id]
       else 
          render json: @server.errors.full_messages, status: 404
       end

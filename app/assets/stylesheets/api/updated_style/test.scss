@@ -12,7 +12,7 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.4); 
+
 }
 .modalcontent{
    position: absolute;
@@ -21,6 +21,7 @@
 .inputform {
    background: black;
    border-radius: 15px;
+   border: 1px solid #2d3536;
    padding: 20px;
    display: flex;
    flex-direction: column;
@@ -30,14 +31,18 @@
    display: flex;
    flex-direction: row;
    align-content: center;
+   padding: 5px;
 }
 .inputformsection {
-   margin-right: 10px;
+   margin-right: 5px;
+   padding: 5px;
+
+   border-radius: 10px;
 }
 .modalbutton {
    background-color: #7289da;
    padding: 6px;
-   margin-top: -4px;
+
    border-radius: 10px;;
    font-size: 14px;
    margin-right: 5px;
@@ -45,4 +50,9 @@
 .modalbutton:hover {
    cursor: pointer;
    background-color: #677bc4;
+}
+
+#highlight:hover {
+   background-color: rgba(255, 255, 255, 0.192);
+   cursor: pointer;
 }
