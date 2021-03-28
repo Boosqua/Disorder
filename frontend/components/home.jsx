@@ -15,7 +15,7 @@ import ServerMembers from "./server_members"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
-   const channelId = useSelector(state => state.session.channelId)
+   const channelId = useSelector(state => state.session.currentUser.id)
 
    const channel = App.cable.subscriptions.create({
       channel: 'MessagesChannel',

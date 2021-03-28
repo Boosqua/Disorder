@@ -1,9 +1,12 @@
 class MessagesChannel < ApplicationCable::Channel
    def subscribed
-      # debugger
+
       if params[:id]
-         @channel = Channel.find(params[:id])
-         stream_for @channel 
+
+         @channels = User.find(params[:id]).channels
+         @channels.each do |channel| 
+            stream_for "chat_#{channel.id}"
+         end
       end
    end
    def receive(data)
@@ -15,7 +18,7 @@ class MessagesChannel < ApplicationCable::Channel
       }
       savedMessage = Message.create!(message)
       data['id'] = savedMessage.id
-      MessagesChannel.broadcast_to(@channel, savedMessage)
+      MessagesChannel.broadcast_to("chat_#{savedMessage.channel_id}", savedMessage)
    end
    def unsubscribed
       # Any cleanup needed when channel is unsubscribed

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import IconButton from "./reusable/icon_button"
+import Modal from "./reusable/modal"
 export default function ServerMembers(props){
    const serverId = parseInt(useParams().id)
    const ownerId = useSelector( state => state.entities.servers[serverId].owner_id)
+   const [modal, setModal] = useState({show: false, position: null, selectedUser: null })
    const ServerMembers = useSelector(state => {
       const ids = state.entities.servers[serverId].members
       let members = [];
@@ -12,19 +14,16 @@ export default function ServerMembers(props){
          members.push(state.entities.users[ids[i]])
       }
       return members.sort( (a,b) => {
-         var nameA = a.username.toUpperCase(); // ignore upper and lowercase
-         var nameB = b.username.toUpperCase(); // ignore upper and lowercase
+         let nameA = a.username.toUpperCase(); 
+         let nameB = b.username.toUpperCase(); 
          if (nameA < nameB) {
             return -1;
          }
          if (nameA > nameB) {
             return 1;
          }
-
-         // names must be equal
          return 0;
       })
-
    })
 
    return (
@@ -36,8 +35,10 @@ export default function ServerMembers(props){
             ServerMembers.map( (member, index) => {
                const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][member.user_image]
                return (
-               <div className="smc" key={index}>
+               <div className="smc" key={index} onClick={(e) => { setModal({show:true, position:{x: e.clientX + 20, y: e.clientY }, selectedUser: member}) }}>
+                  <div className="smci">
                   <IconButton height="30px" width="30px" image={userImage}/>
+                  </div>
                   <div className={member.id === ownerId ? "smuno" : "smun"}>{member.username}</div>
                   {
                      member.id === ownerId ? 
@@ -50,7 +51,31 @@ export default function ServerMembers(props){
          )
             })
          }
-         
+         <Modal 
+         show={ modal.show } 
+         closeModal={() => { setModal({show: false})}} 
+         position={modal.position}
+         >
+            {
+               modal.selectedUser ? 
+               (
+                  <div className="inputform">
+                     <div className="inputformrow" style={{fontSize: "20px", alignSelf: "center"}}>
+                        {modal.selectedUser.username}
+                     </div>
+                     <div className="inputformrow" style={{alignSelf: "center"}}>
+
+                     <IconButton height="50px" width="50px" image={[window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][modal.selectedUser.user_image]}/>
+                     </div>
+                     <br />
+                     <div className="modalbutton" style={{alignSelf: "center"}}>
+                        send friend request
+                     </div>
+                  </div>
+               ) :
+               null
+            }
+         </Modal>
       </div>
    )
 }

@@ -11,10 +11,10 @@ export default function Modal(props){
    const {x,y} = props.position ? props.position :
    {x: 0, y: 0}
    const xStyle = window.innerWidth - x < 200 ?
-      {right: x}
+      {right: x - 200}
       : {left: x}
    const yStyle = window.innerHeight - y < 200 ? 
-      {bottom: y}
+      {top: y - 200}
       :{top: y}
    const style = Object.assign(xStyle, yStyle)
    console.log(style)
