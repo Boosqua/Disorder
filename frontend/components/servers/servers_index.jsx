@@ -37,7 +37,7 @@ export default function ServersIndex(props) {
       }
 
       const home = id === "@me" ? 
-         <div className="sib">
+         <div className="sib" >
                <IconButton
                   height={"60px"}
                   width={"60px"}
