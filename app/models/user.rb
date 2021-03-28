@@ -6,7 +6,9 @@ class User < ApplicationRecord
    validates :password, length: { minimum: 6 }, allow_nil: true
 
    after_initialize :ensure_session_token, :ensure_user_image
+
    has_one_attached :photo
+
    has_many :authored_messages, 
       foreign_key: :author_id, 
       class_name: :Message, 
@@ -28,7 +30,41 @@ class User < ApplicationRecord
    has_many :channels,
       through: :servers,
       source: :channels
+   has_many :server_members,
+      through: :servers,
+      source: :members
       
+   has_many :friend_requests_as_requestor, 
+         foreign_key: :requestor_id, 
+         class_name: :FriendRequest,
+         dependent: :destroy
+
+   has_many :friend_requests_as_receiver, 
+         foreign_key: :receiver_id, 
+         class_name: :FriendRequest,
+         dependent: :destroy
+
+   has_many :friend_requestors,
+      through: :friend_requests_as_receiver,
+      source: :requestor
+
+   has_many :friendship_as, 
+         foreign_key: :friend_a_id,
+         class_name:  :Friend
+   has_many :friend_as, 
+         through: :friendship_as,
+         source: :friend_b
+   has_many :friendship_bs, 
+         foreign_key: :friend_b_id,
+         class_name:  :Friend
+   has_many :friend_bs, 
+         through: :friendship_bs,
+         source: :friend_a
+
+   def friends
+      friend_as + friend_bs
+   end
+
    def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
       return nil unless user
@@ -55,7 +91,21 @@ class User < ApplicationRecord
    end
    
 ################################################################################
+   def grab_users 
+      users = self.server_members + self.friends + self.friend_requestors
+      users.uniq!
+   end
+   def find_friendship(id)
+      friends = self.friendship_as + self.friendship_bs
+      id = id.to_i
+      friends.each do |friend| 
 
+         if friend.friend_a_id == id || friend.friend_b_id == id 
+            return friend
+         end
+      end
+      nil
+   end
    def grab_servers
       servers = self.servers;
       sent_servers = servers.map do |server| 
