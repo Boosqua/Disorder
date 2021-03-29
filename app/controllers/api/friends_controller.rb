@@ -1,8 +1,8 @@
 class Api::FriendsController < ApplicationController
    def index
       if current_user
-         @friends = current_user.friends.map { |friend|  }
-         render json: @friends
+         @friends = current_user.friendship_as + current_user.friendship_bs
+         render :index
       else
          render json: ["not logged in"]
       end
@@ -17,7 +17,7 @@ class Api::FriendsController < ApplicationController
       end
    end
    def destroy 
-      @friends = current_user.find_friendship(params[:friend][:id])
+      @friends = current_user.find_friendship(params[:id])
       if @friends && @friends.destroy
          render json: @friends
       else 

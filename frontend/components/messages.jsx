@@ -33,7 +33,7 @@ export default function Messages(props){
    const channelName = channel ? channel.name : "";
 
    const allMessages = channel ? useSelector( state => state.entities.messages[channel.id] ? Object.values(state.entities.messages[channel.id]) : []) : []
-   const messages = channel ? allMessages.filter(message => message.channel_id=== channel.id) : []
+   const messages = channel ? allMessages.filter(message => message.imageable_id=== channel.id) : []
 
    return (
       <div className="messages">

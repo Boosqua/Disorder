@@ -1,7 +1,8 @@
 
 import React, {  useState } from "react"
 import { useDispatch } from "react-redux"
-import {createServerMember, deleteServerMember} from '../actions/server_actions'
+import {fetchFriends } from "../actions/friend_actions"
+
 export default function Testing(props) {
    const dispatch = useDispatch()
 
@@ -10,14 +11,8 @@ export default function Testing(props) {
          <button
          onClick={(e) => {
             e.preventDefault()
-            createServerMember({server_id: 4, user_id: 1})(dispatch)
-         }}>addServer</button>
-         <button
-         onClick={ (e) => {
-            e.preventDefault()
-            deleteServerMember({server_id: 4, user_id: 1})(dispatch)
-         }}
-         >deleteServer</button>
+            fetchFriends()(dispatch)
+         }}>receive friends</button>
       </div>
    )
    

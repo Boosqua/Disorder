@@ -23,6 +23,11 @@ export default class Testing extends Component {
          className={className}
          id={this.props.link ? "link" : ''}
          style={iconStyle}> 
+         {
+            this.props.alert ? 
+               (<div className="alert"></div>) :
+               null
+         }
             <div className={this.props.image ? "ibi" : "ibt"}>
                {
                   this.props.image ? 

@@ -8,45 +8,68 @@ import {fetchServers} from "../actions/server_actions"
 import {fetchChannels} from "../actions/channel_actions"
 import {fetchMessages} from "../actions/message_actions"
 import {fetchUsers} from "../actions/user_actions"
+
+import { fetchFriends, fetchFriendRequests, receiveFriend, receiveFriendRequest } from "../actions/friend_actions"
 import { useSelector, useDispatch } from 'react-redux';
 import MessageInput from "./message_input"
 import {receiveMessage} from '../actions/message_actions'
 import ServerMembers from "./server_members"
+import FriendList from "./friend_list"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
-   const channelId = useSelector(state => state.session.currentUser.id)
+
+   const id = useSelector(state => state.session.currentUser.id)
 
    const channel = App.cable.subscriptions.create({
       channel: 'MessagesChannel',
-      id: channelId
+      id: id
    },
    {
       received: (data) => {
          dispatch(receiveMessage(data))
       },
    })
-   const id = useSelector(state => state.session.currentUser.id)
+   const friendRequestsChannel = App.cable.subscriptions.create({
+      channel: "FriendRequestsChannel",
+      id: id
+   },
+   {
+      received: (data) => {
+         dispatch(receiveFriendRequest(data))
+      }
+   })
+   const friendChannel = App.cable.subscriptions.create({
+      channel: "FriendsChannel",
+      id: id
+   },
+   {
+      received: (data) => {
+         dispatch(receiveFriend(data))
+      }
+   })
    useEffect(() => {
-         fetchServers(id)(dispatch)
+      fetchServers(id)(dispatch)
       .then(() => fetchChannels(id)(dispatch))
       .then(() => fetchMessages(id)(dispatch))
       .then(() => fetchUsers()(dispatch))
+      .then(() => fetchFriends()(dispatch))
+      .then(() => fetchFriendRequests()(dispatch))
       .then(() => setLoaded(true))
+
    }, [])
 
    const path = useParams().id
-
       return (
          loaded ?
-            <div className="container">
+            <div className={path === "@me" ?"container-hm" : "container"}>
                <div className="sidebar">
                <ServersIndex/>
                </div>
-               <Header />
+               <Header channel={friendRequestsChannel}/>
                { 
                   path === "@me" ? 
-                  null : 
+                  <FriendList channel={friendChannel}/> : 
                   <Server />
                }
                {
@@ -58,7 +81,7 @@ export default function Home(props) {
 {
                   path === "@me" ? 
                   null : 
-                  <ServerMembers />
+                  <ServerMembers channel={friendRequestsChannel}/>
                }
                   
             </div>

@@ -26,41 +26,44 @@ class User < ApplicationRecord
    has_many :server_messages,
       through: :servers,
       source: :messages
-      
    has_many :channels,
       through: :servers,
       source: :channels
    has_many :server_members,
       through: :servers,
       source: :members
-      
+   
    has_many :friend_requests_as_requestor, 
-         foreign_key: :requestor_id, 
-         class_name: :FriendRequest,
-         dependent: :destroy
-
+      foreign_key: :requestor_id, 
+      class_name: :FriendRequest,
+      dependent: :destroy
    has_many :friend_requests_as_receiver, 
-         foreign_key: :receiver_id, 
-         class_name: :FriendRequest,
-         dependent: :destroy
-
+      foreign_key: :receiver_id, 
+      class_name: :FriendRequest,
+      dependent: :destroy
    has_many :friend_requestors,
       through: :friend_requests_as_receiver,
       source: :requestor
-
+   
    has_many :friendship_as, 
-         foreign_key: :friend_a_id,
-         class_name:  :Friend
+      foreign_key: :friend_a_id,
+      class_name:  :Friend
    has_many :friend_as, 
-         through: :friendship_as,
-         source: :friend_b
+      through: :friendship_as,
+      source: :friend_b
    has_many :friendship_bs, 
-         foreign_key: :friend_b_id,
-         class_name:  :Friend
+      foreign_key: :friend_b_id,
+      class_name:  :Friend
    has_many :friend_bs, 
-         through: :friendship_bs,
-         source: :friend_a
-
+      through: :friendship_bs,
+      source: :friend_a
+   has_many :friend_a_messages,
+      through: :friendship_as,
+      source: :messages
+   has_many :friend_b_messages,
+      through: :friendship_bs,
+      source: :messages
+      
    def friends
       friend_as + friend_bs
    end

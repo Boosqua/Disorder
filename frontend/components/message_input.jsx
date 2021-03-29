@@ -1,16 +1,20 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 export default function MessageInput(props) {
    const channelId = useSelector(state => state.session.channelId)
    const userId = useSelector( state => state.session.currentUser.id)
    const imageUpload = useRef(null)
    const [message, setMessage] = useState("")
-
+   const {id} = useParams()
+   const friendIds = useSelector( state => state.entities.friends )
+   if( id === "@me" && friendIds.length === 0 ) return null
    function handleSubmit(e){
       let messageObject = {
          userId: userId,
-         channelId: channelId,
+         imageable_id: channelId,
+         imageable_type: "Channel",
          body: message
       }
       props.channel.send(messageObject)
@@ -34,7 +38,6 @@ export default function MessageInput(props) {
          <form >
             <textarea className="mif" onChange={handleChange} value={message}/>
             <input type="file"
-                     onChange={() => console.log("hello")}
                      style={ {display: 'none'} }
                      ref={imageUpload}
                   />

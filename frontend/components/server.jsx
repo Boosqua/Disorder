@@ -21,10 +21,10 @@ export default function Server(props){
    const [addChannelModal, setChannelModal] = useState(false)
    const [nestedModal, setNestedModal] = useState(false)
    const [nestedPos, setNestedModalPos] = useState(null)
-
    const [nestedType, setNestedType] = useState("")
    const currentChannel = useSelector(state => state.entities.currentChannel)
    const [channelId, setChannel] = useState(currentChannel)
+   
    function handleContext(channel){
       return (e) => {
          e.preventDefault()

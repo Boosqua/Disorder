@@ -22,8 +22,8 @@ export default function Header(props){
          return state.entities.servers[id]
       }
    })
-
-   const pageName = server.name
+   
+   const pageName = server.name ? server.name : server
    const [newServerName, setNewServerName] = useState(pageName)
    const ownedServer = useSelector(state => state.session.currentUser.id) === server.owner_id
    function nestedContent() {
@@ -169,6 +169,7 @@ export default function Header(props){
             {modalContent()}
          </Modal>
          <div className="ht" onClick={ (e) => {
+            if (id === "@me") return
             setModalPos({x: e.clientX, y: e.clientY})
             setServerModal(true)
          }}>

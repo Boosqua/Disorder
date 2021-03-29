@@ -2,7 +2,7 @@ class Api::FriendRequestsController < ApplicationController
    def index
       if current_user
          @friend_requests = current_user.friend_requests_as_receiver
-         render json: @friend_requests
+         render :index
       else
          render json: ["not logged in"]
       end
@@ -11,7 +11,7 @@ class Api::FriendRequestsController < ApplicationController
    def create
       @friend_request = FriendRequest.new(friend_params)
       if @friend_request.save
-         render json: @friend_request
+         render :show
       else
          render json: @friend_request.errors.full_messages, status: 401
       end

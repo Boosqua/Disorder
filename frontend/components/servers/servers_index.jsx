@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import IconButton from '../reusable/icon_button'
 import { Link, useParams } from 'react-router-dom';
@@ -6,11 +6,13 @@ import Modal from "../reusable/modal"
 import { logout } from "../../actions/session_actions"
 import { createServer } from "../../actions/server_actions"
 import { fetchChannels } from "../../actions/channel_actions"
+import { filterFriendIds } from "../../actions/session_actions"
 export default function ServersIndex(props) {
       const dispatch = useDispatch()
       const [ showModal, setShowModal ] = useState(false)
       const [newServerName, setNewServerName] = useState("")
       const [position, setPosition] = useState(null)
+      const alert = useSelector(state => Object.values(state.entities.friendRequests).length > 0)
       const servers = useSelector(state => Object.values(state.entities.servers))
       const userId = useSelector( state => state.session.currentUser.id )
       const { id } = useParams()
@@ -24,6 +26,11 @@ export default function ServersIndex(props) {
          setShowModal(false);
          setNewServerName("");
       }
+      const friendships = useSelector(state => state.entities.friends)
+      useEffect( () => {
+         filterFriendIds(userId, friendships)(dispatch)
+
+      }, [])
       function modalContent() {
          return <div className="inputform">
                <div className="inputformrow">
@@ -45,9 +52,11 @@ export default function ServersIndex(props) {
                   onHover={id != "@me"}
                   link={id != "@me"}
                   image={window.homeIconURL}
+                  alert={alert}
                   />
             </div> : 
             <Link to='/server/@me' className="sib">
+
                <IconButton
                   height={"60px"}
                   width={"60px"}
@@ -55,6 +64,7 @@ export default function ServersIndex(props) {
                   onHover={id != "@me"}
                   link={id != "@me"}
                   image={window.homeIconURL}
+                  alert={alert}
                   />
             </Link> 
       return(

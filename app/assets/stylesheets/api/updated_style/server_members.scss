@@ -14,6 +14,15 @@
 }
 .smc {
    margin: 3px;
+
+   padding: 5px;
+   display: flex;
+   flex-direction: row;
+
+}
+.smc2 {
+   margin: 10px;
+   margin-bottom: 0px;
    padding: 5px;
    display: flex;
    flex-direction: row;
@@ -37,7 +46,7 @@
    line-height: 30px;
    margin-left: 5px;
 }
-.smc:hover {
+.smc:hover, .smc2:hover {
    background-color: #363a3e;
    cursor: pointer;
 }

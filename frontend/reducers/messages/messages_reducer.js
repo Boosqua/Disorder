@@ -11,23 +11,26 @@ export default (state={}, action) => {
       case RECEIVE_MESSAGES:
          let messages = {}
          Object.values(action.messages).forEach( message => {
-            messages[message.channel_id] ?
-               messages[message.channel_id][message.id] = message:
-               messages[message.channel_id] = { [message.id]: message}
+            messages[message.imageable_id]
+              ? (messages[message.imageable_id][message.id] = message)
+              : (messages[message.imageable_id] = { [message.id]: message });
          })
 
          return messages;
       case RECEIVE_MESSAGE:
          // debugger
          
-         newState[action.message.channel_id] ? 
-            newState[action.message.channel_id][action.message.id] = action.message :
-            newState[action.message.channel_id] = { [action.message.id]: action.message}
+         newState[action.message.imageable_id]
+           ? (newState[action.message.imageable_id][action.message.id] =
+               action.message)
+           : (newState[action.message.imageable_id] = {
+               [action.message.id]: action.message,
+             });
          return newState;
 
       case DELETE_MESSAGE:
          // let newState = Object.assign({}, state);
-         delete newState[action.message.channel_id][action.message.id]
+         delete newState[action.message.imageable_id][action.message.id];
          return newState
       default:
          return state
