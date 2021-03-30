@@ -11,12 +11,12 @@ export const createFriend = (friendAId, friendBId) => (
    })
 )
 
-export const deleteFriend = (id) => {
+export const deleteFriend = (id) => (
    $.ajax ({
       url: `api/friends/${id}`,
       method: 'DELETE'
    })
-}
+)
 export const fetchFriendRequests = () =>(
   $.ajax({
     url: `api/friend_requests/`,

@@ -30,8 +30,7 @@ export const createFriend = (friendAId, friendBId) => (dispatch) => (
 )
 
 export const destroyFriend = (id) => (dispatch) => (
-   APIUtil.deleteFriend(id)
-      .then( friend => dispatch(deleteFriend(friend)))
+   APIUtil.deleteFriend(id).then( friend => dispatch(deleteFriend(friend)))
 )
 
 export const RECEIVE_FRIEND_REQUESTS = "RECEIVE_FRIEND_REQUESTS";

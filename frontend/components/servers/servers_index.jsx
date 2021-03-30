@@ -4,7 +4,7 @@ import IconButton from '../reusable/icon_button'
 import { Link, useParams } from 'react-router-dom';
 import Modal from "../reusable/modal"
 import { logout } from "../../actions/session_actions"
-import { createServer } from "../../actions/server_actions"
+import { createServer, receiveCurrentChannel } from "../../actions/server_actions"
 import { fetchChannels } from "../../actions/channel_actions"
 import { filterFriendIds } from "../../actions/session_actions"
 export default function ServersIndex(props) {
@@ -55,7 +55,7 @@ export default function ServersIndex(props) {
                   alert={alert}
                   />
             </div> : 
-            <Link to='/server/@me' className="sib">
+            <Link to='/server/@me' className="sib" onClick={ () => { dispatch(receiveCurrentChannel(null))}}>
 
                <IconButton
                   height={"60px"}

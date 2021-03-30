@@ -7,14 +7,29 @@ import {destroyFriend, destroyFriendRequest} from "../actions/friend_actions"
 export default function FriendList(props) {
    const dispatch = useDispatch()
    const friends = useSelector( state => {
-      const friendships = Object.values(state.entities.friends);
+      const friendships = Object.values(state.entities.friends).sort((a,b) => {
+         let timeA = a.last_message; 
+         let timeB = b.last_message; 
+         if (timeA < timeB) {
+            return -1;
+         }
+         if (timeA > timeB) {
+            return 1;
+         }
+         return 0;
+      })
       const id = state.session.currentUser.id;
-      let friendIds = friendships.map( friendship => friendship.friend_a_id === id ? 
+      let friends = friendships.map( friendship => {
+         let friendId = friendship.friend_a_id === id ? 
          friendship.friend_b_id 
          : friendship.friend_a_id
-      )
-      return friendIds.map( friendId => state.entities.users[friendId])
+         let friend = state.entities.users[friendId];
+         friend.friendshipId = friendship.id
+         return friend
+      })
+      return friends
    })
+   
    const [modal, setModal] = useState({show: false, position: null, selectedUser: null })
    const friendRequestors = useSelector( state => {
       const requests = Object.values(state.entities.friendRequests)
@@ -30,7 +45,7 @@ export default function FriendList(props) {
             (
                <div>
                   <div className="smh">
-                     {`FRIEND REQUESTS - ${friends.length}`}
+                     {`FRIEND REQUESTS - ${friendRequestors.length}`}
                   </div>
                   {friendRequestors.map( (friend, index) => {
                      const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
@@ -57,7 +72,7 @@ export default function FriendList(props) {
             const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
                return (
                <div className="smc2" key={index} onContextMenu={(e) => {
-                  e.preventDefault
+                  e.preventDefault()
                   setModal({show:true, position:{x: e.clientX + 20, y: e.clientY }, selectedUser: friend})
                }}>
                   <div className="smci">
@@ -89,11 +104,13 @@ export default function FriendList(props) {
                         <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
                            destroyFriendRequest(modal.selectedUser.requestId)(dispatch)
                            props.channel.send({friendAId: modal.selectedUser.id, friendBId: id})
+                           setModal({show: false, position: null, selectedUser: null })
                         }}>
                            Accept
                         </div> :
                         <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
-                           destroyFriend(modal.selectedUser.id)(dispatch)
+                           destroyFriend(modal.selectedUser.friendshipId)(dispatch)
+                           setModal({show: false, position: null, selectedUser: null })
                         }}>
                            Remove Friend
                         </div>

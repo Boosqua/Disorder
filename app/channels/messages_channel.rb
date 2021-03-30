@@ -17,6 +17,7 @@ class MessagesChannel < ApplicationCable::Channel
       }
       savedMessage = Message.create!(message)
       data['id'] = savedMessage.id
+
       MessagesChannel.broadcast_to("channel_#{savedMessage.imageable_id}", savedMessage)
    end
    def unsubscribed

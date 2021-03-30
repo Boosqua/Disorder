@@ -17,9 +17,9 @@ class Api::FriendsController < ApplicationController
       end
    end
    def destroy 
-      @friends = current_user.find_friendship(params[:id])
-      if @friends && @friends.destroy
-         render json: @friends
+      @friend = Friend.find(params[:id])
+      if @friend && @friend.destroy
+         render :show
       else 
          render json: ["something went wrong lol"], status: 401
       end

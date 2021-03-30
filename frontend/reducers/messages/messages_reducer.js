@@ -9,21 +9,27 @@ export default (state={}, action) => {
    let newState = Object.assign({}, state);
    switch (action.type) {
       case RECEIVE_MESSAGES:
-         let messages = {}
-         Object.values(action.messages).forEach( message => {
-            messages[message.imageable_id]
-              ? (messages[message.imageable_id][message.id] = message)
-              : (messages[message.imageable_id] = { [message.id]: message });
+         let messages = {Channel: {}, Friend: {}}
+         let actionMessages = action.messages.Channel ? action.messages.Channel : {}
+         Object.values(actionMessages).forEach( message => {
+            messages.Channel[message.imageable_id]
+              ? (messages.Channel[message.imageable_id][message.id] = message)
+              : (messages.Channel[message.imageable_id] = { [message.id]: message });
+         })
+         actionMessages = action.messages.Friend ? action.messages.Friend : {}
+         Object.values(actionMessages).forEach( message => {
+            messages.Friend[message.imageable_id]
+              ? (messages.Friend[message.imageable_id][message.id] = message)
+              : (messages.Friend[message.imageable_id] = { [message.id]: message });
          })
 
          return messages;
       case RECEIVE_MESSAGE:
-         // debugger
-         
-         newState[action.message.imageable_id]
-           ? (newState[action.message.imageable_id][action.message.id] =
+         let type = action.message.imageable_type
+         newState[type][action.message.imageable_id]
+           ? (newState[type][action.message.imageable_id][action.message.id] =
                action.message)
-           : (newState[action.message.imageable_id] = {
+           : (newState[type][action.message.imageable_id] = {
                [action.message.id]: action.message,
              });
          return newState;

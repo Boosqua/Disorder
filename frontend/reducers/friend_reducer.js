@@ -5,17 +5,18 @@ import {
 } from "../actions/friend_actions";
 
 export default (state = {}, action) => {
-  Object.freeze(state);
+   Object.freeze(state);
+   let newState = Object.assign({}, state)
+   switch (action.type) {
+      case RECEIVE_FRIENDS:
 
-  switch (action.type) {
-    case RECEIVE_FRIENDS:
-      let newState = action.friends;
-      return newState;
-    case RECEIVE_FRIEND:
-      return Object.assign({}, state, {[action.friend.id]: action.friend})
-    case DELETE_FRIEND:
-      return {};
-    default:
-      return state;
-  }
+         return action.friends;
+      case RECEIVE_FRIEND:
+         return Object.assign({}, state, {[action.friend.id]: action.friend})
+      case DELETE_FRIEND:
+            delete newState[action.friend.id]
+            return newState
+      default:
+         return state;
+   }
 };

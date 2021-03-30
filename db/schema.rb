@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_003128) do
+ActiveRecord::Schema.define(version: 2021_03_30_033751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_003128) do
   create_table "friend_requests", force: :cascade do |t|
     t.integer "requestor_id"
     t.integer "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
     t.index ["requestor_id", "receiver_id"], name: "index_friend_requests_on_requestor_id_and_receiver_id", unique: true
     t.index ["requestor_id"], name: "index_friend_requests_on_requestor_id"
@@ -55,6 +57,9 @@ ActiveRecord::Schema.define(version: 2021_03_29_003128) do
   create_table "friends", force: :cascade do |t|
     t.integer "friend_a_id"
     t.integer "friend_b_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "last_message"
     t.index ["friend_a_id", "friend_b_id"], name: "index_friends_on_friend_a_id_and_friend_b_id", unique: true
     t.index ["friend_a_id"], name: "index_friends_on_friend_a_id"
     t.index ["friend_b_id"], name: "index_friends_on_friend_b_id"

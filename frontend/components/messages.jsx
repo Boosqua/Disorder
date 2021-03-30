@@ -2,17 +2,21 @@ import React, {useEffect, useRef} from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router"
 import MessageShow from './message_show'
-import {receiveMessage} from "../actions/message_actions"
+
 export default function Messages(props){
 
-   const serverId = parseInt(useParams().id)
+   const serverId = useParams().id
    const channel = useSelector( (state) => {
-      const channelId = state.session.channelId;
-      const channels = state.entities.channels[serverId];
-      for( let i = 0; i < channels.length; i++){
-         if ( channels[i].id === channelId ) {
-            return channels[i];
+      if ( serverId !== "@me" ){
+         const channelId = state.session.channelId;
+         const channels = state.entities.channels[serverId];
+         for( let i = 0; i < channels.length; i++){
+            if ( channels[i].id === channelId ) {
+               return channels[i];
+            }
          }
+      } else {
+         return state.entities.users[state.session.channelId]
       }
    })
 
@@ -30,10 +34,15 @@ export default function Messages(props){
       return false
    }
 
-   const channelName = channel ? channel.name : "";
+   const channelName = channel && serverId !== '@me' ? channel.name : channel.username;
+   let allMessages1;
+   if( serverId !== "@me" ){
+      allMessages1 = channel ? useSelector( state => state.entities.messages.Channel[channel.id] ? Object.values(state.entities.messages.Channel[channel.id]) : []) : []
+   } else {
+      allMessages1 = channel ? useSelector( state => state.entities.messages.Friend[channel.id] ? Object.values(state.entities.messages.Friend[channel.id]) : []) : []
+   }
+   const messages = allMessages1
 
-   const allMessages = channel ? useSelector( state => state.entities.messages[channel.id] ? Object.values(state.entities.messages[channel.id]) : []) : []
-   const messages = channel ? allMessages.filter(message => message.imageable_id=== channel.id) : []
 
    return (
       <div className="messages">
