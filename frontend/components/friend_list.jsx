@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
 import {destroyFriend, destroyFriendRequest} from "../actions/friend_actions"
+import { receiveCurrentChannel } from "../actions/server_actions";
 
 export default function FriendList(props) {
    const dispatch = useDispatch()
@@ -10,10 +11,10 @@ export default function FriendList(props) {
       const friendships = Object.values(state.entities.friends).sort((a,b) => {
          let timeA = a.last_message; 
          let timeB = b.last_message; 
-         if (timeA < timeB) {
+         if (timeA > timeB) {
             return -1;
          }
-         if (timeA > timeB) {
+         if (timeA < timeB) {
             return 1;
          }
          return 0;
@@ -29,7 +30,10 @@ export default function FriendList(props) {
       })
       return friends
    })
-   
+   if( !useSelector( state => state.session.channelId ) && friends.length > 0){
+      dispatch(receiveCurrentChannel(friends[0].id))
+   }
+   const selectedId = useSelector( state => state.session.channelId )
    const [modal, setModal] = useState({show: false, position: null, selectedUser: null })
    const friendRequestors = useSelector( state => {
       const requests = Object.values(state.entities.friendRequests)
@@ -43,7 +47,7 @@ export default function FriendList(props) {
          {
             friendRequestors ?
             (
-               <div>
+               <div style={{maxHeight: "300px", overflow: "scroll"}}>
                   <div className="smh">
                      {`FRIEND REQUESTS - ${friendRequestors.length}`}
                   </div>
@@ -71,9 +75,14 @@ export default function FriendList(props) {
          {friends.map( (friend, index) => {
             const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
                return (
-               <div className="smc2" key={index} onContextMenu={(e) => {
+               <div className={selectedId === friend.id ? "smc2s" : "smc2"} key={index}  onContextMenu={(e) => {
                   e.preventDefault()
                   setModal({show:true, position:{x: e.clientX + 20, y: e.clientY }, selectedUser: friend})
+               }}
+               onClick={() => {
+                  if( selectedId !== friend.id ){
+                     dispatch(receiveCurrentChannel(friend.id))
+                  }
                }}>
                   <div className="smci">
                   <IconButton height="30px" width="30px" image={userImage}/>

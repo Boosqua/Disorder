@@ -14,25 +14,27 @@
 }
 .smc {
    margin: 3px;
-
+   color: #8e9297;
    padding: 5px;
    display: flex;
    flex-direction: row;
 
 }
-.smc2 {
+.smc2, .smc2s {
    margin: 10px;
+   color: #8e9297;
    margin-bottom: 0px;
    padding: 5px;
    display: flex;
    flex-direction: row;
-
+   border-radius: 20px;
+   min-width: fit-content;
 }
 .smun {
-   color: #8e9297;
+   color: inherit;
    line-height: 30px;
    margin-left: 10px;
-;
+
 }
 .smuno {
    line-height: 30px;
@@ -48,7 +50,12 @@
 }
 .smc:hover, .smc2:hover {
    background-color: #363a3e;
+   color: white;
    cursor: pointer;
+}
+.smc2s {
+   background-color: #363a3e;
+   color: white;
 }
 .smci {
    height: fit-content;

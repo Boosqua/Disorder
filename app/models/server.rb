@@ -10,11 +10,12 @@ class Server < ApplicationRecord
       end
    end
    has_one_attached :photo
-   has_many :channels
+   has_many :channels, dependent: :destroy
    has_many :messages, through: :channels
    has_many :server_memberships, 
       foreign_key: :server_id,
-      class_name: :ServerMember
+      class_name: :ServerMember,
+      dependent: :destroy
    has_many :members,
       through: :server_memberships,
       source: :user

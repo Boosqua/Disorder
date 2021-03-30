@@ -31,7 +31,9 @@
       {name: "Cats", owner_id: 12},
       {name: "Coding", owner_id: 2},
    ])
-
+   15.times do |i|
+      FriendRequest.create(requestor_id: i, receiver_id: 1)
+   end
    (1..3).each do |id|
       10.times do 
          Message.create!(author_id: 2, imageable_id: id, body: Faker::Lorem.sentence, imageable_type: "Channel")

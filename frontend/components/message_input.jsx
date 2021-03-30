@@ -3,18 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
 export default function MessageInput(props) {
-   const channelId = useSelector(state => state.session.channelId)
+   const {id} = useParams()
+   const channelId = useSelector(state => {
+      let channelId = state.session.channelId
+      if(id === "@me") {
+         return state.entities.users[channelId].friendshipId
+      }
+      return channelId
+   })
    const userId = useSelector( state => state.session.currentUser.id)
    const imageUpload = useRef(null)
    const [message, setMessage] = useState("")
-   const {id} = useParams()
+   const type = id === "@me" ? "Friend" : "Channel"
+
    const friendIds = useSelector( state => state.entities.friends )
    if( id === "@me" && friendIds.length === 0 ) return null
    function handleSubmit(e){
       let messageObject = {
          userId: userId,
          imageable_id: channelId,
-         imageable_type: "Channel",
+         imageable_type: type,
          body: message
       }
       props.channel.send(messageObject)
@@ -29,7 +37,7 @@ export default function MessageInput(props) {
          setMessage(message)
       }
    }
-   return <div className="input">
+   return channelId ? <div className="input">
       <div className="span-container">
       <div className="circle" onClick={() => {imageUpload.current.click()}}>
          +
@@ -44,5 +52,5 @@ export default function MessageInput(props) {
          </form>
       </span>
       </div>
-   </div>
+   </div> : <div className="input"></div>
 }

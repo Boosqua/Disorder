@@ -140,7 +140,7 @@ export default function Header(props){
                </div>
                <Link to='/server/@me'>
                <div className="modalbutton" onClick={(e) => {
-                  deleteServerMember({server_id: parseInt(id)})(dispatch)
+                  deleteServerMember({server_id: parseInt(id), user_id: userId})(dispatch)
                   setServerModal(false)
                }}>confirm</div>
                </Link>

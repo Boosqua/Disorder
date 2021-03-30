@@ -5,10 +5,12 @@ class Friend < ApplicationRecord
    
 
    before_create do
-      friend_a = self.friend_a_id
-      friend_b = self.friend_b_id
-      friend_a_id = friend_a < friend_b ? friend_a : friend_b
-      friend_b_id = friend_a > friend_b ? friend_a : friend_b
-      self.update( friend_a_id: friend_a_id, friend_b_id: friend_b_id, last_message: Time.new.to_i )
+         friend_as = self.friend_a_id
+         friend_bs = self.friend_b_id
+         friend_a_ids = friend_as < friend_bs ? friend_as : friend_bs
+         friend_b_ids = friend_as > friend_bs ? friend_as : friend_bs
+         self.friend_a_id = friend_a_ids
+         self.friend_b_id = friend_b_ids
+         self.last_message = Time.new.to_i
    end
 end

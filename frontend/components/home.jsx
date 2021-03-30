@@ -18,7 +18,7 @@ import FriendList from "./friend_list"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
-
+   const [collapse, setCollapse] = useState(false)
    const id = useSelector(state => state.session.currentUser.id)
 
    const channel = App.cable.subscriptions.create({
@@ -62,7 +62,7 @@ export default function Home(props) {
    const path = useParams().id
       return (
          loaded ?
-            <div className={path === "@me" ?"container-hm" : "container"}>
+            <div className={path === "@me" || collapse ?"container-hm" : "container"}>
                <div className="sidebar">
                <ServersIndex/>
                </div>
@@ -72,11 +72,9 @@ export default function Home(props) {
                   <FriendList channel={friendChannel}/> : 
                   <Server />
                }
-               {
-                  path === "@me" ? 
-                  null : 
+
                   <Messages />
-               }
+
                <MessageInput channel={channel}/>
 {
                   path === "@me" ? 
