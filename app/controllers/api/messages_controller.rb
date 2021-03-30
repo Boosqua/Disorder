@@ -1,6 +1,6 @@
 class Api::MessagesController < ApplicationController
    def index
-      @messages = User.find(params[:user_id].to_i).server_messages
+      @messages = User.find(params[:user_id].to_i).get_messages
       render :index
    end
 
@@ -11,7 +11,6 @@ class Api::MessagesController < ApplicationController
 
    def create
       @message = Message.new(message_params)
-      # debugger
       if @message.save
          render :show
       else
@@ -27,14 +26,15 @@ class Api::MessagesController < ApplicationController
          render json: @server.errors.full_messages, status: 401
       end
    end
+
    def destroy
       @message = Message.find(params[:id])
       @message.destroy 
       render :show
-         
    end
+   
    private
    def message_params
-      params.require(:message).permit(:body, :author_id, :channel_id, :photo)
+      params.require(:message).permit(:body, :author_id, :imageable_id, :imageable_type, :photo)
    end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_015919) do
+ActiveRecord::Schema.define(version: 2021_03_30_033751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,14 +44,36 @@ ActiveRecord::Schema.define(version: 2020_11_11_015919) do
     t.index ["server_id"], name: "index_channels_on_server_id"
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer "requestor_id"
+    t.integer "receiver_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
+    t.index ["requestor_id", "receiver_id"], name: "index_friend_requests_on_requestor_id_and_receiver_id", unique: true
+    t.index ["requestor_id"], name: "index_friend_requests_on_requestor_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer "friend_a_id"
+    t.integer "friend_b_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "last_message"
+    t.index ["friend_a_id", "friend_b_id"], name: "index_friends_on_friend_a_id_and_friend_b_id", unique: true
+    t.index ["friend_a_id"], name: "index_friends_on_friend_a_id"
+    t.index ["friend_b_id"], name: "index_friends_on_friend_b_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body", null: false
     t.integer "author_id", null: false
-    t.integer "channel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "imageable_id"
+    t.string "imageable_type"
     t.index ["author_id"], name: "index_messages_on_author_id"
-    t.index ["channel_id"], name: "index_messages_on_channel_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_messages_on_imageable_type_and_imageable_id"
   end
 
   create_table "server_members", force: :cascade do |t|
@@ -70,16 +92,6 @@ ActiveRecord::Schema.define(version: 2020_11_11_015919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_servers_on_owner_id"
-  end
-
-  create_table "user_relationships", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "related_id", null: false
-    t.string "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "related_id"], name: "index_user_relationships_on_user_id_and_related_id", unique: true
-    t.index ["user_id", "type"], name: "index_user_relationships_on_user_id_and_type"
   end
 
   create_table "users", force: :cascade do |t|

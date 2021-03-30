@@ -9,7 +9,7 @@ import { fetchServerMembers } from '../../actions/update_actions';
 
 const mapStateToProps = (state, ownProps) => ({
    users: state.entities.users,
-   user: state.entities.users[state.session.currentUserId],
+   user: state.session.currentUser,
    currentServerId: state.session.currentServerId,
    channels: state.entities.channels,
    servers: state.entities.servers,

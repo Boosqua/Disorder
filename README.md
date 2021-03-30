@@ -23,3 +23,6 @@ The frontend component for the chat system then grabs this organized information
   Users are able to create, edit, and delete servers as well as upload an image from their local storage as a server's cover photo using AWS's S3 Storage System, securely saving their media.
 # IMG
 Users are also able to create, edit, and delete channels within servers to diversify their conversation funnels.
+# Reusable Components 
+   ### Icon Button
+      Reusable react components that takes in styling props for styles, props to trigger on hover transitions, and can contain either text or image links.

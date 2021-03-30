@@ -4,7 +4,7 @@ export default class Splash extends React.Component {
 
 
    render() {
-      let component = this.props.currentUserId ?
+      let component = this.props.currentUser ?
          <Redirect to='/home' /> :
          <Redirect to='/login' />
       return (

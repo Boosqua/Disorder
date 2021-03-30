@@ -1,0 +1,32 @@
+.modal-testing {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax( 200px, auto));
+   grid-template-rows: repeat(auto-fill, minmax( 200px, auto));
+}
+.imagemc {
+   position: relative; /* Stay in place */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: lavender;
+   margin-top: 100px;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding: 20px;
+   border-radius: 10px;
+}
+.button-container {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   margin-top: 20px;
+   width: 100px;
+}
+.imagetest{
+   grid-row: span 2 / auto;
+   grid-column: span 2 / auto;
+   // width: inherit;
+   max-height: 500px;
+   max-width: 500px;
+}

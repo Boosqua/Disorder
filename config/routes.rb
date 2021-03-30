@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   namespace :api, { format: :json } do 
 
     resources :users
+    resources :friend_requests
+    resources :friends
     resources :users, only: :show do
       resources :servers 
       resources :messages, only: :index
     end
-    
+    resources :server_members
     resources :servers do 
       resources :channels
     end

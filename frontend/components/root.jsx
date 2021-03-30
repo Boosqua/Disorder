@@ -9,7 +9,6 @@ import App from "./App";
 // CableApp.cable = actionCable.createConsumer('ws://localhost:3000/cable')
 // export const ActionCableContext = React.createContext();
 const Root = ({ store }) => {
-   // debugger
    return (
   <Provider store={store}>
    {/* <ActionCableContext.provider value={CableApp.cable} > */}

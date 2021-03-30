@@ -31,12 +31,15 @@
       {name: "Cats", owner_id: 12},
       {name: "Coding", owner_id: 2},
    ])
-
-# (1..7).each do |id|
-#    10.times do 
-#       Message.create!(author_id: 2, channel_id: id, body: Faker::Lorem.sentence)
-#    end
-# end
+   15.times do |i|
+      FriendRequest.create(requestor_id: i, receiver_id: 1)
+   end
+   (1..3).each do |id|
+      10.times do 
+         Message.create!(author_id: 2, imageable_id: id, body: Faker::Lorem.sentence, imageable_type: "Channel")
+         Message.create!(author_id: 1, imageable_id: id, body: Faker::Lorem.sentence, imageable_type: "Channel")
+      end
+   end
    (2..16).each do |user_id|
       ServerMember.create!(user_id: user_id, server_id: 1)
    end

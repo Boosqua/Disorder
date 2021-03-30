@@ -31,7 +31,13 @@ export default (state={}, action) => {
          }
          return newState;
       case REMOVE_CHANNEL:
-         delete newState[action.channel.id]
+         const serverId = action.channel.server_id;
+         const deletedChannelId = action.channel.id
+         const updatedChannels = newState[serverId].filter((channel) => {
+            return channel.id !== deletedChannelId
+         })
+
+         newState[serverId] = updatedChannels
          return newState;
       default:
          return state;

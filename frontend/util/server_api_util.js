@@ -1,9 +1,9 @@
 
-export const fetchServers = (userId) => (
-   $.ajax({
+export function fetchServers(userId) {
+   return $.ajax({
       url: `/api/users/${userId}/servers`
    })
-)
+}
 
 export const fetchServer = (userId, serverId) => (
    $.ajax({
@@ -27,9 +27,23 @@ export const updateServer = (userId, server) => (
    })
 )
 
-export const deleteServers = (userId, serverId) => (
+export const deleteServer = (userId, serverId) => (
    $.ajax({
       url: `/api/users/${userId}/servers/${serverId}`,
       method: 'DELETE'
+   })
+)
+export const createServerMember = (server_member) => (
+   $.ajax({
+      url: '/api/server_members',
+      method: 'POST',
+      data: { server_member }
+   })
+)
+export const deleteServerMember = (server_member) => (
+   $.ajax({
+      url: '/api/server_members/1',
+      method: 'DELETE',
+      data: { server_member }
    })
 )

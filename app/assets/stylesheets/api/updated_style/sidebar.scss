@@ -1,0 +1,34 @@
+.sic {
+   background-color: #1f2325;
+   height: 100%;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   overflow-y: scroll;
+}
+.sib{
+   margin: 5px;
+}
+.sbl {
+   width: 40%;
+   height: 0;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.144);
+   margin-bottom: 5px;
+   margin-top: 5px;
+   overflow: scroll;
+}
+
+.alert {
+   margin-left: 40px;
+   margin-top: 40px;
+   position: absolute;
+   font-size: 0;
+   color: red;
+   font-weight: bold;
+   border-radius: 50%;
+   background: red;
+   width: 18px;
+   height: 18px;
+   border: 4px solid #1f2425;
+}
