@@ -9,5 +9,4 @@ class Message < ApplicationRecord
          Friend.find(self.imageable_id).update( last_message: Time.new.to_i )
       end
    end
-   # after_create_commit { MessageBroadcastJob.perform_later(self) }
 end

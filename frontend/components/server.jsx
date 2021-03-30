@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Messages from "./messages"
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from "react-router"
 import {receiveCurrentChannel} from "../actions/server_actions"
@@ -153,6 +154,7 @@ export default function Server(props){
             >
                {secondModal()}
             </Modal>
+
          </div>         
       )
    }

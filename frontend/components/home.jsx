@@ -19,9 +19,10 @@ export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
    const [collapse, setCollapse] = useState(false)
+   const [channelChange, setChannelChange] = useState(1)
    const id = useSelector(state => state.session.currentUser.id)
 
-   const channel = App.cable.subscriptions.create({
+   const messageChannel = App.cable.subscriptions.create({
       channel: 'MessagesChannel',
       id: id
    },
@@ -30,6 +31,7 @@ export default function Home(props) {
          dispatch(receiveMessage(data))
       },
    })
+
    const friendRequestsChannel = App.cable.subscriptions.create({
       channel: "FriendRequestsChannel",
       id: id
@@ -69,13 +71,13 @@ export default function Home(props) {
                <Header channel={friendRequestsChannel}/>
                { 
                   path === "@me" ? 
-                  <FriendList channel={friendChannel}/> : 
+                  <FriendList setChannelChange={setChannelChange}channel={friendChannel}/> : 
                   <Server />
                }
 
-                  <Messages />
+                  <Messages channelChange={channelChange}/>
 
-               <MessageInput channel={channel}/>
+               <MessageInput key={channelChange}messageChannel={messageChannel} setChannelChange={setChannelChange} channel={channelChange}/>
 {
                   path === "@me" ? 
                   null : 

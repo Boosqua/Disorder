@@ -16,7 +16,7 @@ export default function Modal(props){
    const yStyle = window.innerHeight - y < 200 ? 
       {top: y - 200}
       :{top: y}
-   const style = Object.assign(xStyle, yStyle)
+   const style = x + y === 0 ? {} : Object.assign(xStyle, yStyle)
 
    return props.show ? 
       <div className="modal" onClick={handleModal}><span className="modalcontent" style={style}> {props.children} </span></div>

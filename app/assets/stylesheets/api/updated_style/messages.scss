@@ -67,11 +67,30 @@
    -ms-flex-negative: 0;
    flex-shrink: 0;
 }
+.delete-row{
+   display: flex;
+   flex-direction: row-reverse;
+
+}
+
+.delete-text {
+   font-size: 10px;
+   color: #7a858b;
+   font-style: italic;
+
+}
+.delete-text:hover {
+   cursor: pointer;
+}
 .ummb {
    font-size: 1rem;
    line-height: 1.375rem;
-   color: #dcddde
+   color: #dcddde;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
 }
+
 .date {
    color: #72767d;
    line-height: 1.5rem;
@@ -109,14 +128,19 @@
    display: block;
    resize: none;
    width: 90%;
+   padding-top: 10px
 }
 .span-container{
    width: 90%;
    margin-bottom: 10px;
+   padding-top: 10px;
    background-color: #40444a;
    border-radius: 15px;
+   overflow: scroll;
    display: flex;
    flex-direction: row;
+   max-height: 200px;
+   word-break: break-all;
 }
 .circle {
   border-radius: 50%;
@@ -124,8 +148,8 @@
   height: 25px;
   background-color: rgb(44, 108, 128);
   position: relative;
-  margin-left: 10px;
-  margin-top: 12px;
+   margin: 10px;
+   margin-top: 5px;
   text-align: center;
    line-height: 20px;
    background-color: #b8bbbe;

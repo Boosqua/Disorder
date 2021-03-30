@@ -66,7 +66,7 @@ export default function Messages(props){
          <div className="mc">
             {messages.map( (message, index) => {
                return (
-                  <MessageShow key={index} message={message} messageHeader={checkId(message.author_id)}/>
+                  <MessageShow key={index} messagesEnd={messagesEnd} message={message} messageHeader={checkId(message.author_id)}/>
                )
             })}
          </div>

@@ -35,8 +35,9 @@ export default (state={}, action) => {
          return newState;
 
       case DELETE_MESSAGE:
-         // let newState = Object.assign({}, state);
-         delete newState[action.message.imageable_id][action.message.id];
+
+         let types = action.message.imageable_type;
+         delete newState[types][action.message.imageable_id][action.message.id]
          return newState
       default:
          return state
