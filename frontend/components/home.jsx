@@ -68,7 +68,8 @@ export default function Home(props) {
                <div className="sidebar">
                <ServersIndex/>
                </div>
-               <Header channel={friendRequestsChannel}/>
+               <Header channel={friendRequestsChannel} setCollapse={setCollapse}
+               collapse={collapse}/>
                { 
                   path === "@me" ? 
                   <FriendList setChannelChange={setChannelChange}channel={friendChannel}/> : 

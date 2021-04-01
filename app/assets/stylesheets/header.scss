@@ -24,11 +24,25 @@
    align-self: center;
    margin-left: 15px;
    font-size: 18px;
+   grid-area: channel_name;
 }
 .hc{
    background: #363a3e;
    grid-area: hc;
-   display: flex;
-   align-content: center;
+   display: grid;
+   grid-template-columns: 200px auto 250px;
    font-style: italic;
+   grid-template-areas: "channel_name empty button_menu";
+}
+.headerbuttonscontainter {
+   grid-area: button_menu;
+   align-self: center;
+   display: flex;
+   flex-direction: row;
+}
+.min-icon {
+   height: 30px;
+}
+.min-icon:hover {
+   cursor: pointer;
 }

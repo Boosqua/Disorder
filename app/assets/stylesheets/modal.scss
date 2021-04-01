@@ -41,6 +41,12 @@
 
    border-radius: 10px;
 }
+.modalbuttonrow {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   width: inherit;
+}
 .modalbutton {
    background-color: #7289da;
    padding: 6px;

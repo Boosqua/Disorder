@@ -181,6 +181,13 @@ export default function Header(props){
             <div className="httt">
             {channelName}
             </div>
+            <div className="headerbuttonscontainter">
+               {
+                  id === "@me" ?
+                  null :
+                  <img className="min-icon" src={window.min} alt="" onClick={() => props.setCollapse(!props.collapse)}/>
+               }
+            </div>
          </div>
       </div>
    )

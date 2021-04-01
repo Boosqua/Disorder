@@ -110,17 +110,26 @@ export default function FriendList(props) {
                      <br />
                      {
                         modal.selectedUser.requestId ?
-                        <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
-                           destroyFriendRequest(modal.selectedUser.requestId)(dispatch)
-                           props.channel.send({friendAId: modal.selectedUser.id, friendBId: id})
-                           setModal({show: false, position: null, selectedUser: null })
-                        }}>
+                        <div className="modalbuttonrow">
+                           <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
+                              destroyFriendRequest(modal.selectedUser.requestId)(dispatch)
+                              props.channel.send({friendAId: modal.selectedUser.id, friendBId: id})
+                              setModal({show: false, position: null, selectedUser: null })
+                           }}>
                            Accept
-                        </div> :
+                           </div>
+                           <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
+                              destroyFriendRequest(modal.selectedUser.requestId)(dispatch)
+                              setModal({show: false, position: null, selectedUser: null })
+                           }}>
+                           Decline
+                           </div>
+                        </div> 
+                        :
                         <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
                            destroyFriend(modal.selectedUser.friendshipId)(dispatch)
-                           dispatch(receiveCurrentChannel(null))
                            props.setChannelChange(Math.random())
+                           dispatch(receiveCurrentChannel(null))
                            setModal({show: false, position: null, selectedUser: null })
                         }}>
                            Remove Friend

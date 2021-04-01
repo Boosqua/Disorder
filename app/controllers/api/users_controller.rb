@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
       end
    end
    def index 
-      @users = User.all
+      @users = current_user.grab_users || []
       render :index
    end
    def show

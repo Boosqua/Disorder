@@ -3,7 +3,7 @@
    height: 100vh;
    width: 100vw;
    grid-template-columns: 3fr 6fr 33fr 0fr;
-   grid-template-rows: 2fr 22fr 2fr;
+   grid-template-rows: 2fr 20fr 1fr;
    grid-template-areas: 
    "sidebar header header header"
    "sidebar server messages members"
@@ -21,7 +21,6 @@
    grid-area: messages;
 }
 .members {
-
    grid-area: members;
 }
 .container-hm > .members {
