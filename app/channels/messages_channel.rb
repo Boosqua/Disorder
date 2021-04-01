@@ -1,16 +1,17 @@
 class MessagesChannel < ApplicationCable::Channel
    def subscribed
+
       if params[:type] == "friendship"
-         stream_for "server_Friend#{params[:id]}"
+         stream_from "server_Friend#{params[:id]}"
       elsif params[:id]
          @user = User.find(params[:id])
          @channels = @user.channels
          @channels.each do |channel| 
-            stream_for "server_Channel#{channel.id}"
+            stream_from "server_Channel#{channel.id}"
          end
          @friends = @user.friendship_as + @user.friend_bs
          @friends.each do |channel| 
-            stream_for "server_Friend#{channel.id}"
+            stream_from "server_Friend#{channel.id}"
          end
       end
    end
@@ -23,7 +24,7 @@ class MessagesChannel < ApplicationCable::Channel
       }
 
       savedMessage = Message.create!(message)
-      MessagesChannel.broadcast_to("server_#{savedMessage.imageable_type}#{savedMessage.imageable_id}", savedMessage)
+      # MessagesChannel.broadcast_to("server_#{savedMessage.imageable_type}#{savedMessage.imageable_id}", savedMessage)
    end
    def unsubscribed
       # Any cleanup needed when channel is unsubscribed

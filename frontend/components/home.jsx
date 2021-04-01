@@ -11,7 +11,7 @@ import {fetchUsers} from "../actions/user_actions"
 import { fetchFriends, fetchFriendRequests, receiveFriend, receiveFriendRequest } from "../actions/friend_actions"
 import { useSelector, useDispatch } from 'react-redux';
 import MessageInput from "./messages/message_input"
-import {receiveMessage} from '../actions/message_actions'
+import {receiveMessage, fetchMessage} from '../actions/message_actions'
 import ServerMembers from "./server_members"
 import FriendList from "./friend_list"
 export default function Home(props) {
@@ -31,7 +31,11 @@ export default function Home(props) {
    },
    {
       received: (data) => {
-         dispatch(receiveMessage(data))
+         if(!data.photoUrl){
+            dispatch(receiveMessage(data))
+         } else {
+            fetchMessage(data.imageable_id, data.id)(dispatch)
+         }
       },
    })
 
@@ -57,7 +61,11 @@ export default function Home(props) {
          },
          {
             received: (data) => {
-               dispatch(receiveMessage(data))
+               if(!data.photoUrl){
+                  dispatch(receiveMessage(data))
+               } else {
+                  fetchMessage(data.imageable_id, data.id)(dispatch)
+               }
             },
          })
          dispatch(receiveFriend(data))
