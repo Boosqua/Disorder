@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { createEditor, Editor  } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import ImageUpload from "./image_upload"
-import { createMessage} from "../actions/message_actions"
+import { createMessage} from "../../actions/message_actions"
 export default function MessageInput(props) {
    const dispatch = useDispatch()
    const {id} = useParams()

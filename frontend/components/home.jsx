@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import {useParams} from "react-router-dom"
-import ServersIndex from './servers/servers_index';
+import ServersIndex from './servers_index';
 import Server from "./server"
 import Header from "./header.jsx"
-import Messages from './messages'
+import Messages from './messages/messages'
 import {fetchServers} from "../actions/server_actions"
 import {fetchChannels} from "../actions/channel_actions"
 import {fetchMessages} from "../actions/message_actions"
 import {fetchUsers} from "../actions/user_actions"
-
 import { fetchFriends, fetchFriendRequests, receiveFriend, receiveFriendRequest } from "../actions/friend_actions"
 import { useSelector, useDispatch } from 'react-redux';
-import MessageInput from "./message_input"
+import MessageInput from "./messages/message_input"
 import {receiveMessage} from '../actions/message_actions'
 import ServerMembers from "./server_members"
 import FriendList from "./friend_list"
@@ -47,6 +46,16 @@ export default function Home(props) {
    },
    {
       received: (data) => {
+         App.cable.subscriptions.create({
+            channel: 'MessagesChannel',
+            type: "friendship",
+            id: data.id
+         },
+         {
+            received: (data) => {
+               dispatch(receiveMessage(data))
+            },
+         })
          dispatch(receiveFriend(data))
       }
    })
@@ -58,7 +67,6 @@ export default function Home(props) {
       .then(() => fetchFriends()(dispatch))
       .then(() => fetchFriendRequests()(dispatch))
       .then(() => setLoaded(true))
-
    }, [])
 
    const path = useParams().id
@@ -70,6 +78,7 @@ export default function Home(props) {
                </div>
                <Header channel={friendRequestsChannel} setCollapse={setCollapse}
                collapse={collapse}/>
+
                { 
                   path === "@me" ? 
                   <FriendList setChannelChange={setChannelChange}channel={friendChannel}/> : 
@@ -79,7 +88,7 @@ export default function Home(props) {
                   <Messages channelChange={channelChange}/>
 
                <MessageInput key={channelChange}messageChannel={messageChannel} setChannelChange={setChannelChange} channel={channelChange}/>
-{
+               {
                   path === "@me" ? 
                   null : 
                   <ServerMembers channel={friendRequestsChannel}/>

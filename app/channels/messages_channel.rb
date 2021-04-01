@@ -1,6 +1,8 @@
 class MessagesChannel < ApplicationCable::Channel
    def subscribed
-      if params[:id]
+      if params[:type] == "friendship"
+         stream_for "server_Friend#{params[:id]}"
+      elsif params[:id]
          @user = User.find(params[:id])
          @channels = @user.channels
          @channels.each do |channel| 

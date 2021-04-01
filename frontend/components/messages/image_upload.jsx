@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import Modal from "./reusable/modal"
+import Modal from "../reusable/modal"
 export default function testing(props){
    const [modal, setModal] = useState(!!props.image.imageUrl)
    return (

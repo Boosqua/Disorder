@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Messages from "./messages"
+import Messages from "./messages/messages"
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from "react-router"
 import {receiveCurrentChannel} from "../actions/server_actions"

@@ -49,7 +49,8 @@
 .ibi, .ibi > img {
    height:inherit;
    width:inherit;
-   animation : spin 5s linear 10;
+   animation : spin 5s linear 1;
+
 }
 #link:hover {
   cursor: pointer;
