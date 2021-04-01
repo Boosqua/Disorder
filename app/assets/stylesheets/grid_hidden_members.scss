@@ -7,7 +7,8 @@
    grid-template-areas: 
    "sidebar header header header"
    "sidebar server messages members"
-   "sidebar server input members"
+   "sidebar server input members";
+   transition: 0.5s ease 0s;
 }
 .header{
    grid-area: header;
@@ -22,6 +23,7 @@
 }
 .members {
    grid-area: members;
+   transition: 0.5s ease 0s;
 }
 .container-hm > .members {
    display:none;

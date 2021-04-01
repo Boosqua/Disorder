@@ -20,7 +20,6 @@ export default function Messages(props){
       }
    })
    const currentUser = useSelector( (state) => state.session.currentUser )
-   const defaultUserImages = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon]
    const messagesEnd = useRef(null);
    useEffect(() => {
       messagesEnd.current.scrollIntoView({ behavior: "auto" });
@@ -47,8 +46,8 @@ export default function Messages(props){
    const messages = useSelector(state => {
       if(serverId !== "@me"){
          return state.entities.messages.Channel[channel.id] ? Object.values(state.entities.messages.Channel[channel.id]) : [] 
-      } else if (state.entities.messages.Friend[state.entities.users[channel.id]]){
-         return Object.values(state.entities.messages.Friend[state.entities.users[channel.id].friendshipId])
+      } else if (channel.id && state.entities.users[channel.id].friendshipId){
+         return state.entities.messages.Friend[state.entities.users[channel.id].friendshipId] ? Object.values(state.entities.messages.Friend[state.entities.users[channel.id].friendshipId]) : []
       } else {
          return [];
       }

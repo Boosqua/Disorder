@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :api, { format: :json } do 
-
+   resources :search, only: :show
     resources :users
     resources :friend_requests
     resources :friends

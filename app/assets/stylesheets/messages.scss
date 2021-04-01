@@ -72,11 +72,14 @@
    flex-direction: row-reverse;
 
 }
-
+#hover:hover .delete-text{
+   display: block;
+}
 .delete-text {
    font-size: 10px;
    color: #7a858b;
    font-style: italic;
+   display: none;
 
 }
 .delete-text:hover {

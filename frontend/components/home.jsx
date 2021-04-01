@@ -64,7 +64,7 @@ export default function Home(props) {
    const path = useParams().id
       return (
          loaded ?
-            <div className={path === "@me" || collapse ?"container-hm" : "container"}>
+            <div className={path === "@me" || collapse ? "container-hm" : "container"}>
                <div className="sidebar">
                <ServersIndex/>
                </div>

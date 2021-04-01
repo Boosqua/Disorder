@@ -29,9 +29,27 @@
    overflow: hidden;
    text-overflow: ellipsis;
 }
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .ibi, .ibi > img {
    height:inherit;
    width:inherit;
+   animation : spin 5s linear 10;
 }
 #link:hover {
   cursor: pointer;
