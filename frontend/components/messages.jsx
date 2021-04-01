@@ -37,10 +37,10 @@ export default function Messages(props){
    const channelName = {
       name: "", firstMessage: ""
       }
-   let allMessages1;
 
-      channelName.name = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}'s Messages`;
-      channelName.firstMessage = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}`;
+
+   channelName.name = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}'s Messages`;
+   channelName.firstMessage = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}`;
 
 
 
