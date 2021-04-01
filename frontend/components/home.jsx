@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useParams} from "react-router-dom"
+import {useParams, useHistory} from "react-router-dom"
 import ServersIndex from './servers_index';
 import Server from "./server"
 import Header from "./header.jsx"
@@ -17,9 +17,14 @@ import FriendList from "./friend_list"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
+   const history = useHistory()
    const [collapse, setCollapse] = useState(false)
    const [channelChange, setChannelChange] = useState(1)
-   const id = useSelector(state => state.session.currentUser.id)
+   const [id, servers] = useSelector(state => {
+      const id = state.session.currentUser.id
+      const servers = state.entities.servers
+      return [id, servers]
+   })
 
    const messageChannel = App.cable.subscriptions.create({
       channel: 'MessagesChannel',

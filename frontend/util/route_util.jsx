@@ -7,24 +7,29 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
    path={path}
    exact={exact}
    render={ props =>
-      !loggedIn ?  <Component {...props} /> : <Redirect to="/server/@me" />
+      !loggedIn  ?  <Component {...props} /> : <Redirect to="/server/@me" />
    }
    />
 );
 
-const Protected = ({ loggedIn, path, component: Component }) => {
+const Protected = ({ loggedIn, servers, match, path, component: Component }) => {
 
 return (
    <Route 
       path={path}
-      render={props =>(
-         loggedIn ? <Component {...props} /> : <Redirect to="/login" />
-      )}
+      render={props =>{
+         const id = props.match.params.id
+         if( id!== "@me" && !servers[id] && loggedIn ){
+
+            return <Redirect to="/servers/@me" />
+         }
+         return loggedIn ? <Component {...props} /> : <Redirect to="/login" />
+      }}
    />
 )}
 
 const mapStateToProps = state => {
-   return { loggedIn: Boolean(state.session.currentUser) };
+   return { loggedIn: Boolean(state.session.currentUser), servers: state.entities.servers };
 };
 
 export const AuthRoute = withRouter(
