@@ -10,14 +10,17 @@
    font-weight:500;
 }
 .arrow {
-   // margin-top: 1px;
-   margin-right: 5px;
-   width: 5%;
-   transform: rotate(90deg);
+    margin-right: 10px;
+    width: 5%;
+    transform: rotate(90deg);
+    margin-top: -5px;
+    margin-left: -1px;
 }
 .arrowr {
    margin-right: 5px;
    width: 5%;
+   margin-left: -1px;
+   margin-top: -1px;
 }
 .tch{
    width: 80%;

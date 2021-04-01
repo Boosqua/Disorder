@@ -37,7 +37,10 @@
     opacity: 0.5;
   }
 }
-
+.serverPhoto {
+   width: 110%;
+   height: 100%;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);

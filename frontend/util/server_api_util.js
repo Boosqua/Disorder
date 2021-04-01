@@ -19,11 +19,13 @@ export const createServer = (userId, server) => (
    })
 )
 
-export const updateServer = (userId, server) => (
+export const updateServer = (userId, serverId, server) => (
    $.ajax({
-      url: `/api/users/${userId}/servers/${server.id}`,
+      url: `/api/users/${userId}/servers/${serverId}`,
       method: 'PATCH',
-      data: { server }
+      data: server,
+      contentType: false,
+      processData: false,
    })
 )
 

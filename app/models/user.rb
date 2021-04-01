@@ -131,6 +131,9 @@ class User < ApplicationRecord
          newServer[:image] = server[:image]
          newServer[:name] = server[:name]
          newServer[:members] = server.members.map { |member| member.id }
+         if server.photo.attached?
+            newServer[:photoUrl] = server.photo
+         end
          newServer
       end
       sent_servers
@@ -149,6 +152,9 @@ class User < ApplicationRecord
       sent_server[:image] = server[:image]
       sent_server[:name] = server[:name]
       sent_server[:members] = server.members.map { |member| member.id }
+      if server.photo.attached?
+         sent_server[:photoUrl] = server.photo
+      end
       sent_server
    end
 

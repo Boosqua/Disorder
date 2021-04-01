@@ -58,11 +58,10 @@ export default function MessageInput(props) {
          setImage({ imageUrl: reader.result, imageFile: file });
 
       }
-
       if (file) {
          reader.readAsDataURL(file);
       } else {
-         this.setState({ imageUrl: "", imageFile: null });
+         setImage({ imageUrl: "", imageFile: null });
       }
    }
 

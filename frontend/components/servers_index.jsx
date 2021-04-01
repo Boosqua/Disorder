@@ -79,8 +79,9 @@ export default function ServersIndex(props) {
                            height={"60px"}
                            width={"60px"}
                            selected={"true"}
-                           image={server.image}
+                           image={server.photoUrl}
                            text={server.name}
+                           serverPhoto={Boolean(server.photoUrl)}
                            />
                      </div>
                   } else {
@@ -90,8 +91,9 @@ export default function ServersIndex(props) {
                            width={"60px"}
                            link={"true"}
                            onHover={"true"}
-                           image={server.image}
+                           image={server.photoUrl}
                            text={server.name}
+                           serverPhoto={Boolean(server.photoUrl)}
                            />
                      </Link>
                   }

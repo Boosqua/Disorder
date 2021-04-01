@@ -17,13 +17,12 @@ import FriendList from "./friend_list"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
-   const history = useHistory()
    const [collapse, setCollapse] = useState(false)
    const [channelChange, setChannelChange] = useState(1)
-   const [id, servers] = useSelector(state => {
+   const [id] = useSelector(state => {
       const id = state.session.currentUser.id
       const servers = state.entities.servers
-      return [id, servers]
+      return [id]
    })
 
    const messageChannel = App.cable.subscriptions.create({

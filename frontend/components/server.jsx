@@ -10,11 +10,12 @@ export default function Server(props){
 
    const dispatch = useDispatch()
    const [collapse, setCollapse] = useState(false)
-   const channels = useSelector(state => {
-      if( id !== "@me" ){
-         return state.entities.channels[id]
-      }
+   const [channels, ownedServer] = useSelector(state => {
+         const channels =  state.entities.channels[id]
+         const ownedServer = state.entities.servers[id].owner_id === state.session.currentUser.id
+         return [channels, ownedServer]
    })
+   console.log(ownedServer)
    const [contextModalChannel, setContextModalChannel] = useState(null)
    const [newChannelName, setNewChannelName] = useState("")
    const [contextModal, setContextModal] = useState(false)
@@ -28,10 +29,12 @@ export default function Server(props){
    
    function handleContext(channel){
       return (e) => {
-         e.preventDefault()
-         setModalPos({x: e.clientX, y: e.clientY})
-         setContextModal(true)
-         setContextModalChannel(channel)
+         if( ownedServer ){
+            e.preventDefault()
+            setModalPos({x: e.clientX, y: e.clientY})
+            setContextModal(true)
+            setContextModalChannel(channel)
+         }
       }
    }
 
@@ -167,13 +170,16 @@ export default function Server(props){
             <div className={collapse ? "arrowr" : "arrow"}> {">"} </div>
                 Text Channels
          </div>
-         <div className="addChannel"
-         onClick={(e) => {
-            setModalPos({x: e.clientX, y: e.clientY})
-            setChannelModal(true)
-         }}>
-            +
-         </div>
+
+               <div className="addChannel"
+               onClick={(e) => {
+                  setModalPos({x: e.clientX, y: e.clientY})
+                  setChannelModal(true)
+               }}>
+                  +
+               </div>
+
+         
          <Modal show={addChannelModal} position={modalPos} closeModal={setChannelModal}>
             
             <div className="inputform">

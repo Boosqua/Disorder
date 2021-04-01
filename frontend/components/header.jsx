@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useRef, useState} from "react"
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from "react-router"
 import {Link} from "react-router-dom"
@@ -7,13 +7,14 @@ import {deleteServerMember, updateServer, deleteServer} from "../actions/server_
 import Modal from "./reusable/modal"
 export default function Header(props){
    const {id} = useParams()
+   const imageUpload = useRef(null)
    const dispatch = useDispatch()
    const [serverModal, setServerModal] = useState(false)
    const [nestedModal, setNestedModal] = useState(false)
    const [nestedModalType, setNestedModalType] = useState("")
    const [modalPos, setModalPos] = useState(null)
    const [nestedPos, setNestedPos] = useState(null)
-   
+   const [image, setImage] = useState({imageUrl: null, imageFile: null})
    const userId = useSelector(state => state.session.currentUser.id)
    const server = useSelector((state) => {
       if(id === "@me") {
@@ -22,9 +23,19 @@ export default function Header(props){
          return state.entities.servers[id]
       }
    })
-   
+   function handleUpload(e) {
+      const reader = new FileReader();
+      const file = e.currentTarget.files[0]; 
+      if (file) {
+         reader.readAsDataURL(file);
+         const updatedServer = new FormData()
+         updatedServer.append( 'server[id]', server.id)
+         updatedServer.append( 'server[photo]', file)
+         updateServer(userId, server.id, updatedServer)(dispatch)
+      } 
+   }
    const pageName = server.name ? server.name : server
-   const [newServerName, setNewServerName] = useState(pageName)
+   const [newServerName, setNewServerName] = useState("")
    const ownedServer = useSelector(state => state.session.currentUser.id) === server.owner_id
    function nestedContent() {
       switch (nestedModalType) {
@@ -34,8 +45,9 @@ export default function Header(props){
                         <form 
                            onSubmit={(e)=> {
                               e.preventDefault()
-                              let updatedServer = Object.assign(server,{name: newServerName})
-                              updateServer(updatedServer.owner_id, updatedServer)(dispatch)
+                              const updatedServer = new FormData()
+                              updatedServer.append("server[name]", newServerName)
+                              updateServer(server.owner_id, server.id, updatedServer)(dispatch)
                               setNewServerName("")
                               setNestedModal(false)
                               setServerModal(false)
@@ -92,7 +104,8 @@ export default function Header(props){
                </div>
                <div className="inputformrow"
                   onClick={(e)=> {
-                     alert('Feature not ready')
+                     imageUpload.current.click()
+                     setServerModal(false)
                   }}>
                      <div className="inputformsection" id="highlight">
                         Update Server Image
@@ -102,7 +115,13 @@ export default function Header(props){
                   server.image || true?
                   <div className="inputformrow"
                   onClick={(e)=> {
-                     alert('Feature not ready')
+                     const updatedServer = new FormData()
+                     updatedServer.append("server[deletePhoto]", true)
+                     updatedServer.append("server[id]", server.id)
+                     updateServer(userId, server.id, updatedServer)(dispatch)
+                     setNestedModal(false)
+                     setServerModal(false)
+                     setNestedModalType("")
                   }}>
                      <div className="inputformsection" id="highlight" style={{color: "red"}}>
                         Delete Server Image
@@ -189,6 +208,11 @@ export default function Header(props){
                }
             </div>
          </div>
+         <input type="file"
+            style={ {display: 'none'} }
+            ref={imageUpload}
+            onChange={e => handleUpload(e)}
+         />
       </div>
    )
 }

@@ -20,7 +20,6 @@ return (
       render={props =>{
          const id = props.match.params.id
          if( id!== "@me" && !servers[id] && loggedIn ){
-
             return <Redirect to="/servers/@me" />
          }
          return loggedIn ? <Component {...props} /> : <Redirect to="/login" />

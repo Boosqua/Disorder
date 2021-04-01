@@ -50,8 +50,8 @@ export const createServer = (userId, server) => dispatch => (
       .then( server => dispatch(receiveServer(server)))
       .fail(errors => dispatch(receiveErrors(errors)))
 )
-export const updateServer = (userId, server) => dispatch => (
-   APIUtil.updateServer(userId, server)
+export const updateServer = (userId, serverId, server) => dispatch => (
+   APIUtil.updateServer(userId, serverId, server)
       .then( server => dispatch(receiveServer(server)))
       .fail(errors => dispatch(receiveErrors(errors)))
 )

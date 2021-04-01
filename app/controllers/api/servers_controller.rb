@@ -27,7 +27,12 @@ class Api::ServersController < ApplicationController
    end
    def update
       server = Server.find(params[:id])
-      if false # || current_user == nil || server.owner_id != current_user.id
+      if params[:server][:deletePhoto]
+         server.photo.delete
+         user = User.find(params[:user_id])
+         @server = user.grab_server(server.id)
+         render :show
+      elsif false # || current_user == nil || server.owner_id != current_user.id
          render json: ['You do not have access to update this server'], status: 404
       elsif server.update(server_params)
          user = User.find(params[:user_id])
@@ -51,6 +56,6 @@ class Api::ServersController < ApplicationController
    end
    private 
    def server_params
-      params.require(:server).permit(:name, :image)
+      params.require(:server).permit(:name, :image, :photo)
    end
 end

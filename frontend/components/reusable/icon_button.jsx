@@ -31,7 +31,7 @@ export default class Testing extends Component {
             <div className={this.props.image ? "ibi" : "ibt"}>
                {
                   this.props.image ? 
-                     <img src={this.props.image}/> :
+                     <img className={this.props.serverPhoto ? "serverPhoto" : ""}src={this.props.image}/> :
                      this.props.text
                }
             </div>
