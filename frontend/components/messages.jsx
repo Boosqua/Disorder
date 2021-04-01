@@ -42,13 +42,17 @@ export default function Messages(props){
       channelName.name = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}'s Messages`;
       channelName.firstMessage = channel && serverId !== '@me' ? channel.name : `${currentUser.username} and ${channel.username}`;
 
-      if( serverId !== "@me" ){
-         allMessages1 = channel ? useSelector( state => state.entities.messages.Channel[channel.id] ? Object.values(state.entities.messages.Channel[channel.id]) : []) : []
-      } else {
-         allMessages1 = channel ? useSelector( state => state.entities.messages.Friend[state.entities.users[channel.id].friendshipId] ? Object.values(state.entities.messages.Friend[state.entities.users[channel.id].friendshipId]) : []) : []
-      }
 
-   const messages = allMessages1
+
+   const messages = useSelector(state => {
+      if(serverId !== "@me"){
+         return state.entities.messages.Channel[channel.id] ? Object.values(state.entities.messages.Channel[channel.id]) : [] 
+      } else if (state.entities.messages.Friend[state.entities.users[channel.id]]){
+         return Object.values(state.entities.messages.Friend[state.entities.users[channel.id].friendshipId])
+      } else {
+         return [];
+      }
+   })
 
    return (
       channel && (channel.name || channel.username)? 

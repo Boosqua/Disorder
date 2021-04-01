@@ -11,7 +11,7 @@ export default function MessageInput(props) {
    const channelId = useSelector(state => {
       let channelId = state.session.channelId
       if(id === "@me") {
-         return state.entities.users[channelId].friendshipId
+         return state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
       }
       return channelId
    })
