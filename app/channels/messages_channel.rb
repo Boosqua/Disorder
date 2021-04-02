@@ -1,6 +1,5 @@
 class MessagesChannel < ApplicationCable::Channel
    def subscribed
-
       if params[:type] == "friendship"
          stream_from "server_Friend#{params[:id]}"
       elsif params[:id]
@@ -24,9 +23,8 @@ class MessagesChannel < ApplicationCable::Channel
       }
 
       savedMessage = Message.create!(message)
-      # MessagesChannel.broadcast_to("server_#{savedMessage.imageable_type}#{savedMessage.imageable_id}", savedMessage)
    end
    def unsubscribed
-      # Any cleanup needed when channel is unsubscribed
+
    end
 end

@@ -15,7 +15,7 @@ export default function Server(props){
          const ownedServer = state.entities.servers[id].owner_id === state.session.currentUser.id
          return [channels, ownedServer]
    })
-   console.log(ownedServer)
+
    const [contextModalChannel, setContextModalChannel] = useState(null)
    const [newChannelName, setNewChannelName] = useState("")
    const [contextModal, setContextModal] = useState(false)
@@ -114,6 +114,7 @@ export default function Server(props){
                            }}>
                            <input
                               type="text" 
+                              className="modalinputtext"
                               value={newChannelName} 
                               onChange={(e) => {
                                  setNewChannelName(e.target.value)
@@ -186,7 +187,7 @@ export default function Server(props){
                <div className="inputformrow">
                <div className="inputformsection">Add Channel:</div>
                <form onSubmit={handleSubmit}>
-               <input type="text" value={newChannelName} onChange={(e) => setNewChannelName(e.target.value)}/>
+               <input type="text" className="modalinputtext"value={newChannelName} onChange={(e) => setNewChannelName(e.target.value)}/>
                </form>
                </div>
             </div>

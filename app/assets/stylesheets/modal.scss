@@ -21,13 +21,16 @@
    z-index: 5;
 }
 .inputform {
-   background: black;
-   border-radius: 15px;
+   background: #262525;
+   border-radius: 10px;
    border: 1px solid #2d3536;
-   padding: 20px;
+   padding: 12px;
    display: flex;
    flex-direction: column;
    justify-content: center;
+}
+.modalinputtext {
+   margin-top: 5px;
 }
 .inputformrow {
    display: flex;

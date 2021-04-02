@@ -6,7 +6,12 @@ import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
 export default function ServerMembers(props){
    const serverId = parseInt(useParams().id)
-   const ownerId = useSelector( state => state.entities.servers[serverId].owner_id)
+   const [ownerId, channelSub] = useSelector( state => {
+      const ownerId = state.entities.servers[serverId].owner_id;
+      const channelSub = state.actioncable.friendRequestsChannel
+      return [ownerId, channelSub]
+   })
+
    const [modal, setModal] = useState({show: false, position: null, selectedUser: null })
    const [modalText, setModalText] = useState("")
    function getModalText() {
@@ -25,7 +30,7 @@ export default function ServerMembers(props){
                         requester_id: currentUserId,
                         receiver_id: modal.selectedUser.id,
                      }
-                     props.channel.send(friendRequest)
+                     channelSub.send(friendRequest)
                   }}
                   >
                      send friend request

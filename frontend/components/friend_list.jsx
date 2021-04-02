@@ -7,7 +7,7 @@ import { receiveCurrentChannel } from "../actions/server_actions";
 
 export default function FriendList(props) {
    const dispatch = useDispatch()
-   const friends = useSelector( state => {
+   const [friends, channel] = useSelector( state => {
       const friendships = Object.values(state.entities.friends).sort((a,b) => {
          let timeA = a.last_message; 
          let timeB = b.last_message; 
@@ -28,7 +28,8 @@ export default function FriendList(props) {
          friend.friendshipId = friendship.id
          return friend
       })
-      return friends
+      const channel = state.actioncable.friendChannel;
+      return [friends, channel]
    })
    if( !useSelector( state => state.session.channelId ) && friends.length > 0){
       dispatch(receiveCurrentChannel(friends[0].id))
@@ -113,7 +114,7 @@ export default function FriendList(props) {
                         <div className="modalbuttonrow">
                            <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
                               destroyFriendRequest(modal.selectedUser.requestId)(dispatch)
-                              props.channel.send({friendAId: modal.selectedUser.id, friendBId: id})
+                              channel.send({friendAId: modal.selectedUser.id, friendBId: id})
                               setModal({show: false, position: null, selectedUser: null })
                            }}>
                            Accept

@@ -9,7 +9,8 @@ class MessageJob < ApplicationJob
             author_id: data['author_id'], 
             body: data['body'], 
             imageable_id: data['imageable_id'],
-            imageable_type: data["imageable_type"]
+            imageable_type: data["imageable_type"],
+            created_at: data['created_at']
          }
          new_message[:photoUrl] =  data.photo.attached?
          ActionCable.server.broadcast("server_#{new_message[:imageable_type]}#{new_message[:imageable_id]}", new_message)

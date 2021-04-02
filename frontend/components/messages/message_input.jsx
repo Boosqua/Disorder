@@ -8,12 +8,13 @@ import { createMessage} from "../../actions/message_actions"
 export default function MessageInput(props) {
    const dispatch = useDispatch()
    const {id} = useParams()
-   const channelId = useSelector(state => {
+   const [channelId, messagesChannel] = useSelector(state => {
       let channelId = state.session.channelId
       if(id === "@me") {
-         return state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
+         channelId = state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
       }
-      return channelId
+      const messagesChannel = state.actioncable.messages
+      return [channelId, messagesChannel]
    })
    const editor = useMemo(() => withReact(createEditor()), [])
    const [image, setImage] = useState({imageUrl: null, imageFile: null})
@@ -47,7 +48,7 @@ export default function MessageInput(props) {
             body: value[0].children[0].text
          }
          editor.deleteBackward("block")
-         props.messageChannel.send(messageObject)
+         messagesChannel.send(messageObject)
       }
       
    }
