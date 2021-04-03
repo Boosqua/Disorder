@@ -7,7 +7,14 @@ class Api::FriendsController < ApplicationController
          render json: ["not logged in"]
       end
    end
-
+   def show
+      @friend = Friend.find(params[:id])
+      if @friend
+         render :show
+      else 
+         render json: ["friend not found"]
+      end
+   end
    def create
       @friendship = Friend.new(friend_params)
       if @friendship.save

@@ -14,6 +14,18 @@ class MessageJob < ApplicationJob
          }
          new_message[:photoUrl] =  data.photo.attached?
          ActionCable.server.broadcast("server_#{new_message[:imageable_type]}#{new_message[:imageable_id]}", new_message)
+         if new_message[:imageable_type] == "Friend"
+            friendship = Friend.find(new_message[:imageable_id])
+            friend = {
+               id: friendship[:id],
+               friend_a_id: friendship[:friend_a_id],
+               friend_b_id: friendship[:friend_b_id],
+               last_message: friendship[:last_message],
+               old: true
+            }
+            ActionCable.server.broadcast("friends_#{friend[:friend_a_id]}", friend)
+            ActionCable.server.broadcast("friends_#{friend[:friend_b_id]}", friend)
+         end
       end
   end
 end

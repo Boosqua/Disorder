@@ -42,6 +42,7 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
             }
          },
       })
+
    const friendRequestsChannel = App.cable.subscriptions.create(
      {
        channel: "FriendRequestsChannel",
@@ -53,6 +54,7 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
        },
      }
    );
+
    const friendChannel = App.cable.subscriptions.create(
      {
        channel: "FriendsChannel",
@@ -60,22 +62,25 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
      },
      {
        received: (data) => {
-         App.cable.subscriptions.create(
-           {
-             channel: "MessagesChannel",
-             type: "friendship",
-             id: data.id,
-           },
-           {
-             received: (data) => {
-               if (!data.photoUrl) {
-                 dispatch(receiveMessage(data));
-               } else {
-                 fetchMessage(data.imageable_id, data.id)(dispatch);
+          console.log(data)
+          if(!data.old){
+             App.cable.subscriptions.create(
+               {
+                 channel: "MessagesChannel",
+                 type: "friendship",
+                 id: data.id,
+               },
+               {
+                 received: (data) => {
+                   if (!data.photoUrl) {
+                     dispatch(receiveMessage(data));
+                   } else {
+                     fetchMessage(data.imageable_id, data.id)(dispatch);
+                   }
+                 },
                }
-             },
-           }
-         );
+             );
+          }
          dispatch(receiveFriend(data));
        },
      }

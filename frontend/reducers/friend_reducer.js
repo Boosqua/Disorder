@@ -9,7 +9,6 @@ export default (state = {}, action) => {
    let newState = Object.assign({}, state)
    switch (action.type) {
       case RECEIVE_FRIENDS:
-
          return action.friends;
       case RECEIVE_FRIEND:
          return Object.assign({}, state, {[action.friend.id]: action.friend})
