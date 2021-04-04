@@ -56,17 +56,20 @@ export default function MessageShow(props) {
             
             <div className="ummb">
                {
-                  !editing ? 
-                  (<div> 
-                     {props.message.body} 
-                  </div> )
-                  :
-                  (<SlateUpdate text={props.message.body} id={props.message.id} setEditing={setEditing}/>)
-
+                  props.message.photoUrl ? 
+                  null :
+                     !editing ? 
+                     (<div className="messagecontent"> 
+                        {props.message.body} 
+                     </div> )
+                     :
+                     (<div className="messagecontentedit"> 
+                     <SlateUpdate text={props.message.body} id={props.message.id} setEditing={setEditing}/>
+                     </div>)
                }
             
             {props.message.photoUrl ? 
-            <div className="modal-testing" >
+            <div className="messagecontent" >
                <img className={"imagetest"}src={props.message.photoUrl} alt=""/>
             </div>: null}
             {

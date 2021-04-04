@@ -74,7 +74,7 @@
 .delete-row{
    display: flex;
    flex-direction: row-reverse;
-   width: 100%;
+   width: 20%;
 }
 #hover:hover .delete-text{
    display: block;
@@ -101,9 +101,19 @@
    color: #dcddde;
    display: flex;
    flex-direction: row;
-
+   width: 100%;
 }
-
+.messagecontent, .messagecontentedit{
+   font-size: 1rem;
+   line-height: 1.375rem;
+   color: #dcddde;
+   width: 80%
+}
+.messagecontentedit {
+   padding: 5px;
+   background-color: #4e535a;
+   border-radius: 10px;
+}
 .date {
    color: #72767d;
    line-height: 1.5rem;
