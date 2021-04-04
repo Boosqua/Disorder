@@ -72,7 +72,7 @@ export default function ServerMembers(props){
          </div>
          {
             ServerMembers.map( (member, index) => {
-               const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][member.user_image]
+               const userImage = member.photo ? member.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][member.user_image]
                return (
                <div className="smc" key={index} onClick={(e) => { setModal({show:true, position:{x: e.clientX + 20, y: e.clientY }, selectedUser: member}) }}>
                   <div className="smci">
@@ -104,7 +104,7 @@ export default function ServerMembers(props){
                      </div>
                      <div className="inputformrow" style={{alignSelf: "center"}}>
 
-                     <IconButton height="50px" width="50px" image={[window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][modal.selectedUser.user_image]}/>
+                     <IconButton height="50px" width="50px" image={modal.selectedUser.photo ? modal.selectedUser.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][modal.selectedUser.user_image]}/>
                      </div>
                      <br />
                      {

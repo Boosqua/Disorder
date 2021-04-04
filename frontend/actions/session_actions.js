@@ -1,7 +1,7 @@
 import * as APIUtil from "../util/session_api_util";
 import {fetchServer} from '../util/server_api_util'
+import {updateUser, updateUserPhoto} from "../util/users_api_util"
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
-// export const RECEIVE_CURRENT_SERVER = 'RECEIVE_CURRENT_SERVER';
 export const RECEIVE_FRIEND_IDS = "RECEIVE_FRIEND_IDS";
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT-USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
@@ -75,3 +75,10 @@ export const filterFriendIds = (userId, friends) => (dispatch) => {
    })
    dispatch(receiveFriendIds(friendIds))
 }
+
+export const updateCurrentUser = (user) => (dispatch) => (
+   updateUser(user).then(user => dispatch(receiveCurrentUser(user)))
+)
+export const updateCurrentUserPhoto = (userId, user) => (dispatch) => (
+   updateUserPhoto(userId, user).then(user => dispatch(receiveCurrentUser(user)))
+)

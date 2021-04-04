@@ -7,7 +7,7 @@ export default function MessageShow(props) {
    const dispatch = useDispatch()
    const userId = props.message.author_id
    const user = useSelector( state => state.entities.users[userId])
-   const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
+   const userImage = user.photo ? user.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
    const userName = user.username
    const date = props.message.created_at ? props.message.created_at.split("-") : ""
    const currentUserId = useSelector( state => state.session.currentUser.id)

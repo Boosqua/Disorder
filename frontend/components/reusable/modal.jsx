@@ -19,6 +19,6 @@ export default function Modal(props){
    const style = x + y === 0 ? {} : Object.assign(xStyle, yStyle, {position: "absolute"})
 
    return props.show ? 
-      <div className="modal" onClick={handleModal}><span className="modalcontent" style={style}> {props.children} </span></div>
+      <div className="modal" onClick={handleModal}><span onClick={handleModal} className="modalcontent" style={style}> {props.children} </span></div>
       : null
 }

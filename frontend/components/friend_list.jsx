@@ -53,7 +53,7 @@ export default function FriendList(props) {
                      {`FRIEND REQUESTS - ${friendRequestors.length}`}
                   </div>
                   {friendRequestors.map( (friend, index) => {
-                     const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
+                     const userImage = friend.photo ? friend.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
                      return (
                         <div className="smc2" key={index} onClick={(e) => {
                            e.preventDefault()
@@ -74,7 +74,7 @@ export default function FriendList(props) {
             {`FRIENDS - ${friends.length}`}
          </div>
          {friends.map( (friend, index) => {
-            const userImage = [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
+            const userImage = friend.photo ? friend.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][friend.user_image]
                return (
                <div className={selectedId === friend.id ? "smc2s" : "smc2"} key={index}  onContextMenu={(e) => {
                   e.preventDefault()
@@ -106,7 +106,7 @@ export default function FriendList(props) {
                      </div>
                      <div className="inputformrow" style={{alignSelf: "center"}}>
 
-                     <IconButton height="50px" width="50px" image={[window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][modal.selectedUser.user_image]}/>
+                     <IconButton height="50px" width="50px" image={modal.selectedUser.photo ? modal.selectedUser.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][modal.selectedUser.user_image]}/>
                      </div>
                      <br />
                      {
