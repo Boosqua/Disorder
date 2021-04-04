@@ -74,7 +74,7 @@
 .delete-row{
    display: flex;
    flex-direction: row-reverse;
-
+   width: 100%;
 }
 #hover:hover .delete-text{
    display: block;
@@ -101,7 +101,7 @@
    color: #dcddde;
    display: flex;
    flex-direction: row;
-   justify-content: space-between;
+
 }
 
 .date {
