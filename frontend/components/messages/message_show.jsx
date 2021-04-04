@@ -73,16 +73,17 @@ export default function MessageShow(props) {
                <img className={"imagetest"}src={props.message.photoUrl} alt=""/>
             </div>: null}
             {
-            userId === currentUserId ? 
+            userId === currentUserId && !editing? 
             <div className="delete-row">
+               <div className="delete-text" onClick={ () => { deleteMessage(props.message)(dispatch)}}>delete</div>
+               <div className="delete-text" style={{fontStyle: "normal"}}>{" | "}</div>
             <div className="delete-text" onClick={() => {
                setEditing(true)
                console.log(editing)
                }} >
                edit
             </div>
-            <div className="delete-text" style={{fontStyle: "normal"}}>{" | "}</div>
-            <div className="delete-text" onClick={ () => { deleteMessage(props.message)(dispatch)}}>delete</div>
+            
             </div>
             : null
             }

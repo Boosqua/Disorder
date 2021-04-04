@@ -74,7 +74,7 @@
 .delete-row{
    display: flex;
    flex-direction: row-reverse;
-   width: 20%;
+   width: fit-content;
 }
 #hover:hover .delete-text{
    display: block;
@@ -87,14 +87,14 @@
 .delete-text {
    font-size: 10px;
    color: #7a858b;
-
    margin-left: 5px;
    display: none;
-
 }
+
 .delete-text:hover {
    cursor: pointer;
 }
+
 .ummb {
    font-size: 1rem;
    line-height: 1.375rem;
@@ -107,19 +107,24 @@
    font-size: 1rem;
    line-height: 1.375rem;
    color: #dcddde;
-   width: 80%
+   width: 100%
 }
+
 .messagecontentedit {
    padding: 5px;
    background-color: #4e535a;
    border-radius: 10px;
+   margin-top: 5px;
+   margin-bottom: 5px;
 }
+
 .date {
    color: #72767d;
    line-height: 1.5rem;
    font-size: .75rem;
    margin-left: 15px;
 }
+
 // message input
 .input {
    width: 100%;
