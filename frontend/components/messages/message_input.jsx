@@ -12,8 +12,13 @@ export default function MessageInput(props) {
       let channelId = state.session.channelId
       let channelName;
       if(id === "@me") {
+
          channelId = state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
-         channelName = state.entities.users[channelId] ? state.entities.users[channelId].username : null
+         let idA = state.entities.friends[channelId].friend_a_id
+         let idB = state.entities.friends[channelId].friend_b_id
+         channelName = idA === state.session.currentUser.id ? 
+            state.entities.users[idB].username : 
+            state.entities.users[idA].username
       } else {
          const channels = state.entities.channels[parseInt(id)]
          for( let i =  0; i < channels.length ; i++ ){
