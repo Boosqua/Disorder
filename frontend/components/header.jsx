@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams} from "react-router"
 import {Link} from "react-router-dom"
 import {deleteServerMember, updateServer, deleteServer} from "../actions/server_actions"
+import User from "./user"
 
 import Modal from "./reusable/modal"
 export default function Header(props){
@@ -14,8 +15,10 @@ export default function Header(props){
    const [nestedModalType, setNestedModalType] = useState("")
    const [modalPos, setModalPos] = useState(null)
    const [nestedPos, setNestedPos] = useState(null)
+   const [userOptions, setUserOptions] = useState(false)
    const [image, setImage] = useState({imageUrl: null, imageFile: null})
-   const userId = useSelector(state => state.session.currentUser.id)
+   const user = useSelector(state => state.session.currentUser)
+   const userId = user.id
    const server = useSelector((state) => {
       if(id === "@me") {
          return state.session.currentUser.username
@@ -188,12 +191,16 @@ export default function Header(props){
             {modalContent()}
          </Modal>
          <div className="ht" onClick={ (e) => {
-            if (id === "@me") return
-            setModalPos({x: e.clientX, y: e.clientY})
-            setServerModal(true)
+            if (id === "@me") {
+               setUserOptions(true)
+            } else {
+               setModalPos({x: e.clientX, y: e.clientY})
+               setServerModal(true)
+            }
          }}>
             <div className="htt">
             {pageName}
+            
             </div>
          </div>
          <div className="hc">
@@ -213,6 +220,11 @@ export default function Header(props){
             ref={imageUpload}
             onChange={e => handleUpload(e)}
          />
+            {
+               id === "@me" ?
+               <User setUserOptions={setUserOptions} userOptions={userOptions} user={user} /> : 
+               null
+            }
       </div>
    )
 }

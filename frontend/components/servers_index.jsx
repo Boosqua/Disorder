@@ -61,8 +61,8 @@ export default function ServersIndex(props) {
                   height={"60px"}
                   width={"60px"}
                   selected={id === "@me"}
-                  onHover={id != "@me"}
-                  link={id != "@me"}
+                  onHover={id !== "@me"}
+                  link={id !== "@me"}
                   image={window.homeIconURL}
                   alert={alert}
                   />

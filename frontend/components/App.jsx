@@ -8,6 +8,7 @@ import Testing from './testing';
 
 const App = () => (
    <Switch>
+      <Route exact path="/testing" component={Testing} />
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <ProtectedRoute main path="/server/:id" component={Home} />

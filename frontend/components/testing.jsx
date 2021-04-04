@@ -12,15 +12,9 @@ export default function testing(){
    return (
       <div>
          <button onClick={() => setModal(true)}>click for image</button>
-      <Modal show={modal} closeModal={ () => console.log("hahah") }>
-         <div className="imagemc">
-            <div className="modal-testing" onClick={() => setModal(false)}>
-               <img className={"imagetest"}src="https://cdn.pixabay.com/photo/2020/12/23/11/50/lavender-5854761_1280.jpg" alt=""/>
-            </div>
-            <div className="button-container">
-
-            <div className="modalbutton">confirm</div><div className="modalbutton">cancel</div>
-            </div>
+      <Modal show={modal} closeModal={ () => setModal(false) }>
+         <div className="usercrudc">
+            Hello BooSqueee
          </div>
       </Modal>
       </div>

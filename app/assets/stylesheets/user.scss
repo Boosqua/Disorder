@@ -1,0 +1,85 @@
+.usercrudc {
+   border: 1px solid orange;
+   width: 400px;
+
+   align-self: center;
+   background: #2e3236;
+   border-radius: 10px;
+}
+
+.usercrudunb {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 15px;
+}
+
+.usercrudbi {
+   margin: 5px;
+   font-weight: bold;
+}
+
+.usercrudbib {
+   display: flex;
+   flex-direction: row-reverse;
+   width: 100%;
+}
+
+.usercrudbutton {
+   padding: 10px;
+   background: #74808d;
+   border-radius: 5px;
+   font-size: 12px;
+   font-weight: bold;
+   margin-left: 5px;
+   height: fit-content;
+}
+
+.usercrudbutton:hover {
+   background: #68737f;
+   cursor: pointer;
+}
+.usercrudic {
+    width: 95%;
+    margin: 10px;
+
+    border-radius: 5px;
+    background: #363a3e;
+}
+
+.usercrudicr {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.usercrudicc {
+   display: flex;
+   flex-direction: column;
+   margin: 5px;
+}
+
+.usercrudh {
+    font-size: 10px;
+    font-weight: bold;
+    color: #8c9094;
+}
+
+.userdeletebutton {
+   border: 1px solid #ec4745;
+   color: #ec4745;
+   padding: 10px;
+   border-radius: 5px;
+   font-size: 12px;
+   font-weight: bold;
+   margin-left: 5px;
+   height: fit-content;
+   width: fit-content;
+}
+.usercrudic2 {
+   margin: 10px;
+}
+.userdeletebutton:hover {
+   cursor: pointer;
+}

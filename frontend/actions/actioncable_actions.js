@@ -62,7 +62,6 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
      },
      {
        received: (data) => {
-          console.log(data)
           if(!data.old){
              App.cable.subscriptions.create(
                {

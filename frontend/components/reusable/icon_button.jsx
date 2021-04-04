@@ -13,11 +13,11 @@ export default class Testing extends Component {
          height: '100px',
       }, this.props)
       let className;
-       if(this.props.selected){
-               className = 'ibcs'
-         } else {
-         className = this.props.onHover ? "ibc-h" : 'ibc'
-         }
+      if(this.props.selected){
+         className = 'ibcs'
+      } else {
+      className = this.props.onHover ? "ibc-h" : 'ibc'
+      }
       return (
          <div 
          className={className}
