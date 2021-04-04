@@ -28,7 +28,7 @@ export default class Testing extends Component {
                (<div className="alert"></div>) :
                null
          }
-            <div className={this.props.image ? "ibi" : "ibt"}>
+            <div className={this.props.image ? "ibi" : "ibt"} id={this.props.animate? "animatepls" : ''}>
                {
                   this.props.image ? 
                      <img className={this.props.serverPhoto ? "serverPhoto" : ""}src={this.props.image}/> :

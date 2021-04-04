@@ -15,6 +15,7 @@ import ServerMembers from "./server_members"
 import FriendList from "./friend_list"
 import { fetchAllSubscriptions } from '../actions/actioncable_actions';
 import Errors from "./errors/user_errors"
+import Loading from "./loading"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
@@ -64,5 +65,5 @@ export default function Home(props) {
                }
                   
             </div>
-      : null ) 
+      : <Loading/> ) 
 }
