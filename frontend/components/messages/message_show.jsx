@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import IconButton from '../reusable/icon_button'
 import { deleteMessage } from "../../actions/message_actions"
 import SlateUpdate from './slate_update'
+import Modal from '../reusable/modal'
 
 export default function MessageShow(props) {
    const dispatch = useDispatch()
@@ -11,6 +12,7 @@ export default function MessageShow(props) {
    const userImage = user.photo ? user.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
    const userName = user.username
    const date = props.message.created_at ? props.message.created_at.split("-") : ""
+   const [modal, setModal] = useState(false)
    const [currentUserId, channel] = useSelector( state => {
       const currentUserId = state.session.currentUser.id;
       const channel = state.actioncable.messages;
@@ -70,16 +72,15 @@ export default function MessageShow(props) {
             
             {props.message.photoUrl ? 
             <div className="messagecontent" >
-               <img className={"imagetest"}src={props.message.photoUrl} alt=""/>
+               <img className={"imagetest"}src={props.message.photoUrl} onClick={() => setModal(true)}/>
             </div>: null}
             {
             userId === currentUserId && !editing? 
             <div className="delete-row">
                <div className="delete-text" onClick={ () => { deleteMessage(props.message)(dispatch)}}>delete</div>
                <div className="delete-text" style={{fontStyle: "normal"}}>{" | "}</div>
-            <div className="delete-text" onClick={() => {
+               <div className="delete-text" onClick={() => {
                setEditing(true)
-               console.log(editing)
                }} >
                edit
             </div>
@@ -89,7 +90,13 @@ export default function MessageShow(props) {
             }
             </div>
          </div>
-
+            {
+               props.message.photoUrl ? 
+               <Modal show={modal} closeModal={() => setModal(false)} background={true}>
+                  <img className="imagepopout" src={props.message.photoUrl} alt=""/>
+               </Modal>
+               : null
+            }
       </div>
    )
 }

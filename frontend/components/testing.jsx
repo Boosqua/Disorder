@@ -18,9 +18,9 @@ export default function testing(){
   const [value, setValue] = useState(initialValue)
   const editor = useMemo(() => withHistory(withReact(createEditor())), [])
   return (
-    <Slate editor={editor} value={value}  >
-      <Editable autoFocus placeholder="Enter some plain text..." />
-    </Slate>
+   <div className="circle" >
+      <div className="plus"/>
+   </div>
   )
 }
 

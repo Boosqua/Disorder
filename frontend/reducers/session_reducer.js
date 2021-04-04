@@ -18,7 +18,7 @@ const sessionReducer = ( state = _nullSession, action ) => {
       case RECEIVE_CURRENT_USER:
          return Object.assign({}, newState, { currentUser: action.currentUser });
       case RECEIVE_CURRENT_CHANNEL:
-         return Object.assign({}, newState, { channelId: action.id });
+         return { currentUser: state.currentUser, channelId: action.id }
       case RECEIVE_FRIEND_IDS:
          return Object.assign({}, newState, { friendIds: action.friendIds });
       case LOGOUT_CURRENT_USER:

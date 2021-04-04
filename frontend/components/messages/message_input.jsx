@@ -8,13 +8,23 @@ import { createMessage} from "../../actions/message_actions"
 export default function MessageInput(props) {
    const dispatch = useDispatch()
    const {id} = useParams()
-   const [channelId, messagesChannel] = useSelector(state => {
+   const [channelId, messagesChannel, channelName] = useSelector(state => {
       let channelId = state.session.channelId
+      let channelName;
       if(id === "@me") {
          channelId = state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
+         channelName = state.entities.users[channelId] ? state.entities.users[channelId].username : null
+      } else {
+         const channels = state.entities.channels[parseInt(id)]
+         for( let i =  0; i < channels.length ; i++ ){
+            if (channels[i].id === channelId ){
+               channelName = channels[i].name
+               break
+            }
+         }
       }
       const messagesChannel = state.actioncable.messages
-      return [channelId, messagesChannel]
+      return [channelId, messagesChannel, channelName]
    })
    const editor = useMemo(() => withReact(createEditor()), [])
    const [image, setImage] = useState({imageUrl: null, imageFile: null})
@@ -24,9 +34,10 @@ export default function MessageInput(props) {
       children: [{ text: '' }],
     },
   ])
-   const userId = useSelector( state => state.session.currentUser.id)
-   const imageUpload = useRef(null)
-   const type = id === "@me" ? "Friend" : "Channel"
+  const userId = useSelector( state => state.session.currentUser.id)
+  const imageUpload = useRef(null)
+  const type = id === "@me" ? "Friend" : "Channel"
+  const placeholder = `message ${channelName}`
 
    const friendIds = useSelector( state => state.entities.friends )
    if( id === "@me" && friendIds.length === 0 ) return null
@@ -48,10 +59,22 @@ export default function MessageInput(props) {
             body: value[0].children[0].text
          }
          Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
+         Transforms.select(editor, {
+            anchor: { path: [0, 0], offset: 0 },
+            focus: { path: [0, 0], offset: 0},
+         })
          messagesChannel.send(messageObject)
       }
-      
    }
+   
+   useEffect(() => {
+      Transforms.select(editor, {
+         anchor: { path: [0, 0], offset: 0 },
+         focus: { path: [0, 0], offset: 0 },
+      })
+      Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
+
+   }, [channelId])
    function handleUpload(e) {
       const reader = new FileReader();
       const file = e.currentTarget.files[0];
@@ -69,7 +92,7 @@ export default function MessageInput(props) {
    return channelId ? <div className="input">
       <div className="span-container">
       <div className="circle" onClick={() => {imageUpload.current.click()}}>
-         +
+         <div className="plus" />
       </div>
       <span className="mifc" >
 
@@ -79,6 +102,7 @@ export default function MessageInput(props) {
             onChange={value => setValue(value)}
          >
          <Editable 
+         placeholder={true ? placeholder : ''}
          onKeyDown={ e => {
             if(e.key === "Enter") {
                e.preventDefault()

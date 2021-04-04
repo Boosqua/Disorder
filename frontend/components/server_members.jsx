@@ -92,7 +92,10 @@ export default function ServerMembers(props){
          }
          <Modal 
          show={ modal.show } 
-         closeModal={() => { setModal({show: false})}} 
+         closeModal={() => { 
+            setModal({show: false})
+            setModalText("")
+         }} 
          position={modal.position}
          >
             {
