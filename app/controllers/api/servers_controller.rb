@@ -9,7 +9,6 @@ class Api::ServersController < ApplicationController
       if server.save
          user = User.find(params[:user_id])
          @server = user.grab_server(server.id)
-
          render :show
       else
          render json: @server.errors.full_messages, status: 404

@@ -5,8 +5,7 @@ import channelsErrorsReducer from './channels/channel_errors_reducer'
 
 const errorsReducer = combineReducers({
    session: sessionErrorsReducer,
-   servers: serverErrorsReducer,
-   channels: channelsErrorsReducer
+   user: channelsErrorsReducer
 });
 
 export default errorsReducer; 

@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/channel_api_util';
+import { createChannelSubscription } from './actioncable_actions';
 
 export const RECEIVE_CHANNELS = 'RECEIVE_CHANNELS';
 export const RECEIVE_CHANNEL = 'RECEIVE_CHANNEL';
@@ -44,7 +45,10 @@ export const fetchChannel = (serverId, channelId) => (dispatch) => (
 
 export const createChannel = (serverId, channel) => (dispatch) => (
    APIUtil.createChannel(serverId, channel)
-      .then( channel => dispatch(receiveChannel(channel)))
+      .then( channel => {
+         createChannelSubscription(channel.id)
+         return dispatch(receiveChannel(channel))
+      })
       .fail( errors => dispatch(receiveErrors(errors)) )
 );
 

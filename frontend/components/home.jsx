@@ -14,7 +14,7 @@ import MessageInput from "./messages/message_input"
 import ServerMembers from "./server_members"
 import FriendList from "./friend_list"
 import { fetchAllSubscriptions } from '../actions/actioncable_actions';
-
+import Errors from "./errors/user_errors"
 export default function Home(props) {
    const [loaded, setLoaded] = useState(false)
    const dispatch = useDispatch()
@@ -41,6 +41,7 @@ export default function Home(props) {
       return (
          loaded ?
             <div className={path === "@me" || collapse ? "container-hm" : "container"}>
+               <Errors/>
                <div className="sidebar">
                <ServersIndex/>
                </div>

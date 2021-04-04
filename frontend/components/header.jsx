@@ -96,16 +96,17 @@ export default function Header(props){
       if(ownedServer){
          return (
             <div className="inputform">
-               <div className="inputformrow" onClick={(e)=> {
+               <div className="inputformrow" id="highlight" onClick={(e)=> {
                   setNestedPos({x: e.clientX, y: e.clientY})
                   setNestedModalType('CHANGE_CHANNEL_NAME')
                   setNestedModal(true)
                }}>
-                  <div className="inputformsection" id="highlight">
+                  <div className="inputformsection" >
                      Change Channel Name
                   </div>
                </div>
                <div className="inputformrow"
+               id="highlight"
                   onClick={(e)=> {
                      imageUpload.current.click()
                      setServerModal(false)
@@ -117,6 +118,7 @@ export default function Header(props){
                {
                   server.image || true?
                   <div className="inputformrow"
+                  id="highlight-grey"
                   onClick={(e)=> {
                      const updatedServer = new FormData()
                      updatedServer.append("server[deletePhoto]", true)
@@ -126,19 +128,21 @@ export default function Header(props){
                      setServerModal(false)
                      setNestedModalType("")
                   }}>
-                     <div className="inputformsection" id="highlight" style={{color: "red"}}>
+                     <div className="inputformsection"  style={{color: "red"}}>
                         Delete Server Image
                      </div>
                </div> :
                null
                }
                <div className="inputformrow"
+               id="highlight-grey"
                   onClick={(e)=> {
                   setNestedPos({x: e.clientX, y: e.clientY})
                   setNestedModalType('DELETE_SERVER')
                   setNestedModal(true)
+                  
                }}>
-                     <div className="inputformsection" id="highlight" style={{color: "red"}}>
+                     <div className="inputformsection"  style={{color: "red"}}>
                         {`Delete ${pageName}`}
                      </div>
                </div>

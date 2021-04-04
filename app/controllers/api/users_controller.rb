@@ -22,12 +22,23 @@ class Api::UsersController < ApplicationController
       end
    end
    def update
-      @user = User.find(params[:id])
 
-      if params[:user][:delete_photo]
+      @user = User.find(params[:id])
+      if params[:id] == '1'
+         render json: ["You are not authorized to alter this account!"], status: 403
+      elsif params[:user][:delete_photo]
          @user.photo.delete
          render :show
       elsif @user.update(user_params)
+         render :show
+      end
+   end
+
+   def destroy
+      @user = User.find(params[:id])
+      if params[:id] == "1"
+         render json: ["You are not authorized to delete this account!"], status: 403
+      elsif @user.destroy
          render :show
       end
    end

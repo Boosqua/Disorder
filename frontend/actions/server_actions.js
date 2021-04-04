@@ -1,5 +1,6 @@
 import * as APIUtil from '../util/server_api_util'
 import {fetchMessages} from './message_actions'
+import {createServerSubscription} from "./actioncable_actions"
 export const RECEIVE_SERVERS = 'RECEIVE_SERVERS';
 export const RECEIVE_SERVER = 'RECEIVE_SERVER';
 export const REMOVE_SERVER = 'REMOVE_SERVER';
@@ -47,7 +48,10 @@ export const fetchServer = (userId, serverId) => dispatch => (
 
 export const createServer = (userId, server) => dispatch => (
    APIUtil.createServer(userId, server)
-      .then( server => dispatch(receiveServer(server)))
+      .then( server => {
+         createServerSubscription(userId, server.id)
+         return dispatch(receiveServer(server))}
+         )
       .fail(errors => dispatch(receiveErrors(errors)))
 )
 export const updateServer = (userId, serverId, server) => dispatch => (

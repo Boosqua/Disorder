@@ -31,7 +31,10 @@ class Api::ChannelsController < ApplicationController
    end
    def destroy
       @channel = Channel.find(params[:id])
-      if false # || current_user == nil || server.owner_id != current_user.id
+      count = @channel.server.channels.count
+      if count < 2 
+         render json: ["You cannot delete the last channel from this server!"], status: 403
+      elsif false # || current_user == nil || server.owner_id != current_user.id
          render json: ['You do not have access to update this server']
       elsif @channel.destroy
          render :show

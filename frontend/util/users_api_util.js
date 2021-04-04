@@ -6,10 +6,15 @@ export const fetchUsers = () => (
 
 export const fetchUser = userId => (
    $.ajax({
-      url: `/api/${userId}`
+      url: `/api/users/${userId}`
    })
 )
-
+export const deleteUser = (userId)  => (
+   $.ajax({
+      url: `/api/users/${userId}`, 
+      method: "DELETE"
+   })
+)
 export const updateUser = (user) =>(
    $.ajax({
       url: `/api/users/${user.id}`,

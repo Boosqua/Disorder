@@ -88,3 +88,35 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
      receiveAllSubscriptions({ friendChannel: friendChannel, messages: messages, friendRequestsChannel: friendRequestsChannel})
    );
 }
+
+export const createServerSubscription = (id, serverId) => (
+   App.cable.subscriptions.create({
+         channel: 'MessagesChannel',
+         id: id,
+         server_id: serverId
+      },
+      {
+         received: (data) => {
+            if(!data.photoUrl){
+               dispatch(receiveMessage(data))
+            } else {
+               fetchMessage(data.imageable_id, data.id)(dispatch)
+            }
+         },
+      })
+)
+export const createChannelSubscription = (channelId) => (
+   App.cable.subscriptions.create({
+         channel: 'MessagesChannel',
+         channel_id: channelId
+      },
+      {
+         received: (data) => {
+            if(!data.photoUrl){
+               dispatch(receiveMessage(data))
+            } else {
+               fetchMessage(data.imageable_id, data.id)(dispatch)
+            }
+         },
+      })
+)

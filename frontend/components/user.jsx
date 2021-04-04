@@ -2,10 +2,13 @@ import React, {useRef, useState} from "react";
 import Modal from "./reusable/modal"
 import IconButton from "./reusable/icon_button"
 import { updateCurrentUserPhoto } from "../actions/session_actions"
+import {updateUser, deleteUser} from "../actions/user_actions"
+import { useDispatch } from "react-redux";
 export default function Friend({setUserOptions, userOptions, user}){
+   const dispatch = useDispatch()
    const userImage = user.photo ? user.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
    const imageUpload = useRef(null);
-
+   const [update, setUpdate] = useState({updating: false, username:""})
    function handleUpload(e) {
       const reader = new FileReader();
       const file = e.currentTarget.files[0]; 
@@ -22,6 +25,25 @@ export default function Friend({setUserOptions, userOptions, user}){
       updatedUser.append( 'user[id]', user.id)
       updatedUser.append( 'user[delete_photo]', true)
       updateCurrentUserPhoto(user.id, updatedUser)(dispatch)
+   }
+   function crud(){
+      if( update.updating ){
+         return <form onSubmit={(e) => {
+            e.preventDefault
+            updateUser(Object.assign({}, user, {username: update.username}))(dispatch)
+            setUpdate({updating: false, username:""})
+         }}>
+            <input type="text" 
+            placeholder={user.username} 
+            onChange={(e) => setUpdate(Object.assign({}, update, {username: e.currentTarget.value}))}
+            value={update.username}
+            />
+         </form>
+      } else {
+         return <div className='usercrudbutton' onClick={() => setUpdate(Object.assign({}, update, {updating: true}))}>
+                     Edit
+                  </div>
+      }
    }
    return (
       <Modal show={userOptions} closeModal={() => {setUserOptions(false)}}>
@@ -52,13 +74,11 @@ export default function Friend({setUserOptions, userOptions, user}){
                         {user.username}
                      </div>
                   </div>
-                  <div className='usercrudbutton'>
-                     Edit
-                  </div>
+                  {crud()}
                </div>
             </div>
             <div className="usercrudic2">
-               <div className="userdeletebutton">
+               <div className="userdeletebutton" onClick={() => deleteUser(user.id)(dispatch)}>
                   DELETE ACCOUNT
                </div>
             </div>

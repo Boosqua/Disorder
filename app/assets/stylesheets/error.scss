@@ -1,0 +1,30 @@
+.errorcontainer {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   background: red;
+   padding-top: 10px;
+   height: 50px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-direction: column;
+
+}
+@keyframes timer {
+   0% {
+      width: 50%
+   }
+   100% {
+      width: 0px
+   }
+}
+.errortimer {
+   height: 0px;
+   border: 2px solid orange;
+   animation-name: timer;
+   animation-duration: 3s;
+   animation-timing-function: ease;
+}
+

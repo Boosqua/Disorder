@@ -76,9 +76,11 @@ export const filterFriendIds = (userId, friends) => (dispatch) => {
    dispatch(receiveFriendIds(friendIds))
 }
 
-export const updateCurrentUser = (user) => (dispatch) => (
-   updateUser(user).then(user => dispatch(receiveCurrentUser(user)))
-)
-export const updateCurrentUserPhoto = (userId, user) => (dispatch) => (
-   updateUserPhoto(userId, user).then(user => dispatch(receiveCurrentUser(user)))
-)
+export const updateCurrentUser = (user) => (dispatch) =>
+  updateUser(user)
+    .then((user) => dispatch(receiveCurrentUser(user)))
+    .fail((error) => dispatch(receiveErrors(error)));
+export const updateCurrentUserPhoto = (userId, user) => (dispatch) =>
+  updateUserPhoto(userId, user)
+    .then((user) => dispatch(receiveCurrentUser(user)))
+    .fail((error) => dispatch(receiveErrors(error)));

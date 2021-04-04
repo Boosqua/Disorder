@@ -3,7 +3,7 @@ class MessageJob < ApplicationJob
 
   def perform(id)
       data = Message.find(id)
-      if !!data 
+      if !!data && redis_connected?
          new_message = { 
             id: data["id"],
             author_id: data['author_id'], 
@@ -27,5 +27,8 @@ class MessageJob < ApplicationJob
             ActionCable.server.broadcast("friends_#{friend[:friend_b_id]}", friend)
          end
       end
+  end
+   def redis_connected?
+    !!Sidekiq.redis(&:info) rescue false
   end
 end

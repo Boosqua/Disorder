@@ -129,22 +129,22 @@ export default function Server(props){
       }
       return (
          <div className="inputform">
-            <div className="inputformrow" onClick={ (e) => {
+            <div className="inputformrow" id="highlight" onClick={ (e) => {
                setNestedType("RENAME")
                setNestedModal(true)
                setNestedModalPos({x: e.clientX + 20, y: e.clientY })
                }}
                >
-               <div className="inputformsection" id="highlight">
+               <div className="inputformsection" >
                   {`Rename ${contextModalChannel.name}`}
                </div>
             </div>
-            <div className="inputformrow" onClick={ () => {
+            <div className="inputformrow" id="highlight-grey" onClick={ () => {
                deleteChannel(contextModalChannel.server_id, contextModalChannel.id)(dispatch)
                setContextModalChannel(null)
                setContextModal(false)
             }}>
-               <div className="inputformsection" id="highlight" style={{color: "red"}}>
+               <div className="inputformsection"  style={{color: "red"}}>
                   {`Delete ${contextModalChannel.name}`}
                </div>
             </div>
