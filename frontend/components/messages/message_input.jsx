@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useMemo, useState  } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { createEditor, Editor  } from 'slate'
+import { createEditor, Editor, Transforms  } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 import ImageUpload from "./image_upload"
 import { createMessage} from "../../actions/message_actions"
@@ -47,7 +47,7 @@ export default function MessageInput(props) {
             imageable_type: type,
             body: value[0].children[0].text
          }
-         editor.deleteBackward("block")
+         Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
          messagesChannel.send(messageObject)
       }
       

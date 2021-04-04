@@ -48,16 +48,14 @@ export default function Home(props) {
                </div>
                <Header setCollapse={setCollapse}
                collapse={collapse}/>
-
                { 
                   path === "@me" ? 
                   <FriendList setChannelChange={setChannelChange}/> : 
                   <Server />
                }
-
-                  <Messages channelChange={channelChange}/>
-
+               <Messages channelChange={channelChange}/>
                <MessageInput key={channelChange} setChannelChange={setChannelChange} channel={channelChange}/>
+
                {
                   path === "@me" ? 
                   null : 

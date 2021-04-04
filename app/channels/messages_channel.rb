@@ -22,13 +22,19 @@ class MessagesChannel < ApplicationCable::Channel
       end
    end
    def receive(data)
-      message = { 
-         author_id: data['userId'], 
-         body: data['body'], 
-         imageable_id: data['imageable_id'],
-         imageable_type: data["imageable_type"]
-      }
-      savedMessage = Message.create!(message)
+      if(data["editing"])
+         @message = Message.find(data["id"])
+         @message.update(body: data["body"])
+         ActionCable.server.broadcast("server_#{@message.imageable_type}#{@message.imageable_id}", @message)
+      else
+         message = { 
+            author_id: data['userId'], 
+            body: data['body'], 
+            imageable_id: data['imageable_id'],
+            imageable_type: data["imageable_type"]
+         }
+         savedMessage = Message.create!(message)
+      end
    end
    def unsubscribed
 

@@ -1,25 +1,40 @@
 
 // Import React dependencies.
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
-// Import the Slate editor factory.
-import { createEditor, Transforms, Editor, Text, Node  } from 'slate'
-import Modal from "./reusable/modal"
-// Import the Slate components and React plugin.
+// import React, { useCallback, useEffect, useMemo, useState } from 'react'
+// // Import the Slate editor factory.
+// import { createEditor, Transforms, Editor, Text, Node  } from 'slate'
+// import Modal from "./reusable/modal"
+// // Import the Slate components and React plugin.
+// import { Slate, Editable, withReact } from 'slate-react'
+
+import React, { useState, useMemo } from 'react'
+import { createEditor, Descendant } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
+import { withHistory } from 'slate-history'
 
 export default function testing(){
-   const [modal, setModal] = useState(false)
-   return (
-      <div>
-         <button onClick={() => setModal(true)}>click for image</button>
-      <Modal show={modal} closeModal={ () => setModal(false) }>
-         <div className="usercrudc">
-            Hello BooSqueee
-         </div>
-      </Modal>
-      </div>
-   )
+
+
+  const [value, setValue] = useState(initialValue)
+  const editor = useMemo(() => withHistory(withReact(createEditor())), [])
+  return (
+    <Slate editor={editor} value={value}  >
+      <Editable autoFocus placeholder="Enter some plain text..." />
+    </Slate>
+  )
 }
+
+const initialValue = [
+  {
+    type: 'paragraph',
+    children: [
+      { text: 'This is editable plain text, just like a <textarea>!' },
+    ],
+  },
+]
+
+
+
 /**
 const CustomEditor = {
   isBoldMarkActive(editor) {
