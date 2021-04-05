@@ -9,6 +9,7 @@ import {fetchChannels} from "../actions/channel_actions"
 import {fetchMessages} from "../actions/message_actions"
 import {fetchUsers} from "../actions/user_actions"
 import { fetchFriends, fetchFriendRequests } from "../actions/friend_actions"
+import { fetchInvites } from "../actions/invitation_actions"
 import { useSelector, useDispatch } from 'react-redux';
 import MessageInput from "./messages/message_input"
 import ServerMembers from "./server_members"
@@ -34,6 +35,7 @@ export default function Home(props) {
       .then(() => fetchFriends()(dispatch))
       .then(() => fetchFriendRequests()(dispatch))
       .then(() => fetchAllSubscriptions(id)(dispatch))
+      .then(() => fetchInvites()(dispatch))
       .then(() => setLoaded(true))
        
    }, [])

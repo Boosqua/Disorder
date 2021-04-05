@@ -9,9 +9,8 @@ export default (state = {}, action) => {
    
    switch (action.type) {
       case RECEIVE_ERRORS:
-         console.log(action.error)
          let newState = action.errors;
-         return state;
+         return newState;
       case RECEIVE_CURRENT_USER:
          return {};
       case CLEAR_ERRORS:
