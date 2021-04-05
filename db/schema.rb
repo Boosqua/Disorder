@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_033751) do
+ActiveRecord::Schema.define(version: 2021_04_05_005611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 2021_03_30_033751) do
     t.string "imageable_type"
     t.index ["author_id"], name: "index_messages_on_author_id"
     t.index ["imageable_type", "imageable_id"], name: "index_messages_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "server_invitations", force: :cascade do |t|
+    t.integer "receiver_id", null: false
+    t.integer "sender_id", null: false
+    t.integer "server_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id", "server_id"], name: "index_server_invitations_on_receiver_id_and_server_id", unique: true
   end
 
   create_table "server_members", force: :cascade do |t|

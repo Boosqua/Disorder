@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Messages from "./messages/messages"
+import InputText from "./reusable/input_text"
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams } from "react-router"
 import {receiveCurrentChannel} from "../actions/server_actions"
@@ -45,12 +46,7 @@ export default function Server(props){
    } 
    function handleSubmit(e) {
       e.preventDefault();
-      let channel = {name: newChannelName }
-      createChannel(parseInt(id), channel)(dispatch)
-         .then(() => {
-            setNewChannelName("")
-            setChannelModal(false)
-         })
+      
       
    }
    let channelNamesP;
@@ -104,22 +100,12 @@ export default function Server(props){
                return(
                   <div className="inputform">
                      <div className="inputformrow">
-                        <form 
-                           onSubmit={(e)=> {
-                              e.preventDefault()
-                              let updatedChannel = Object.assign(contextModalChannel, {name: newChannelName})
-                              updateChannel(updatedChannel.server_id, updatedChannel)(dispatch)
-                              setNestedModal(false)
-                              setContextModal(false)
-                           }}>
-                           <input
-                              type="text" 
-                              className="modalinputtext"
-                              value={newChannelName} 
-                              onChange={(e) => {
-                                 setNewChannelName(e.target.value)
-                              }}/>
-                        </form>
+                        <InputText handleSubmit={ (text) => {
+                           let updatedChannel = Object.assign(contextModalChannel, {name: text})
+                           updateChannel(updatedChannel.server_id, updatedChannel)(dispatch)
+                           setNestedModal(false)
+                           setContextModal(false)
+                        }}/>
                      </div>
                   </div>
                )
@@ -186,9 +172,12 @@ export default function Server(props){
             <div className="inputform">
                <div className="inputformrow">
                <div className="inputformsection">Add Channel:</div>
-               <form onSubmit={handleSubmit}>
-               <input type="text" className="modalinputtext"value={newChannelName} onChange={(e) => setNewChannelName(e.target.value)}/>
-               </form>
+               <InputText handleSubmit={ (text) => {
+                  let channel = {name: text }
+                  createChannel(parseInt(id), channel)(dispatch)
+                  setNewChannelName("")
+                  setChannelModal(false)
+               }}/>
                </div>
             </div>
          </Modal>

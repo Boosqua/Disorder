@@ -21,4 +21,5 @@ class Server < ApplicationRecord
       through: :server_memberships,
       source: :user
    belongs_to :owner, class_name: :User
+   has_many :server_invitations, dependent: :destroy
 end

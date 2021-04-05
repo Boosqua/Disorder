@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :servers do 
       resources :channels
     end
+   resources :server_invitations, only: [:create, :index, :show, :destroy]
 
     resources :channels, only: :show do
         resources :messages

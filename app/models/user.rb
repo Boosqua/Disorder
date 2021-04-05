@@ -13,7 +13,7 @@ class User < ApplicationRecord
       foreign_key: :author_id, 
       class_name: :Message, 
       dependent: :destroy
-   #server methods
+   #server associations
    has_many :server_memberships,
       foreign_key: :user_id,
       class_name: :ServerMember,
@@ -32,7 +32,7 @@ class User < ApplicationRecord
       through: :servers,
       source: :channels
 
-   # aquianted user methods
+   # aquianted user associations
    has_many :server_members,
       through: :servers,
       source: :members
@@ -69,9 +69,7 @@ class User < ApplicationRecord
       through: :friendship_bs,
       source: :friend_a
 
-
-   
-   #message methods
+   #message associations
 
    has_many :server_messages,
       through: :servers,
@@ -84,9 +82,23 @@ class User < ApplicationRecord
    has_many :friend_b_messages,
       through: :friendship_bs,
       source: :messages
+   #server invitation associations
+   has_many :sent_server_invitations, 
+      foreign_key: :sender_id, 
+      class_name: :ServerInvitation, 
+      dependent: :destroy
 
-
-
+   has_many :received_server_invitations,
+      foreign_key: :receiver_id,
+      class_name: :ServerInvitation,
+      dependent: :destroy
+   has_many :invited_servers,
+      through: :received_server_invitations,
+      source: :server
+   has_many :inviting_users,
+      through: :received_server_invitations,
+      source: :sender
+      # User Auth
    def self.find_by_credentials(username, password)
       user = User.find_by(username: username)
       return nil unless user
@@ -118,7 +130,7 @@ class User < ApplicationRecord
    end
 
    def grab_users 
-      users = self.server_members + self.friends + self.friend_requestors
+      users = self.server_members + self.friends + self.friend_requestors + self.inviting_users
       users.uniq!
    end
    # add server member ids before sending to front end
@@ -157,8 +169,34 @@ class User < ApplicationRecord
       end
       sent_server
    end
-
+   # give users default icons 
    def ensure_user_image
       self.update(user_image: rand(0..3)) unless self.user_image
+   end
+
+   #grab relevant server invitation info
+
+   def grab_server_invites #is this more efficient than doing db queries?
+      invites = self.received_server_invitations
+      invited_servers = self.invited_servers
+      users = self.inviting_users
+      parsed_invites = invites.map do |invite| 
+         full_invite = {}
+         full_invite[:id] = invite[:id]
+         invited_servers.each do |invited_server|
+            if invited_server[:id] = invite[:server_id]
+               full_invite[:server] = invited_server
+               break
+            end
+         end
+         users.each do |user|
+            if user[:id] = invite[:sender_id]
+               full_invite[:sender] = user
+               break
+            end
+         end
+         full_invite
+      end
+      parsed_invites
    end
 end
