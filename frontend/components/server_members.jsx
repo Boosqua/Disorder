@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-
+import {Link} from "react-router-dom"
 import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
+import {receiveCurrentChannel} from "../actions/server_actions"
 export default function ServerMembers(props){
    const serverId = parseInt(useParams().id)
    const [ownerId, channelSub] = useSelector( state => {
@@ -11,7 +12,7 @@ export default function ServerMembers(props){
       const channelSub = state.actioncable.friendRequestsChannel
       return [ownerId, channelSub]
    })
-
+   const dispatch = useDispatch()
    const [modal, setModal] = useState({show: false, position: null, selectedUser: null })
    const [modalText, setModalText] = useState("")
    function getModalText() {
@@ -113,7 +114,9 @@ export default function ServerMembers(props){
                      {
                         friends.indexOf(modal.selectedUser.id) === -1 && modal.selectedUser.id !== currentUserId ?
                            getModalText()
-                           : null
+                           : <Link to="/server/@me"className="modalbutton" onClick={() => {
+                              dispatch(receiveCurrentChannel(modal.selectedUser.id))
+                           }}>message</Link>
 
                      }
                   </div>
