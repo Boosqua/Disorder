@@ -4,8 +4,9 @@ import {useParams} from "react-router"
 import {Link} from "react-router-dom"
 import {deleteServerMember, updateServer, deleteServer} from "../actions/server_actions"
 import User from "./user"
-
+import {receiveCurrentChannel} from "../actions/server_actions"
 import Modal from "./reusable/modal"
+import InputText from "./reusable/input_text"
 export default function Header(props){
    const {id} = useParams()
    const imageUpload = useRef(null)
@@ -45,23 +46,13 @@ export default function Header(props){
          case "CHANGE_CHANNEL_NAME":
             return (<div className="inputform">
                      <div className="inputformrow">
-                        <form 
-                           onSubmit={(e)=> {
-                              e.preventDefault()
-                              const updatedServer = new FormData()
-                              updatedServer.append("server[name]", newServerName)
-                              updateServer(server.owner_id, server.id, updatedServer)(dispatch)
-                              setNewServerName("")
-                              setNestedModal(false)
-                              setServerModal(false)
-                           }}>
-                           <input
-                              type="text" 
-                              value={newServerName} 
-                              onChange={(e) => {
-                                 setNewServerName(e.target.value)
-                              }}/>
-                        </form>
+                        <InputText handleSubmit={(text) => {
+                           const updatedServer = new FormData()
+                           updatedServer.append("server[name]", text)
+                           updateServer(server.owner_id, server.id, updatedServer)(dispatch)
+                           setNestedModal(false)
+                           setServerModal(false)
+                        }}/>
                      </div>
                   </div>)
          case "DELETE_SERVER":
@@ -72,6 +63,7 @@ export default function Header(props){
                </div>
                <Link to='/server/@me'>
                <div className="modalbutton" onClick={(e) => {
+                  dispatch(receiveCurrentChannel(null))
                   deleteServer(userId, parseInt(id))(dispatch)
                   setNestedModal(false)
                   setServerModal(false)
@@ -102,7 +94,7 @@ export default function Header(props){
                   setNestedModal(true)
                }}>
                   <div className="inputformsection" >
-                     Change Channel Name
+                     Change Server Name
                   </div>
                </div>
                <div className="inputformrow"
@@ -168,6 +160,7 @@ export default function Header(props){
                <div className="modalbutton" onClick={(e) => {
                   deleteServerMember({server_id: parseInt(id), user_id: userId})(dispatch)
                   setServerModal(false)
+                  dispatch(receiveCurrentChannel(null))
                }}>confirm</div>
                </Link>
                <Link>

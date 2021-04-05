@@ -46,7 +46,7 @@ export default function FriendList(props) {
    return (
       <div className="server">
          {
-            friendRequestors ?
+            friendRequestors.length > 0 ?
             (
                <div style={{maxHeight: "300px", overflow: "scroll"}}>
                   <div className="smh">

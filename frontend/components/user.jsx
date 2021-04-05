@@ -4,6 +4,7 @@ import IconButton from "./reusable/icon_button"
 import { updateCurrentUserPhoto } from "../actions/session_actions"
 import {updateUser, deleteUser} from "../actions/user_actions"
 import { useDispatch } from "react-redux";
+import InputText from "./reusable/input_text"
 export default function Friend({setUserOptions, userOptions, user}){
    const dispatch = useDispatch()
    const userImage = user.photo ? user.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
@@ -28,17 +29,21 @@ export default function Friend({setUserOptions, userOptions, user}){
    }
    function crud(){
       if( update.updating ){
-         return <form onSubmit={(e) => {
-            e.preventDefault
-            updateUser(Object.assign({}, user, {username: update.username}))(dispatch)
-            setUpdate({updating: false, username:""})
-         }}>
-            <input type="text" 
-            placeholder={user.username} 
-            onChange={(e) => setUpdate(Object.assign({}, update, {username: e.currentTarget.value}))}
-            value={update.username}
-            />
-         </form>
+         return <InputText placeholder={user.username} handleSubmit={(text) => {
+            updateUser(Object.assign({}, user, {username: text}))(dispatch)
+            setUpdate({updating: false})
+         }}/>
+         // (<form onSubmit={(e) => {
+         //    e.preventDefault
+         //    updateUser(Object.assign({}, user, {username: update.username}))(dispatch)
+         //    setUpdate({updating: false, username:""})
+         // }}>
+         //    <input type="text" 
+         //    placeholder={user.username} 
+         //    onChange={(e) => setUpdate(Object.assign({}, update, {username: e.currentTarget.value}))}
+         //    value={update.username}
+         //    />
+         // </form>)
       } else {
          return <div className='usercrudbutton' onClick={() => setUpdate(Object.assign({}, update, {updating: true}))}>
                      Edit

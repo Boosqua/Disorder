@@ -7,24 +7,23 @@ import { logout } from "../actions/session_actions"
 import { createServer, receiveCurrentChannel } from "../actions/server_actions"
 import { fetchChannels } from "../actions/channel_actions"
 import { filterFriendIds } from "../actions/session_actions"
+import InputText from "./reusable/input_text"
 export default function ServersIndex(props) {
       const dispatch = useDispatch()
       const [ showModal, setShowModal ] = useState(false)
-      const [newServerName, setNewServerName] = useState("")
+
       const [position, setPosition] = useState(null)
       const alert = useSelector(state => Object.values(state.entities.friendRequests).length > 0)
       const servers = useSelector(state => Object.values(state.entities.servers))
       const userId = useSelector( state => state.session.currentUser.id )
       const { id } = useParams()
-      function handleSubmit(e){
-         e.preventDefault()
-         const server = {name: newServerName }
+      function handleSubmit(text){
+         const server = {name: text }
          createServer(userId, server)(dispatch)
             .then( () => {
                fetchChannels(1)(dispatch)
             })
          setShowModal(false);
-         setNewServerName("");
       }
       const friendships = useSelector(state => state.entities.friends)
       useEffect( () => {
@@ -36,9 +35,7 @@ export default function ServersIndex(props) {
                <div className="inputformrow">
                <div className="inputformsection"> {`Create a Server:`}
                </div>
-               <form onSubmit={handleSubmit}>
-               <input type="text" value={newServerName} onChange={(e) => setNewServerName(e.target.value)}/>
-               </form>
+               <InputText handleSubmit={handleSubmit} placeholder={"server name"}/>
                </div>
             </div>
       }

@@ -107,7 +107,7 @@ export default function MessageInput(props) {
             onChange={value => setValue(value)}
          >
          <Editable 
-         placeholder={true ? placeholder : ''}
+         placeholder={ placeholder }
          onKeyDown={ e => {
             if(e.key === "Enter") {
                e.preventDefault()
