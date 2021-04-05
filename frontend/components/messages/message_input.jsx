@@ -14,11 +14,13 @@ export default function MessageInput(props) {
       if(id === "@me") {
 
          channelId = state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
-         let idA = state.entities.friends[channelId].friend_a_id
-         let idB = state.entities.friends[channelId].friend_b_id
-         channelName = idA === state.session.currentUser.id ? 
-            state.entities.users[idB].username : 
-            state.entities.users[idA].username
+         if(Object.values(state.entities.friends).length > 0){
+            let idA = state.entities.friends[channelId].friend_a_id
+            let idB = state.entities.friends[channelId].friend_b_id
+            channelName = idA === state.session.currentUser.id ? 
+               state.entities.users[idB].username : 
+               state.entities.users[idA].username
+         }
       } else {
          const channels = state.entities.channels[parseInt(id)]
          for( let i =  0; i < channels.length ; i++ ){
@@ -29,6 +31,7 @@ export default function MessageInput(props) {
          }
       }
       const messagesChannel = state.actioncable.messages
+      channelName = channelName ? channelName : null
       return [channelId, messagesChannel, channelName]
    })
    const editor = useMemo(() => withReact(createEditor()), [])
@@ -44,7 +47,7 @@ export default function MessageInput(props) {
   const type = id === "@me" ? "Friend" : "Channel"
   const placeholder = `message ${channelName}`
 
-   const friendIds = useSelector( state => state.entities.friends )
+   const friendIds = useSelector( state => Object.valuesg(state.entities.friends) )
    if( id === "@me" && friendIds.length === 0 ) return null
    function handleSubmit(){
       if(image.imageUrl){
