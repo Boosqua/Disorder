@@ -47,8 +47,8 @@ export default function MessageInput(props) {
   const type = id === "@me" ? "Friend" : "Channel"
   const placeholder = `message ${channelName}`
 
-   const friendIds = useSelector( state => Object.valuesg(state.entities.friends) )
-   if( id === "@me" && friendIds.length === 0 ) return null
+   const friendIds = useSelector( state => Object.values(state.entities.friends) )
+
    function handleSubmit(){
       if(image.imageUrl){
          const message = new FormData()
@@ -76,12 +76,13 @@ export default function MessageInput(props) {
    }
    
    useEffect(() => {
-      Transforms.select(editor, {
-         anchor: { path: [0, 0], offset: 0 },
-         focus: { path: [0, 0], offset: 0 },
-      })
-      Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
-
+      if( id !== "@me" && friendIds.length < 1){
+         Transforms.select(editor, {
+            anchor: { path: [0, 0], offset: 0 },
+            focus: { path: [0, 0], offset: 0 },
+         })
+         Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
+      }
    }, [channelId])
    function handleUpload(e) {
       const reader = new FileReader();
@@ -97,7 +98,7 @@ export default function MessageInput(props) {
       }
    }
 
-   return channelId ? <div className="input">
+   return (id === "@me" && friendIds.length > 0 ) || id !== "@me"? <div className="input">
       <div className="span-container">
       <div className="circle" onClick={() => {imageUpload.current.click()}}>
          <div className="plus" />
@@ -110,12 +111,11 @@ export default function MessageInput(props) {
             onChange={value => setValue(value)}
          >
          <Editable 
-         placeholder={ placeholder }
+         placeholder={ placeholder ? placeholder : "" }
          onKeyDown={ e => {
             if(e.key === "Enter") {
                e.preventDefault()
                handleSubmit()
-
             }
          }}
          />
