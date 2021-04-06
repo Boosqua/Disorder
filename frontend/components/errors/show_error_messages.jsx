@@ -1,8 +1,8 @@
 import React from 'react';
 
 const ShowErrorMessages = (props) => {
-   
-      if ( Object.keys(props.errors.session).length > 0 ){
+
+      if ( props.errors.session.responseJson ){
 
       return (
          <p className="error-messages">

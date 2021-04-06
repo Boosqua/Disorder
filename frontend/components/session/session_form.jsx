@@ -100,12 +100,12 @@ export default class SessionForm extends React.Component {
                {
                   this.props.formType !== 'Sign Up!' ? 
                   <div className='session-links'>
-                     <Link to='/signup'>Need an account?</Link>
+                     <Link className='demo-link' to='/signup'>Need an account?</Link>
                      <a className='demo-link' onClick={this.demoLogin}>
                         Demo Login
                      </a> 
                   </div> :
-                  <Link to='/login'>Log in</Link>
+                  <Link className='demo-link' to='/login'>Log in</Link>
                }
                <button className='session-button'>{this.props.buttonText}</button>
             </form>

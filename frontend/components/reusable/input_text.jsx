@@ -33,7 +33,6 @@ export default function InputText({ text="", placeholder, handleSubmit, }){
                >
                      <Editable 
                      onKeyDown={ e => {
-                        console.log(e.key)
                         if(e.key === "Enter") {
                            e.preventDefault()
                            handleSubmit(value[0].children[0].text)

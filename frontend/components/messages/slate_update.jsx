@@ -45,7 +45,6 @@ export default function SlateUpdate({text, id, setEditing}){
                autoFocus={true} >
                      <Editable autoFocus={true}
                      onKeyDown={ e => {
-                        console.log(e.key)
                         if(e.key === "Enter") {
                            e.preventDefault()
                            handleSubmit()

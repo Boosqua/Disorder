@@ -23,14 +23,16 @@ class Api::ServerInvitationsController < ApplicationController
       if params[:server_invitation][:receiver_name] 
          @user = User.where(("lower(username) LIKE '%#{params[:server_invitation][:receiver_name].downcase}%'")).limit(1)
             
-         if invite.update(receiver_id: @user[0][:id]) && invite.save
+         if @user.length == 0
+            render json: ["User, #{params[:server_invitation][:receiver_name]}, not found!"], status: 404
+         elsif invite.update(receiver_id: @user[0][:id]) && invite.save
             @invite = {}
             @invite[:id] = invite[:id]
             @invite[:sender] = invite.sender
             @invite[:server] = invite.server
             render :show
          else
-            render json: ["User, #{params[:server_invitation][:receiver_name]}, not found!"], status: 404
+            render json: ["#{params[:server_invitation][:receiver_name]} has already received an invite!"], status: 404
          end
       elsif invite.save
          @invite = {}

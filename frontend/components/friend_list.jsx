@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
+import InputText from "./reusable/input_text"
 import {destroyFriend, destroyFriendRequest} from "../actions/friend_actions"
 import { receiveCurrentChannel } from "../actions/server_actions";
 import Invites from "./invites"
@@ -53,6 +54,8 @@ export default function FriendList(props) {
          return Object.assign({requestId: request.id}, state.entities.users[request.requestor_id])
       })
    })
+
+   const [friendR, setFriendR] = useState({show: false, position: null})
    function handleInvite(invite) {
       const {sender, server} = invite
       return (type) => {
@@ -130,6 +133,11 @@ export default function FriendList(props) {
             ): null  
          }
          
+         <div className="smh lol" onClick={(e) =>{
+            setFriendR({show: true, position: {x: e.clientX, y: e.clientY }})
+         }}>
+            {`Add Friends`}
+         </div>
          <div className="smh">
             {`FRIENDS - ${friends.length}`}
          </div>
@@ -202,7 +210,32 @@ export default function FriendList(props) {
                null
             }
          </Modal>
-
+         <FriendRequest 
+            show={friendR.show} 
+            currentUser={id} 
+            position={friendR.position}
+            close={ () => setFriendR({show: false, position:null})}/>
       </div>
    )
+}
+
+function FriendRequest({show, currentUser, close, position }) {
+   const channel = useSelector(state => state.actioncable.friendRequestsChannel)
+   return <Modal show={show} position={position} closeModal={close}>
+      <div className="inputform">
+         <div className="inputformrow">
+            <div className="inputformsection">
+               Enter Username: 
+            </div>
+            <InputText handleSubmit={(text) => {
+               const request = {
+                  requestor_id: currentUser,
+                  username: text
+               }
+               channel.send(request)
+               close()
+            }}/>
+         </div>
+      </div>
+   </Modal>
 }

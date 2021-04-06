@@ -1,5 +1,6 @@
 import { receiveMessage, fetchMessage } from "./message_actions";
 import {receiveFriend, receiveFriendRequest} from "./friend_actions"
+import { fetchUser } from "./user_actions";
 
 export const RECEIVE_ALL_SUBSCRIPTIONS = "RECEIVE_ALL_SUBSCRIPTIONS";
 export const RECEIVE_CHANNEL_SUBSCRIPTION = "RECEIVE_CHANNEL_SUBSCRIPTION";
@@ -50,7 +51,9 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
      },
      {
        received: (data) => {
-         dispatch(receiveFriendRequest(data));
+          fetchUser(data.requestor_id)(dispatch).then(
+             dispatch(receiveFriendRequest(data))
+          )
        },
      }
    );

@@ -3,7 +3,7 @@ import {fetchServer} from '../util/server_api_util'
 import {updateUser, updateUserPhoto} from "../util/users_api_util"
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_FRIEND_IDS = "RECEIVE_FRIEND_IDS";
-export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT-USER';
+export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 

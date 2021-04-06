@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import IconButton from './reusable/icon_button'
 import { Link, useParams } from 'react-router-dom';
@@ -6,8 +6,8 @@ import Modal from "./reusable/modal"
 import { logout } from "../actions/session_actions"
 import { createServer, receiveCurrentChannel } from "../actions/server_actions"
 import { fetchChannels } from "../actions/channel_actions"
-import { filterFriendIds } from "../actions/session_actions"
 import InputText from "./reusable/input_text"
+
 export default function ServersIndex(props) {
       const dispatch = useDispatch()
       const [ showModal, setShowModal ] = useState(false)
