@@ -156,6 +156,7 @@ class User < ApplicationRecord
       messages[:friends] = self.friend_a_messages + self.friend_b_messages
       messages
    end
+
    def grab_server(server_id)
       server = Server.find(server_id)
       sent_server = {}

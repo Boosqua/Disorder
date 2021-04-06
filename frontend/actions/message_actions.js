@@ -18,8 +18,8 @@ export const deleteMessages = message => ({
    type: DELETE_MESSAGE,
    message
 })
-export const fetchMessages = (userId) => dispatch => (
-   APIUtil.fetchMessages(userId)
+export const fetchMessages = (userId, serverId) => dispatch => (
+   APIUtil.fetchMessages(userId, serverId)
       .then(messages => dispatch(receiveMessages(messages)))
       .fail(error => console.log(error))
 )

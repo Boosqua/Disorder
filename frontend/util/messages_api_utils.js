@@ -1,6 +1,7 @@
-export const fetchMessages = (userId) => (
+export const fetchMessages = (userId, serverId) => (
    $.ajax({
-      url: `api/users/${userId}/messages`
+      url: `api/users/${userId}/messages`,
+      data: { serverId }
    })
 )
 export const fetchMessage = (channelId, messageId) => (

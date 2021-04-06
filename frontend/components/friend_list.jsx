@@ -4,6 +4,7 @@ import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
 import InputText from "./reusable/input_text"
 import {destroyFriend, destroyFriendRequest} from "../actions/friend_actions"
+import { createServerSubscription } from "../actions/actioncable_actions"
 import { receiveCurrentChannel } from "../actions/server_actions";
 import Invites from "./invites"
 import { createServerMember } from "../util/server_api_util";
@@ -11,6 +12,7 @@ import { fetchServer } from "../actions/server_actions"
 import { fetchChannels } from "../actions/channel_actions"
 import { receiveUser } from "../actions/user_actions"
 import { destroyInvite } from "../actions/invitation_actions"
+import { fetchMessages } from "../actions/message_actions";
 
 export default function FriendList(props) {
    const defaultInvite = {server: null, sender: null}
@@ -64,7 +66,9 @@ export default function FriendList(props) {
             if(type === "accept"){
                createServerMember(membership)
                .then( () => {
+                  createServerSubscription(userId, server.id)
                   fetchServer(userId, server.id)(dispatch)
+                  fetchMessages(userId, server.id)(dispatch)
                   fetchChannels(userId)(dispatch)
                   dispatch(receiveUser(sender))
                })

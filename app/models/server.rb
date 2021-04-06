@@ -1,15 +1,6 @@
 class Server < ApplicationRecord
    after_save :add_initial_state
 
-   def add_initial_state
-      if self.channels.none? { |channel| channel.name == "general"}
-         Channel.create!(name: 'general', server_id: self.id)
-      end
-      if self.server_memberships.none?
-         ServerMember.create!(user_id: self.owner_id, server_id: self.id)
-      end
-   end
-   
    has_one_attached :photo
    has_many :channels, dependent: :destroy
    has_many :messages, through: :channels
@@ -22,4 +13,19 @@ class Server < ApplicationRecord
       source: :user
    belongs_to :owner, class_name: :User
    has_many :server_invitations, dependent: :destroy
+
+
+   def add_initial_state
+      if self.channels.none? { |channel| channel.name == "general"}
+         Channel.create!(name: 'general', server_id: self.id)
+      end
+      if self.server_memberships.none?
+         ServerMember.create!(user_id: self.owner_id, server_id: self.id)
+      end
+   end
+   def get_messages
+      messages = {}
+      messages[:channels] = self.messages
+      messages
+   end
 end

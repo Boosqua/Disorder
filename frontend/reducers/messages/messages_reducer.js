@@ -9,7 +9,9 @@ export default (state={}, action) => {
    let newState = Object.assign({}, state);
    switch (action.type) {
       case RECEIVE_MESSAGES:
-         let messages = {Channel: {}, Friend: {}}
+         let messages = newState;
+         messages.Channel = messages.Channel ? messages.Channel : {};
+         messages.Friend = messages.Friend ? messages.Friend : {}
          let actionMessages = action.messages.Channel ? action.messages.Channel : {}
          Object.values(actionMessages).forEach( message => {
             messages.Channel[message.imageable_id]
