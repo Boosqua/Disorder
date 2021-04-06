@@ -1,6 +1,8 @@
 import { receiveMessage, fetchMessage } from "./message_actions";
 import {receiveFriend, receiveFriendRequest} from "./friend_actions"
 import { fetchUser } from "./user_actions";
+import { receiveInvite, fetchInvite } from "./invitation_actions";
+
 
 export const RECEIVE_ALL_SUBSCRIPTIONS = "RECEIVE_ALL_SUBSCRIPTIONS";
 export const RECEIVE_CHANNEL_SUBSCRIPTION = "RECEIVE_CHANNEL_SUBSCRIPTION";
@@ -43,7 +45,15 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
             }
          },
       })
-
+   const invitation = App.cable.subscriptions.create({
+      channel: "ServerInvitationsChannel",
+      id: id
+   },
+   {
+      received: (data) => {
+         fetchInvite(data.id)(dispatch)
+      }
+   })
    const friendRequestsChannel = App.cable.subscriptions.create(
      {
        channel: "FriendRequestsChannel",
@@ -88,7 +98,7 @@ export const fetchAllSubscriptions = (id) => (dispatch) => {
      }
    );
    return dispatch(
-     receiveAllSubscriptions({ friendChannel: friendChannel, messages: messages, friendRequestsChannel: friendRequestsChannel})
+     receiveAllSubscriptions({ friendChannel: friendChannel, messages: messages, friendRequestsChannel: friendRequestsChannel, invitation: invitation})
    );
 }
 

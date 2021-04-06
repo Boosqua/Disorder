@@ -1,4 +1,5 @@
 class ServerInvitation < ApplicationRecord
+   after_create_commit {ServerInvitationJob.perform_now self.id}
    belongs_to :server,
       foreign_key: :server_id,
       class_name: :Server
