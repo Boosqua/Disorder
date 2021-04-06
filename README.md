@@ -16,7 +16,7 @@ Disorder is a fullstack single-page web application that closely follows the des
 ## Features
   ### Live Chat 
 Users are able to chat in real-time with each other using channels.
-# ![](messages.gif)
+# ![](demo/messages.gif)
 Live chat is the primary feature of this application. It utilizes Rails Action Cable, subscribing users to chat channels for servers and direct messages. These channels constantly scan for and organize new information to broadcast back to all known members of that channel.
 # IMG
 The frontend component for the chat system then grabs this organized information and updates state to trigger an instant re-render and display the new message.
