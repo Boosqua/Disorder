@@ -31,6 +31,18 @@
    flex-direction: column;
    justify-content: center;
 }
+.inviteform {
+   background: #262525;
+   border-radius: 10px;
+   border: 1px solid #2d3536;
+   padding: 12px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   justify-self: center;
+   max-height: 400px;
+   align-self: center;
+}
 .modalinputtext {
    margin-top: 5px;
 }
@@ -60,6 +72,7 @@
    margin-right: 5px;
    text-align: center;
    color: white;
+   width: fit-content;
 }
 .modalbutton:hover {
    cursor: pointer;

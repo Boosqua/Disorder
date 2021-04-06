@@ -125,7 +125,7 @@ export default function FriendList(props) {
                         </div>
                         )
                      })}
-                     <Invites handle={handleInvite(invite)}invite={invite} show={inviteModal} close={ () => setInviteModal(false) }/>
+                     <Invites handle={handleInvite(invite)} handle1={handleInvite(invite)}invite={invite} show={inviteModal} close={ () => setInviteModal(false) }/>
                </div>
             ): null  
          }

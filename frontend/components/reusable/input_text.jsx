@@ -37,6 +37,10 @@ export default function InputText({ text="", placeholder, handleSubmit, }){
                         if(e.key === "Enter") {
                            e.preventDefault()
                            handleSubmit(value[0].children[0].text)
+                           Transforms.select(editor, {
+                              anchor: { path: [0, 0], offset: text.length },
+                              focus: { path: [0, 0], offset: text.length },
+                           })
                            setValue(initialValue)
                         } else if( e.key === "Escape" ){
                            e.preventDefault

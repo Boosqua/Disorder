@@ -15,6 +15,10 @@
    cursor: pointer;
    background-color: #393d42;
 }
+.linebb {
+   width: 100%;
+   border-bottom: #3f4345 1px solid;
+}
 .htt{
    align-self: center;
    margin-left: 15px;
@@ -53,4 +57,36 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+
+// invite stylings
+.inviteuserscontainer {
+   margin: 10px;
+   border-radius: 5px;
+   background: #363a3e;
+   height: 400px;
+
+   min-width: 300px;
+   width: fit-content;
+   overflow-y: scroll;
+}
+
+.inviteicr {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 5px;
+   justify-content: space-between;
+}
+.invitebi {
+   margin: 5px;
+}
+
+.inviterow {
+   display: flex;
+   flex-direction: row;
+   align-self: flex-end;
+}
+.inviteInput {
+   width: 100%
 }

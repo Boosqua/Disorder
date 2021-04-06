@@ -30,7 +30,7 @@ export const fetchInvite = (id) => (dispatch) => (
       .fail( error => dispatch(receiveErrors(error)))
 )
 export const createInvite = (id) => (dispatch) => (
-   APIUtil.createInvite(id)
+   APIUtil.createInvite(id).then( () => console.log()).fail( err => dispatch(receiveErrors(err)))
 )
 
 export const destroyInvite = (id) => (dispatch) => (

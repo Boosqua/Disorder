@@ -4,9 +4,12 @@ import {useParams} from "react-router"
 import {Link} from "react-router-dom"
 import {deleteServerMember, updateServer, deleteServer} from "../actions/server_actions"
 import User from "./user"
+import IconButton from "./reusable/icon_button"
 import {receiveCurrentChannel} from "../actions/server_actions"
 import Modal from "./reusable/modal"
 import InputText from "./reusable/input_text"
+import {createInvite} from "../actions/invitation_actions"
+
 export default function Header(props){
    const {id} = useParams()
    const imageUpload = useRef(null)
@@ -17,7 +20,7 @@ export default function Header(props){
    const [modalPos, setModalPos] = useState(null)
    const [nestedPos, setNestedPos] = useState(null)
    const [userOptions, setUserOptions] = useState(false)
-   const [image, setImage] = useState({imageUrl: null, imageFile: null})
+   const [invite, setInvite] = useState(false)
    const user = useSelector(state => state.session.currentUser)
    const userId = user.id
    const server = useSelector((state) => {
@@ -107,8 +110,20 @@ export default function Header(props){
                         Update Server Image
                      </div>
                </div>
+               <div className="linebb"></div>
+                <div className="inputformrow"
+                  id="highlight-grey"
+                  onClick={ () => {
+                  setInvite(true) 
+                  setServerModal(false)
+                  }}>
+                  <div className="inputformsection" style={{ color: "#6679bb" }}>
+                     Invite People
+                  </div>
+               </div>
+               <div className="linebb"></div>
                {
-                  server.image || true?
+                  server.photoUrl ?
                   <div className="inputformrow"
                   id="highlight-grey"
                   onClick={(e)=> {
@@ -153,6 +168,17 @@ export default function Header(props){
       } else {
          return  (
             <div className="inputform">
+               <div className="inputformrow"
+                  id="highlight-grey"
+                  onClick={ () => {
+                     setServerModal(false)
+                     setInvite(true)
+                      }}>
+                  <div className="inputformsection" style={{ color: "#6679bb" }}>
+                     Invite People
+                  </div>
+               </div>
+               <div className="linebb"></div>
                <div className="inputformrow">
                <div className="inputformsection"> {`Leave ${pageName}?`}
                </div>
@@ -222,6 +248,90 @@ export default function Header(props){
                <User setUserOptions={setUserOptions} userOptions={userOptions} user={user} /> : 
                null
             }
+            <SendInvite invite={invite} close={() => setInvite(false)} server={server}/>
       </div>
+   )
+}
+
+function SendInvite({invite, close, server}) {
+   const [invited, setInvited] = useState([])
+   const dispatch = useDispatch()
+   const [users, currentUserId] = useSelector( state => {
+      let ids = state.entities.servers[server.id] ? state.entities.servers[server.id].members : []
+      let members = [];
+      for( let i = 0; i < ids.length; i++ ){
+         if(ids[i] !== state.session.currentUser.id && invited.indexOf(ids[i]) === -1){
+            members.push(state.entities.users[ids[i]])
+         }
+      }
+      const users = Object.values(state.entities.users).sort( (a,b) => {
+         let nameA = a.username.toUpperCase(); 
+         let nameB = b.username.toUpperCase(); 
+         if (nameA < nameB) {
+            return -1;
+         }
+         if (nameA > nameB) {
+            return 1;
+         }
+         return 0;
+      }).filter( user => invited.indexOf(user.id) < 0)
+      const currentUserId = state.session.currentUser.id
+      return [users, currentUserId]
+   })
+   function handleSubmit(text){
+      createInvite({sender_id: currentUserId, receiver_name: text, server_id: server.id})(dispatch)
+   }
+   return (
+      <Modal show={invite} closeModal={close}>
+         <div className="inviteform">
+         <div className="inputformrow">
+            <div className="inviteheader">{`Invite Users to ${server.name}`}</div>
+         </div>
+         <div className="linebb"></div>
+         {
+            users.length ? 
+         <div className="inviteuserscontainer">
+         {
+            
+         users.map( (user) => {
+            const userImage = user.photo ? user.photo : [window.redIcon, window.yellowIcon, window.greyIcon, window.greenIcon][user.user_image]
+            return (
+                  <div className="inviteicr">
+                     <div className="inviterow">
+                     <IconButton width="30px" height="30px" image={userImage}/>
+                        <div className="invitebi">
+                           {user.username}
+                        </div>
+                     </div>
+                        <div className="modalbutton" onClick={() => {
+                           let seent = [...invited]
+                           seent.push(user.id)
+                           setInvited(seent)
+                           createInvite({sender_id: currentUserId, receiver_id: user.id, server_id: server.id})(dispatch)
+                        }}> Invite </div>
+                  </div>
+            )
+         })
+            
+         }
+          </div>
+          : <div className="inputformrow" >
+            <div className="inviteheader" style={{color: "red"}} >{`No users found!`}</div>
+         </div>
+         }
+         {
+            invite ?
+            <div className="inviteInput">
+               <div className="inputformrow">
+               <div className="inviteheader">{`Send Invite`}</div>
+               </div>
+               <div style={{width: "80%", paddingLeft: "10px"}}>
+                  <InputText handleSubmit={handleSubmit} />
+               </div>
+            </div>
+            : null
+         }
+         </div>
+      </Modal>
    )
 }

@@ -8,7 +8,7 @@ export default (state=[], action) => {
 
    switch (action.type) {
       case RECEIVE_ERRORS:
-         return action.errors.responseJSON;
+         return action.errors.responseJSON ? action.errors.responseJSON : state
       case CLEAR_ERRORS:
          return [];
       default:

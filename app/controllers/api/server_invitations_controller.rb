@@ -20,7 +20,19 @@ class Api::ServerInvitationsController < ApplicationController
 
    def create
       invite = ServerInvitation.new(invitation_params)
-      if invite.save
+      if params[:server_invitation][:receiver_name] 
+         @user = User.where(("lower(username) LIKE '%#{params[:server_invitation][:receiver_name].downcase}%'")).limit(1)
+            
+         if invite.update(receiver_id: @user[0][:id]) && invite.save
+            @invite = {}
+            @invite[:id] = invite[:id]
+            @invite[:sender] = invite.sender
+            @invite[:server] = invite.server
+            render :show
+         else
+            render json: ["User, #{params[:server_invitation][:receiver_name]}, not found!"], status: 404
+         end
+      elsif invite.save
          @invite = {}
          @invite[:id] = invite[:id]
          @invite[:sender] = invite.sender

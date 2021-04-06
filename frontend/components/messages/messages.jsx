@@ -25,7 +25,7 @@ export default function Messages(props){
    const messagesEnd = useRef(null);
    useEffect(() => {
       messagesEnd.current.scrollIntoView({ behavior: "auto" });
-   }, [serverId, channel])
+   })
    let lastId = null
    function checkId(userId){
       if(lastId !== userId){
