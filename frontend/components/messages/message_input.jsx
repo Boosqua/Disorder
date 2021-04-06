@@ -14,7 +14,8 @@ export default function MessageInput(props) {
       if(id === "@me") {
 
          channelId = state.entities.users[channelId] ? state.entities.users[channelId].friendshipId : null
-         if(Object.values(state.entities.friends).length > 0){
+         if(state.entities.friends[channelId] && channelId){
+
             let idA = state.entities.friends[channelId].friend_a_id
             let idB = state.entities.friends[channelId].friend_b_id
             channelName = idA === state.session.currentUser.id ? 
@@ -76,14 +77,14 @@ export default function MessageInput(props) {
    }
    
    useEffect(() => {
-      if( id !== "@me" && friendIds.length < 1){
+      if( id !== "@me" || friendIds.length > 0){
          Transforms.select(editor, {
             anchor: { path: [0, 0], offset: 0 },
             focus: { path: [0, 0], offset: 0 },
          })
          Transforms.delete(editor, {at: [0, 0], distance: 100, unit: "block"})
       }
-   }, [channelId])
+   }, [channelId, id])
    function handleUpload(e) {
       const reader = new FileReader();
       const file = e.currentTarget.files[0];

@@ -15,15 +15,17 @@ export default function Messages(props){
                return channels[i];
             }
          }
-      } else {
+      } else if(state.session.channelId) {
          return state.entities.users[state.session.channelId] ? state.entities.users[state.session.channelId] : {username: ""}
+      } else {
+         return {username: "" }
       }
    })
    const currentUser = useSelector( (state) => state.session.currentUser )
    const messagesEnd = useRef(null);
    useEffect(() => {
       messagesEnd.current.scrollIntoView({ behavior: "auto" });
-   })
+   }, [serverId, channel])
    let lastId = null
    function checkId(userId){
       if(lastId !== userId){

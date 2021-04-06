@@ -128,9 +128,10 @@ export default function FriendList(props) {
                         </div> 
                         :
                         <div className="modalbutton" style={{alignSelf: "center"}} onClick={ (e) => {
-                           destroyFriend(modal.selectedUser.friendshipId)(dispatch)
+                           destroyFriend(modal.selectedUser.friendshipId)(dispatch).then(() => {
+                              dispatch(receiveCurrentChannel(null))
+                           })
                            props.setChannelChange(Math.random())
-                           dispatch(receiveCurrentChannel(null))
                            setModal({show: false, position: null, selectedUser: null })
                         }}>
                            Remove Friend
