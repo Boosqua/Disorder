@@ -1,6 +1,7 @@
 class Api::ServersController < ApplicationController
    def show
-      @server = Server.find(params[:id])
+      @server = current_user.grab_server(params[:id])
+      render :show
    end
 
    def create

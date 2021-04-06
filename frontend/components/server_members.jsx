@@ -114,9 +114,11 @@ export default function ServerMembers(props){
                      {
                         friends.indexOf(modal.selectedUser.id) === -1 && modal.selectedUser.id !== currentUserId ?
                            getModalText()
-                           : <Link to="/server/@me"className="modalbutton" onClick={() => {
+                           : modal.selectedUser.id !== currentUserId ? <Link to="/server/@me"className="modalbutton" onClick={() => {
                               dispatch(receiveCurrentChannel(modal.selectedUser.id))
-                           }}>message</Link>
+                           }}>message</Link> : <Link to="/server/@me"className="modalbutton" onClick={() => {
+                              dispatch(receiveCurrentChannel(null))
+                           }}>Home Page</Link>
 
                      }
                   </div>

@@ -4,10 +4,19 @@ import IconButton from "./reusable/icon_button"
 import Modal from "./reusable/modal"
 import {destroyFriend, destroyFriendRequest} from "../actions/friend_actions"
 import { receiveCurrentChannel } from "../actions/server_actions";
+import Invites from "./invites"
+import { createServerMember } from "../util/server_api_util";
+import { fetchServer } from "../actions/server_actions"
+import { fetchChannels } from "../actions/channel_actions"
+import { receiveUser } from "../actions/user_actions"
+import { destroyInvite } from "../actions/invitation_actions"
 
 export default function FriendList(props) {
+   const defaultInvite = {server: null, sender: null}
    const dispatch = useDispatch()
-   const [friends, channel] = useSelector( state => {
+   const [inviteModal, setInviteModal] = useState(false)
+   const [invite, setInvite] = useState(defaultInvite)
+   const [friends, channel, invites, userId] = useSelector( state => {
       const friendships = Object.values(state.entities.friends).sort((a,b) => {
          let timeA = a.last_message; 
          let timeB = b.last_message; 
@@ -29,7 +38,9 @@ export default function FriendList(props) {
          return friend
       })
       const channel = state.actioncable.friendChannel;
-      return [friends, channel]
+      const invites = Object.values(state.entities.invitations)
+      const userId = state.session.currentUser.id
+      return [friends, channel, invites, userId]
    })
    if( !useSelector( state => state.session.channelId ) && friends.length > 0){
       dispatch(receiveCurrentChannel(friends[0].id))
@@ -42,6 +53,25 @@ export default function FriendList(props) {
          return Object.assign({requestId: request.id}, state.entities.users[request.requestor_id])
       })
    })
+   function handleInvite(invite) {
+      const {sender, server} = invite
+      return (type) => {
+         const membership = { server_id: server.id, user_id: userId}
+         return () => {
+            if(type === "accept"){
+               createServerMember(membership)
+               .then( () => {
+                  fetchServer(userId, server.id)(dispatch)
+                  fetchChannels(userId)(dispatch)
+                  dispatch(receiveUser(sender))
+               })
+            }
+            destroyInvite(invite.id)(dispatch)
+            setInviteModal(false)
+            setInvite(defaultInvite)
+         }
+      }
+   }
    const id = useSelector(state => state.session.currentUser.id)
    return (
       <div className="server">
@@ -66,6 +96,36 @@ export default function FriendList(props) {
                         </div>
                         )
                       })}
+               </div>
+            ): null  
+         }
+         {
+            invites.length > 0 ?
+            (
+               <div style={{maxHeight: "300px", overflow: "scroll"}}>
+                  <div className="smh">
+                     {`SERVER INVITES - ${invites.length}`}
+                  </div>
+                  {invites.map( (invited, index) => {
+                     const image =  invited.server.photoUrl ? invited.server.photoUrl : null
+                     return (
+                        <div className="smc2" key={index} onClick={(e) => {
+                           e.preventDefault()
+                           setInviteModal(true)
+                           setInvite(invited)
+                        }}>
+                           {
+                              image ? 
+                                 <div className="smci">
+                                 <IconButton height="30px" width="30px" image={image} />
+                                 </div> 
+                                 : null
+                           }
+                           <div className={"smun"}>{invited.server.name}</div>
+                        </div>
+                        )
+                     })}
+                     <Invites handle={handleInvite(invite)}invite={invite} show={inviteModal} close={ () => setInviteModal(false) }/>
                </div>
             ): null  
          }

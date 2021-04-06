@@ -13,7 +13,7 @@ export default function ServersIndex(props) {
       const [ showModal, setShowModal ] = useState(false)
 
       const [position, setPosition] = useState(null)
-      const alert = useSelector(state => Object.values(state.entities.friendRequests).length > 0)
+      const alert = useSelector(state => Object.values(state.entities.friendRequests).length > 0 || Object.values(state.entities.invitations).length > 0)
       const servers = useSelector(state => Object.values(state.entities.servers))
       const userId = useSelector( state => state.session.currentUser.id )
       const { id } = useParams()
@@ -25,11 +25,7 @@ export default function ServersIndex(props) {
             })
          setShowModal(false);
       }
-      const friendships = useSelector(state => state.entities.friends)
-      useEffect( () => {
-         filterFriendIds(userId, friendships)(dispatch)
-
-      }, [])
+      
       function modalContent() {
          return <div className="inputform">
                <div className="inputformrow">

@@ -14,7 +14,7 @@ export const receiveInvite = (invite) => ({
    invite
 })
 
-export const deleteInvite = (id) => ({
+export const deleteInvite = ({id}) => ({
    type: DELETE_INVITE,
    id
 })

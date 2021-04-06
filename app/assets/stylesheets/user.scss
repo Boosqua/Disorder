@@ -19,6 +19,7 @@
    font-weight: bold;
 }
 
+
 .usercrudbib {
    display: flex;
    flex-direction: row-reverse;
@@ -83,4 +84,36 @@
 }
 .userdeletebutton:hover {
    cursor: pointer;
+}
+
+.icc {
+   padding: 15px;
+   border: 1px solid orange;
+   align-self: center;
+   background: #2e3236;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+}
+.inviteTitleContainer {
+   display: flex;
+   border-bottom: 1px solid white;
+   align-self: center;
+   justify-content: center;
+   flex-direction: column;
+}
+.inviteTitle {
+   font-weight: bold;
+   align-self: center;
+}
+.centerthecenter {
+   display: flex;
+   align-content: center;
+   flex-direction: column;
+   width: 100%;
+}
+.rowtherow {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
 }

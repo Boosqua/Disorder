@@ -33,17 +33,6 @@ export default function Friend({setUserOptions, userOptions, user}){
             updateUser(Object.assign({}, user, {username: text}))(dispatch)
             setUpdate({updating: false})
          }}/>
-         // (<form onSubmit={(e) => {
-         //    e.preventDefault
-         //    updateUser(Object.assign({}, user, {username: update.username}))(dispatch)
-         //    setUpdate({updating: false, username:""})
-         // }}>
-         //    <input type="text" 
-         //    placeholder={user.username} 
-         //    onChange={(e) => setUpdate(Object.assign({}, update, {username: e.currentTarget.value}))}
-         //    value={update.username}
-         //    />
-         // </form>)
       } else {
          return <div className='usercrudbutton' onClick={() => setUpdate(Object.assign({}, update, {updating: true}))}>
                      Edit
