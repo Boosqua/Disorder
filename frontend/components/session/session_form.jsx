@@ -45,21 +45,21 @@ export default class SessionForm extends React.Component {
       let login = this.props.login ? this.props.login : this.props.processForm;
       let that = this;
       let count = 0;
-      let demo = 'testUserpassword';
+      let demo = 'DisOrderGuestpassword';
       if (this.demo) return;
       this.setState(_USER);
       this.demo = setInterval(() => {
-         let type = count < 8 ? 'username' : 'password';
+         let type = count < 13 ? 'username' : 'password';
          that.setState({ [type]: that.state[type] + demo[count]});
          count++;
-         if (count === 16) {
+         if (count === "DisOrderGuestpassword".length) {
             clearInterval(this.demo)
             login({
-               username: "testUser",
+               username: "DisOrderGuest",
                password: "password"
             })
          }
-      }, 50)
+      }, 40)
    }
 
 
