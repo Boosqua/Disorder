@@ -1,2 +1,0 @@
-class UserRelationship < ApplicationRecord
-end

@@ -118,6 +118,32 @@ export default function ServersIndex(props) {
                   image={window.logoutUrl}
                   />
                </div>
+               <div className="sbl"/> 
+               <a
+               href="https://github.com/Boosqua/Disorder"
+               className="sib"
+               >
+               <IconButton
+                  height={"60px"}
+                  width={"60px"}
+                  link={"true"}
+                  onHover={"true"}
+                  image={window.git}
+                  />
+               </a>
+               <a
+               href="https://www.linkedin.com/in/omar-hernandez-550a4375/"
+               className="sib"
+               onClick={() => {}}
+               >
+               <IconButton
+                  height={"60px"}
+                  width={"60px"}
+                  link={"true"}
+                  onHover={"true"}
+                  image={window.linkedIn}
+                  />
+               </a>
                <Modal position={position} show={showModal} closeModal={() => setShowModal(false)}> {modalContent()} </Modal>
          </div>
       )
