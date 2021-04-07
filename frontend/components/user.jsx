@@ -1,8 +1,8 @@
 import React, {useRef, useState} from "react";
 import Modal from "./reusable/modal"
 import IconButton from "./reusable/icon_button"
-import { updateCurrentUserPhoto } from "../actions/session_actions"
-import {updateUser, deleteUser} from "../actions/user_actions"
+import { updateCurrentUserPhoto, updateCurrentUser} from "../actions/session_actions"
+import {deleteUser} from "../actions/user_actions"
 import { useDispatch } from "react-redux";
 import InputText from "./reusable/input_text"
 export default function Friend({setUserOptions, userOptions, user}){
@@ -30,7 +30,7 @@ export default function Friend({setUserOptions, userOptions, user}){
    function crud(){
       if( update.updating ){
          return <InputText placeholder={user.username} handleSubmit={(text) => {
-            updateUser(Object.assign({}, user, {username: text}))(dispatch)
+            updateCurrentUser(Object.assign({}, user, {username: text}))(dispatch)
             setUpdate({updating: false})
          }}/>
       } else {
