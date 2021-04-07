@@ -72,7 +72,7 @@ export default function MessageShow(props) {
             
             {props.message.photoUrl ? 
             <div className="messagecontent" >
-               <img className={"imagetest"}src={props.message.photoUrl} onClick={() => setModal(true)}/>
+               <img className={"imageshow"}src={props.message.photoUrl} onClick={() => setModal(true)}/>
             </div>: null}
             {
             userId === currentUserId && !editing? 

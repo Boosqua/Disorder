@@ -31,3 +31,10 @@
    max-height: 500px;
    max-width: 500px;
 }
+.imageshow{
+   grid-row: span 2 / auto;
+   grid-column: span 2 / auto;
+   // width: inherit;
+   max-height: 300px;
+   max-width: 500px;
+}
