@@ -30,14 +30,14 @@ require 'open-uri'
 
    Server.create!([
       {name: "HOME", owner_id: 1},
-      {name: "Cats", owner_id: 12},
+      {name: "Cats", owner_id: 13},
    ])
    
    (2..16).each do |user_id|
       ServerMember.create!(user_id: user_id, server_id: 1)
    end
    (1..16).each do |user_id|
-      ServerMember.create!(user_id: user_id, server_id: 2) if user_id != 2 && user_id != 12
+      ServerMember.create!(user_id: user_id, server_id: 2) if user_id != 2 && user_id != 13
    end
 
    Friend.create!(friend_a_id: 1, friend_b_id: 2)
